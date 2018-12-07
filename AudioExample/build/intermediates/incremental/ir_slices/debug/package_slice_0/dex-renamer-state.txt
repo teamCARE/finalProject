@@ -1,0 +1,4 @@
+#Fri Dec 07 14:14:58 EST 2018
+base.0=/Users/camille/Documents/CARE/RDK/samples/AudioExample/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="evsDarkGray" type="color">#1e1e1e</item>
+    <item name="evsGray" type="color">#7e7e7e</item>
+    <item name="evsGray1" type="color">#5e5e5e</item>
+    <item name="evsGreen" type="color">#00FF00</item>
+    <item name="evsGreenDark" type="color">#00AF00</item>
+    <item name="evsWhite" type="color">#d2d2d2</item>
+    <color name="evs_background">#000000</color>
+    <color name="keyBackground">#00ff00</color>
+    <color name="keyBorder">#a0a000</color>
+    <color name="keyForeground">#00ff00</color>
+    <color name="keyForegroundYellow">#ffff00</color>
+    <string name="app_name">EvsBaseLibrary</string>
+    <string name="feet_unit">ft</string>
+    <string name="feet_unit_voice">feet</string>
+    <string name="kilometers_unit_voice">kilometers</string>
+    <string name="km_unit">KM</string>
+    <string name="kph_unit">KPH</string>
+    <string name="kph_unit_voice">kilometers per hour</string>
+    <string name="meters_unit">m</string>
+    <string name="meters_unit_voice">meters</string>
+    <string name="miles_unit">MI</string>
+    <string name="miles_unit_voice">miles</string>
+    <string name="mph_unit">MPH</string>
+    <string name="mph_unit_voice">miles peer hour</string>
+    <string name="speak_now">Speak now!</string>
+    <string name="start_listening">Swipe forward\nand say a word</string>
+    <string name="welcome">Welcome to the audio demo!\nTap to start recording</string>
+</resources>

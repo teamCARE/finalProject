@@ -1,0 +1,29 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+    defaultConfig {
+        applicationId 'sdk.everysight.examples.audio'
+        minSdkVersion 22
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+        }
+    }
+    productFlavors {
+    }
+}
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs '../../libs'
+    }
+}
+
+dependencies {
+    implementation(name: 'evsBase', ext: 'aar')
+}

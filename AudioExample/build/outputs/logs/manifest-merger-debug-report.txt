@@ -1,0 +1,86 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:2:1-32:12
+MERGED from [:evsBase:] /Users/camille/.gradle/caches/transforms-1/files-1.1/evsBase.aar/91265c35c7f3a1a07eaa3dbc99f946d3/AndroidManifest.xml:2:1-14:12
+INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:2:1-32:12
+	package
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:4:11-50
+		INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml
+		INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml
+	android:versionName
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:6:11-36
+		INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml
+		INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:3:11-57
+	xmlns:android
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:2:11-69
+	android:versionCode
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:5:11-34
+		INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml
+		INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:8:5-70
+	android:name
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:8:22-68
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:9:5-80
+	android:name
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:9:22-78
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:10:5-79
+MERGED from [:evsBase:] /Users/camille/.gradle/caches/transforms-1/files-1.1/evsBase.aar/91265c35c7f3a1a07eaa3dbc99f946d3/AndroidManifest.xml:12:5-80
+MERGED from [:evsBase:] /Users/camille/.gradle/caches/transforms-1/files-1.1/evsBase.aar/91265c35c7f3a1a07eaa3dbc99f946d3/AndroidManifest.xml:12:5-80
+	android:name
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:10:22-77
+application
+ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:12:5-30:19
+	android:label
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:14:9-40
+	tools:ignore
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:15:9-48
+	android:icon
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:13:9-45
+	android:allowBackup
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:16:9-36
+activity#sdk.everysight.examples.audio.AudioActivity
+ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:18:9-23:20
+	android:name
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:18:19-48
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:19:13-22:29
+action#android.intent.action.MAIN
+ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:20:17-68
+	android:name
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:20:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:21:17-76
+	android:name
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:21:27-74
+meta-data#app_run_in_bg
+ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:26:9-28:36
+	android:value
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:28:13-34
+	android:name
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml:27:13-41
+uses-sdk
+INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml
+MERGED from [:evsBase:] /Users/camille/.gradle/caches/transforms-1/files-1.1/evsBase.aar/91265c35c7f3a1a07eaa3dbc99f946d3/AndroidManifest.xml:7:5-9:41
+MERGED from [:evsBase:] /Users/camille/.gradle/caches/transforms-1/files-1.1/evsBase.aar/91265c35c7f3a1a07eaa3dbc99f946d3/AndroidManifest.xml:7:5-9:41
+INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		ADDED from [:evsBase:] /Users/camille/.gradle/caches/transforms-1/files-1.1/evsBase.aar/91265c35c7f3a1a07eaa3dbc99f946d3/AndroidManifest.xml:9:9-38
+	android:minSdkVersion
+		INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml
+		ADDED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml
+		INJECTED from /Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/AndroidManifest.xml
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from [:evsBase:] /Users/camille/.gradle/caches/transforms-1/files-1.1/evsBase.aar/91265c35c7f3a1a07eaa3dbc99f946d3/AndroidManifest.xml:11:5-75
+	android:name
+		ADDED from [:evsBase:] /Users/camille/.gradle/caches/transforms-1/files-1.1/evsBase.aar/91265c35c7f3a1a07eaa3dbc99f946d3/AndroidManifest.xml:11:22-72

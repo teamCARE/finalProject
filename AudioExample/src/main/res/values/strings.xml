@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="start_listening">Swipe forward\nand say a word</string>
+    <string name="speak_now">Speak now!</string>
+    <string name="welcome">Welcome to the audio demo!\nTap to start recording</string>
+</resources>

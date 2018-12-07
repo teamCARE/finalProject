@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "/Users/camille/Documents/CARE/RDK/samples/AudioExample/build/intermediates/res/merged/debug/drawable_ic_launcher.png.flat",
+        "source": "/Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/res/drawable/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/camille/Documents/CARE/RDK/samples/AudioExample/build/intermediates/res/merged/debug/layout_activity_layout.xml.flat",
+        "source": "/Users/camille/Documents/CARE/RDK/samples/AudioExample/src/main/res/layout/activity_layout.xml"
+    },
+    {
+        "merged": "/Users/camille/Documents/CARE/RDK/samples/AudioExample/build/intermediates/res/merged/debug/layout_view_evs_keyboard.xml.flat",
+        "source": "/Users/camille/.gradle/caches/transforms-1/files-1.1/evsBase.aar/91265c35c7f3a1a07eaa3dbc99f946d3/res/layout/view_evs_keyboard.xml"
+    },
+    {
+        "merged": "/Users/camille/Documents/CARE/RDK/samples/AudioExample/build/intermediates/res/merged/debug/layout_window_container.xml.flat",
+        "source": "/Users/camille/.gradle/caches/transforms-1/files-1.1/evsBase.aar/91265c35c7f3a1a07eaa3dbc99f946d3/res/layout/window_container.xml"
+    },
+    {
+        "merged": "/Users/camille/Documents/CARE/RDK/samples/AudioExample/build/intermediates/res/merged/debug/layout_vg_base_activity_layout.xml.flat",
+        "source": "/Users/camille/.gradle/caches/transforms-1/files-1.1/evsBase.aar/91265c35c7f3a1a07eaa3dbc99f946d3/res/layout/vg_base_activity_layout.xml"
+    },
+    {
+        "merged": "/Users/camille/Documents/CARE/RDK/samples/AudioExample/build/intermediates/res/merged/debug/drawable_border_rectangle.xml.flat",
+        "source": "/Users/camille/.gradle/caches/transforms-1/files-1.1/evsBase.aar/91265c35c7f3a1a07eaa3dbc99f946d3/res/drawable/border_rectangle.xml"
+    },
+    {
+        "merged": "/Users/camille/Documents/CARE/RDK/samples/AudioExample/build/intermediates/res/merged/debug/drawable_border_debug.xml.flat",
+        "source": "/Users/camille/.gradle/caches/transforms-1/files-1.1/evsBase.aar/91265c35c7f3a1a07eaa3dbc99f946d3/res/drawable/border_debug.xml"
+    },
+    {
+        "merged": "/Users/camille/Documents/CARE/RDK/samples/AudioExample/build/intermediates/res/merged/debug/drawable_border_production.xml.flat",
+        "source": "/Users/camille/.gradle/caches/transforms-1/files-1.1/evsBase.aar/91265c35c7f3a1a07eaa3dbc99f946d3/res/drawable/border_production.xml"
+    }
+]
