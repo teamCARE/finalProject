@@ -55,33 +55,43 @@ public class AudioProcessor extends Thread
             //MediaRecorder.AudioSource.DEFAULT // inner microphone
 
             int N = AudioRecord.getMinBufferSize(sampleRate, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
-            buffer = new short[N];
+            String msg = String.format("N: %d", N);
+            Log.i("audio", msg);
+            buffer = new short[10000*N];
             recorder = new AudioRecord(selectedMic, sampleRate, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, N * 10);
             track = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate,
                     AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT, N * 10, AudioTrack.MODE_STREAM);
             recorder.startRecording();
+            Log.i("audio","recording");
 //            track.play();
             /*
              * Loops until something outside of this thread stops it.
              * Reads the data from the recorder and writes it to the audio track for playback.
              */
-            int res = 0;
-            while (!stopped)
+            int res;
+            int offset = 0;
+            while (!stopped && offset<buffer.length)
             {
-                res = recorder.read(buffer, 0, buffer.length);
+                res = recorder.read(buffer, offset, N);
                 if (res < 0)
                 {
                     break;
                 }
+                offset += res;
             }
-            Log.i("Buffer", "Contents of buffer: %d", buffer);
+            Log.i("audio", "done recording");
+//            Log.i("Buffer", "Contents of buffer: ", buffer);
             recorder.stop();
             recorder.release();
             while (!playback) {}
             track.play();
+            offset = 0;
+            int s;
             while (!end) {
-                if (res > 0) {
-                    track.write(buffer, 0, res);
+                if (offset<buffer.length) {
+                    s = track.write(buffer, offset, buffer.length);
+                    if (s <= 0) {break;}
+                    offset += s;
                 }
             }
             track.stop();
