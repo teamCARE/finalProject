@@ -79,9 +79,8 @@ public class AudioActivity extends EvsBaseActivity
             centerLabel.setText("Done recording, swipe forward to playback");
         }
         else {
-            centerLabel.setText("Recording, tap to stop");
             audio.startRec();
-
+            centerLabel.setText("Recording, tap to stop");
         }
         recording = !recording;
     }
@@ -110,8 +109,7 @@ public class AudioActivity extends EvsBaseActivity
         if (!recording) {
             centerLabel.setText("Playback");
             playback = true;
-            int delay = 4000;
-            audio.play();
+            int delay = audio.play();
             new Handler().postDelayed(new Runnable()
             {
                 @Override
