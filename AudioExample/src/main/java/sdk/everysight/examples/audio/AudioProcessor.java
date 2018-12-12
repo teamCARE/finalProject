@@ -27,6 +27,11 @@ public class AudioProcessor extends Thread
     private boolean stopped = false;
     private boolean playback = false;
     private boolean end = false;
+    private boolean killed = false;
+    private AudioRecord recorder = null;
+    private AudioTrack track = null;
+    private short[] buffer;
+    private int N;
 
     /**
      * Give the thread high priority so that it's not canceled unexpectedly, and start it
@@ -40,34 +45,33 @@ public class AudioProcessor extends Thread
     public void run()
     {
         Log.i("Audio", "Running Audio Thread");
-        AudioRecord recorder = null;
-        AudioTrack track = null;
-        short[] buffer;
 
-        /*
-         * Initialize buffer to hold continuously recorded audio data, start recording, and start
-         * playback.
-         */
         try
         {
             int sampleRate = 16000;
             int selectedMic = MediaRecorder.AudioSource.CAMCORDER; // front microphone
             //MediaRecorder.AudioSource.DEFAULT // inner microphone
 
-            int N = AudioRecord.getMinBufferSize(sampleRate, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
-            String msg = String.format("N: %d", N);
-            Log.i("audio", msg);
-            buffer = new short[10000*N];
+            N = AudioRecord.getMinBufferSize(sampleRate, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT);
+
             recorder = new AudioRecord(selectedMic, sampleRate, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, N * 10);
             track = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate,
                     AudioFormat.CHANNEL_OUT_MONO, AudioFormat.ENCODING_PCM_16BIT, N * 10, AudioTrack.MODE_STREAM);
+
+            while(!killed) {}
+        }
+        catch (Throwable x)
+        {
+            Log.w("Audio", "Error running audio thread", x);
+        }
+    }
+
+    public void startRec() {
+        Log.i("audio","recording");
+        try{
+            buffer = new short[10000*N];
             recorder.startRecording();
-            Log.i("audio","recording");
-//            track.play();
-            /*
-             * Loops until something outside of this thread stops it.
-             * Reads the data from the recorder and writes it to the audio track for playback.
-             */
+
             int res;
             int offset = 0;
             while (!stopped && offset<buffer.length)
@@ -79,18 +83,40 @@ public class AudioProcessor extends Thread
                 }
                 offset += res;
             }
-            Log.i("audio", "done recording");
-//            Log.i("Buffer", "Contents of buffer: ", buffer);
+        }
+        catch (Throwable x)
+        {
+            Log.w("Audio", "Error recording voice audio", x);
+        }
+    }
+
+    public void stopRec() {
+        Log.i("Audio", "Stopping recording");
+        try {
+            stopped = true;
             recorder.stop();
             recorder.release();
-            while (!playback) {}
-            track.play();
-            offset = 0;
+            Log.i("audio", "done recording");
+        }
+        catch (Throwable x)
+        {
+            Log.w("Audio", "Error stopping recording", x);
+        }
+    }
+    
+    public void play() {
+        Log.i("Audio", "Beginning playback");
+        try {
+            playback = true;
+            int offset = 0;
             int s;
+            track.play();
             while (!end) {
-                if (offset<buffer.length) {
+                if (offset < buffer.length) {
                     s = track.write(buffer, offset, buffer.length);
-                    if (s <= 0) {break;}
+                    if (s <= 0) {
+                        break;
+                    }
                     offset += s;
                 }
             }
@@ -99,30 +125,15 @@ public class AudioProcessor extends Thread
         }
         catch (Throwable x)
         {
-            Log.w("Audio", "Error reading voice audio", x);
+            Log.w("Audio", "Error in playback", x);
         }
-//        finally
-//        {
-//            recorder.stop();
-//            recorder.release();
-//            track.stop();
-//            track.release();
-//        }
-    }
-
-    /**
-     * Called from outside of the thread in order to stop the recording/playback loop
-     */
-    public void stopRec() {
-        stopped = true;
-    }
-    
-    public int play() {
-        playback = true;
-        return 4000; //somehow make this audio length
     }
     
     public void close() {
         end = true;
+    }
+
+    public void kill() {
+        killed = true;
     }
 }

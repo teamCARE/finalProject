@@ -42,6 +42,7 @@ public class AudioActivity extends EvsBaseActivity
         setContentView(R.layout.activity_layout);
 
         centerLabel = (TextView) findViewById(R.id.centerLable);
+        audio.start();
     }
 
     /******************************************************************/
@@ -78,8 +79,9 @@ public class AudioActivity extends EvsBaseActivity
             centerLabel.setText("Done recording, swipe forward to playback");
         }
         else {
-            audio.start();
             centerLabel.setText("Recording, tap to stop");
+            audio.startRec();
+
         }
         recording = !recording;
     }
@@ -95,6 +97,7 @@ public class AudioActivity extends EvsBaseActivity
     @Override
     public void onDown()
     {
+        audio.kill();
         finish();
         super.onDown();
     }
@@ -107,7 +110,8 @@ public class AudioActivity extends EvsBaseActivity
         if (!recording) {
             centerLabel.setText("Playback");
             playback = true;
-            int delay = audio.play();
+            int delay = 4000;
+            audio.play();
             new Handler().postDelayed(new Runnable()
             {
                 @Override
