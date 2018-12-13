@@ -32,6 +32,7 @@ public class AudioActivity extends EvsBaseActivity
     private TextView centerLabel;
     private boolean recording = false;
     private boolean playback = false;
+    private boolean recorded = false;
     final AudioProcessor audio = new AudioProcessor();
 
     /******************************************************************/
@@ -71,12 +72,13 @@ public class AudioActivity extends EvsBaseActivity
     public void onTap()
     {
         super.onTap();
-        if (playback) {
+        if (playback || recorded) {
             return;
         }
         if (recording) {
             audio.stopRec();
             centerLabel.setText("Done recording, swipe forward to playback");
+            recorded = true;
         }
         else {
             audio.startRec();
@@ -123,10 +125,11 @@ public class AudioActivity extends EvsBaseActivity
                             audio.close();
                             centerLabel.setText(R.string.welcome);
                             playback = false;
+                            recorded = false;
                         }
                     });
                 }
-            }, delay); //change delay to length of audio recording
+            }, delay);
         }
 
     }
