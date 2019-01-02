@@ -121,7 +121,8 @@ public class PocketSphinxActivity extends Activity implements
                 ((TextView) activityReference.get().findViewById(R.id.caption_text))
                         .setText("Failed to init recognizer " + result);
             } else {
-                activityReference.get().switchSearch(KWS_SEARCH);
+                //activityReference.get().switchSearch(KWS_SEARCH);
+                activityReference.get().switchSearch(PHONE_SEARCH);
             }
         }
     }
@@ -163,6 +164,7 @@ public class PocketSphinxActivity extends Activity implements
             return;
 
         String text = hypothesis.getHypstr();
+/*
         if (text.equals(KEYPHRASE))
             switchSearch(MENU_SEARCH);
         else if (text.equals(DIGITS_SEARCH))
@@ -173,6 +175,13 @@ public class PocketSphinxActivity extends Activity implements
             switchSearch(FORECAST_SEARCH);
         else
             ((TextView) findViewById(R.id.result_text)).setText(text);
+            */
+
+       // switchSearch(MENU_SEARCH);
+     //   switchSearch(PHONE_SEARCH);
+
+        ((TextView) findViewById(R.id.result_text)).setText(text);
+
     }
 
     /**
@@ -196,8 +205,8 @@ public class PocketSphinxActivity extends Activity implements
      */
     @Override
     public void onEndOfSpeech() {
-        if (!recognizer.getSearchName().equals(KWS_SEARCH))
-            switchSearch(KWS_SEARCH);
+       // if (!recognizer.getSearchName().equals(KWS_SEARCH))
+         //   switchSearch(KWS_SEARCH);
     }
 
     private void switchSearch(String searchName) {
@@ -230,6 +239,7 @@ public class PocketSphinxActivity extends Activity implements
           They are added here for demonstration. You can leave just one.
          */
 
+        /*
         // Create keyword-activation search.
         recognizer.addKeyphraseSearch(KWS_SEARCH, KEYPHRASE);
 
@@ -248,6 +258,13 @@ public class PocketSphinxActivity extends Activity implements
         // Phonetic search
         File phoneticModel = new File(assetsDir, "en-phone.dmp");
         recognizer.addAllphoneSearch(PHONE_SEARCH, phoneticModel);
+        */
+
+        // Phonetic search
+        File engModel = new File(assetsDir, "en-us.lm.bin");
+        recognizer.addNgramSearch(PHONE_SEARCH, engModel);
+
+
     }
 
     @Override
@@ -257,6 +274,6 @@ public class PocketSphinxActivity extends Activity implements
 
     @Override
     public void onTimeout() {
-        switchSearch(KWS_SEARCH);
+        switchSearch(PHONE_SEARCH);
     }
 }
