@@ -27,18 +27,37 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:enabled="true"
-        android:gravity="center_vertical"
+        android:gravity="bottom"
         android:lines="8"
         android:textAlignment="center"
         android:textSize="24sp"
         android:visibility="visible"/>
 
-    <Button
-        android:id="@+id/startListening"
+    <LinearLayout
+        android:id="@+id/linear1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@color/colorAccent"
-        android:text="Start Listening"/>
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/pauseRecognition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary"
+            android:text="Pause Recognition" />
+
+        <Button
+            android:id="@+id/startListening"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:layout_gravity="bottom"
+            android:text="Start Listening" />
+
+    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
+<!--android:gravity="center_vertical"-->

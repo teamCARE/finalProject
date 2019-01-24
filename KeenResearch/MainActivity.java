@@ -10,6 +10,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.method.ScrollingMovementMethod;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,6 +52,9 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
     private ASyncASRInitializerTask asyncASRInitializerTask;
     public static MainActivity instance;
     private Boolean micPermissionGranted = false;
+    private int len_final = 0;
+    private int len_cur = 0;
+    private SpannableStringBuilder ssbuilder = new SpannableStringBuilder();
 
 
     @Override
@@ -74,6 +82,10 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
             startButton.setEnabled(true);
             //MAKES IT CONTINUOUS
             startButton.performClick();
+
+            final TextView resultText = (TextView)findViewById(R.id.resultText);
+            resultText.setTextColor(Color.GREEN);
+            resultText.setText("Ready to Start!");
         }
 
         MainActivity.instance = this;
@@ -101,18 +113,42 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
 
     }
 
+    //unused class but good reference for learning how to use Spannable strings
+    /*public static void appendColoredText(TextView tv, String text, int color) {
+        int start = tv.getText().length();
+        tv.append(text);
+        int end = tv.getText().length();
+
+        Spannable spannableText = (Spannable) tv.getText();
+        spannableText.setSpan(new ForegroundColorSpan(color), start, end, 0);
+
+        Just replace any calls to textView.append("Text") with appendColoredText(textView, "Text", Color.RED);
+    }*/
+
     public void onPartialResult(KASRRecognizer recognizer, final KASRResult result) {
         Log.i(TAG, "   Partial result: " + result.getCleanText());
 
         final TextView resultText = (TextView)findViewById(R.id.resultText);
-        //resultText.setText(text);
+        //resultText.setText(text); //commented out in original Keen source
         resultText.post(new Runnable() {
             @Override
             public void run() {
-                resultText.setTextColor(Color.LTGRAY);
-                //FIX AND UNCOMMENT THIS OUT LATER
-                resultText.setText(result.getCleanText());
-                //resultText.append(result.getCleanText());
+                //method 1 (original)
+                // resultText.setTextColor(Color.LTGRAY);
+                // resultText.setText(result.getCleanText());
+
+                //method 2
+                String resPar = result.getCleanText();
+                if (resPar.length()!=0){
+                    resPar = "\n" + resPar;
+                }
+                SpannableString resParSpanable= new SpannableString(resPar);
+                resParSpanable.setSpan(new ForegroundColorSpan(Color.LTGRAY), 0, resParSpanable.length(), 0);
+                ssbuilder.delete(len_final, ssbuilder.length());
+                ssbuilder.append(resParSpanable);
+
+                resultText.setMovementMethod(new ScrollingMovementMethod());
+                resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE);
             }
         });
     }
@@ -133,14 +169,30 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
             @Override
             public void run() {
                 Log.i(TAG, "Updating UI after receiving final result");
-                if (result.getConfidence() > 0.8)
-                    resultText.setTextColor(Color.GRAY);
-                else
-                    resultText.setTextColor(Color.argb(90, 200, 0, 0));
 
-                resultText.setText(result.getCleanText());
-                //resultText.append("  ");
-                //resultText.append(result.getCleanText());
+                ssbuilder.delete(len_final, ssbuilder.length());
+                String resFin = result.getCleanText();
+                if (resFin.length()!=0){
+                    resFin = "\n" + resFin;
+                }
+                len_final = resFin.length() + len_final;
+                SpannableString resFinSpanable= new SpannableString(resFin);
+
+                if (result.getConfidence() > 0.8) {
+                    //resultText.setTextColor(Color.GRAY);
+                    resFinSpanable.setSpan(new ForegroundColorSpan(Color.BLACK), 0, resFinSpanable.length(), 0);
+                    ssbuilder.append(resFinSpanable);
+                }
+                else {
+                    //resultText.setTextColor(Color.argb(90, 200, 0, 0));
+                    resFinSpanable.setSpan(new ForegroundColorSpan(Color.argb(90, 200, 0, 0)), 0, resFinSpanable.length(), 0);
+                    ssbuilder.append(resFinSpanable);
+                }
+
+                //resultText.setText(result.getCleanText());
+                resultText.setMovementMethod(new ScrollingMovementMethod());
+                resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE);
+
                 startButton.setEnabled(true);
                 //MAKES IT CONTINUOUS
                 startButton.performClick();
@@ -321,6 +373,10 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                 startButton.setEnabled(true);
                 //MAKES IT CONTINUOUS
                 startButton.performClick();
+
+                final TextView resultText = (TextView)findViewById(R.id.resultText);
+                resultText.setTextColor(Color.GREEN);
+                resultText.setText("Ready to Start!");
             } else {
                 Log.e(TAG, "Recognizer wasn't initialized properly");
             }
