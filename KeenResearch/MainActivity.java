@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
     private int len_final = 0;
     private int len_cur = 0;
     private SpannableStringBuilder ssbuilder = new SpannableStringBuilder();
+    private boolean IS_RECORDING = false;
 
 
     @Override
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
             startButton.setEnabled(true);
             //MAKES IT CONTINUOUS
             startButton.performClick();
+            IS_RECORDING = true;
 
             final TextView resultText = (TextView)findViewById(R.id.resultText);
             resultText.setTextColor(Color.GREEN);
@@ -104,14 +106,41 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                 levelUpdateTimer.schedule(levelUpdateTask, 0, 80); // ~12 updates/sec
 
                 view.setEnabled(false);
-                TextView resultText = (TextView)findViewById(R.id.resultText);
+                //TextView resultText = (TextView)findViewById(R.id.resultText);
                 //commented out below so can see history
                 //resultText.setText("");
                 recognizer.startListening();
             }
         });
 
+        //replace this play/pause button with swipe command when integrating with Raptor headset
+        ((Button) findViewById(R.id.pauseRecognition)).setOnClickListener(new OnClickListener() {
+            public void onClick(View view) {
+                Log.i(TAG, "Pause listen...");
+                if (IS_RECORDING == true) {
+                    final KASRRecognizer recognizer = KASRRecognizer.sharedInstance();
+                    recognizer.stopListening();
+                    IS_RECORDING = false;
+                    //indicate to user
+                    final TextView resultText = (TextView)findViewById(R.id.resultText);
+                    resultText.setTextColor(Color.RED);
+                    resultText.setText("Recognition Paused");
+                }
+                else{
+                    startButton.setEnabled(true);
+                    startButton.performClick();
+                    IS_RECORDING = true;
+                    //indicate to user
+                    final TextView resultText = (TextView)findViewById(R.id.resultText);
+                    resultText.setTextColor(Color.GREEN);
+                    resultText.setText("Recognition Play");
+
+                }
+            }
+        });
+
     }
+
 
     //unused class but good reference for learning how to use Spannable strings
     /*public static void appendColoredText(TextView tv, String text, int color) {
@@ -373,6 +402,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                 startButton.setEnabled(true);
                 //MAKES IT CONTINUOUS
                 startButton.performClick();
+                IS_RECORDING = true;
 
                 final TextView resultText = (TextView)findViewById(R.id.resultText);
                 resultText.setTextColor(Color.GREEN);

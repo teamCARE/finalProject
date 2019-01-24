@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/colorPrimary"
-            android:text="Pause Recognition" />
+            android:text="Play/Pause Recognition" />
 
         <Button
             android:id="@+id/startListening"
