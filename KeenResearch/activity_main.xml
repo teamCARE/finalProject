@@ -41,23 +41,25 @@
         android:gravity="bottom"
         android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/pauseRecognition"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:background="@color/colorPrimary"
-            android:text="Play/Pause Recognition" />
+        <!--
+       <Button
+           android:id="@+id/pauseRecognition"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_gravity="bottom"
+           android:background="@color/colorPrimary"
+           android:text="Play/Pause Recognition" />
+            -->
 
-        <Button
-            android:id="@+id/startListening"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
-            android:layout_gravity="bottom"
-            android:text="Start Listening" />
+       <Button
+           android:id="@+id/startListening"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:background="@color/colorAccent"
+           android:layout_gravity="bottom"
+           android:text="Start Listening" />
 
-    </LinearLayout>
+   </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
 <!--android:gravity="center_vertical"-->

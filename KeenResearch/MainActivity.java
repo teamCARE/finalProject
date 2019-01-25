@@ -39,7 +39,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -53,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
     public static MainActivity instance;
     private Boolean micPermissionGranted = false;
     private int len_final = 0;
-    private int len_cur = 0;
     private SpannableStringBuilder ssbuilder = new SpannableStringBuilder();
     private boolean IS_RECORDING = false;
 
@@ -113,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
             }
         });
 
+        /*
         //replace this play/pause button with swipe command when integrating with Raptor headset
         ((Button) findViewById(R.id.pauseRecognition)).setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
@@ -137,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
 
                 }
             }
-        });
+        });*/
 
     }
 
@@ -169,15 +171,16 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                 //method 2
                 String resPar = result.getCleanText();
                 if (resPar.length()!=0){
-                    resPar = "\n" + resPar;
+                   resPar = "\n" + resPar;
                 }
                 SpannableString resParSpanable= new SpannableString(resPar);
                 resParSpanable.setSpan(new ForegroundColorSpan(Color.LTGRAY), 0, resParSpanable.length(), 0);
+
                 ssbuilder.delete(len_final, ssbuilder.length());
+
                 ssbuilder.append(resParSpanable);
 
-                resultText.setMovementMethod(new ScrollingMovementMethod());
-                resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE);
+                resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE); //BufferType SPANNABLE automatically has scrolling movement for a textview
             }
         });
     }
@@ -199,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
             public void run() {
                 Log.i(TAG, "Updating UI after receiving final result");
 
-                ssbuilder.delete(len_final, ssbuilder.length());
+                ssbuilder.delete(len_final, ssbuilder.length()); //erases any partial result
                 String resFin = result.getCleanText();
                 if (resFin.length()!=0){
                     resFin = "\n" + resFin;
@@ -219,8 +222,15 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                 }
 
                 //resultText.setText(result.getCleanText());
-                resultText.setMovementMethod(new ScrollingMovementMethod());
                 resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE);
+
+                //keep ssbuilder length from growing indefinitely
+                //waits for a few lines (100 chars) to cut to avoid cutting every new result
+                if (ssbuilder.length()>500){
+                    ssbuilder.delete(0,100);
+                    len_final =  len_final-100;
+                    //resultText.append("cutText"); //for debug purposes
+                }
 
                 startButton.setEnabled(true);
                 //MAKES IT CONTINUOUS
