@@ -10,10 +10,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
-import android.text.method.ScrollingMovementMethod;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.Menu;
@@ -34,14 +32,10 @@ import com.keenresearch.keenasr.KASRBundle;
 
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -442,67 +436,6 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
 
         String[] sentences = data.toArray(new String[]{});   //converts to a String[]
         return sentences;
-
-
-        /*String[] sentences = {
-                "I don't know",
-                "yes",
-                "no",
-                "I love you",
-                "I hate you",
-                "how are you",
-                "I am good",
-                "I'm good",
-                "I feel good",
-                "I don't feel good",
-                "I'm sick",
-                "I am sick",
-                "What's up",
-                "How are things",
-                "How is life",
-                "How's life",
-                "Let's go",
-                "Let's dance",
-                "zero",
-                "one",
-                "two",
-                "three",
-                "four",
-                "five",
-                "six",
-                "seven",
-                "eight",
-                "nine",
-                "ten"
-        };*/
-        /*String[] sentences = {
-                "hello",
-                "world",
-                "goodbye",
-                "bye",
-                "quick",
-                "brown",
-                "fox",
-                "jump",
-                "jumped",
-                "over",
-                "lazy",
-                "how are you",
-                "I'm doing well",
-                "I'm sick",
-                "where are you going",
-                "going",
-                "joining",
-                "yesterday",
-                "movie",
-                "movies",
-                "did",
-                "go",
-                "is",
-                "was",
-
-        };
-        return sentences;*/
     }
 }
 
