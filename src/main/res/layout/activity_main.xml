@@ -29,5 +29,13 @@
             android:visibility="gone"
             android:text="Start Listening" />
 
+      <Button
+          android:id="@+id/pauseRecognition"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:visibility="gone"
+          android:text="Play/Pause Recognition" />
+
+
     </LinearLayout>
 </FrameLayout>

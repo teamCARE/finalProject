@@ -109,6 +109,33 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
                 recognizer.startListening();
             }
         });
+
+        //replace this play/pause button with swipe command when integrating with Raptor headset
+        ((Button) findViewById(R.id.pauseRecognition)).setOnClickListener(new OnClickListener() {
+            public void onClick(View view) {
+                Log.i(TAG, "Pause listen...");
+                if (IS_RECORDING == true) {
+                    final KASRRecognizer recognizer = KASRRecognizer.sharedInstance();
+                    recognizer.stopListening();
+                    IS_RECORDING = false;
+                    //indicate to user
+                    final TextView resultText = (TextView)findViewById(R.id.resultText);
+                    resultText.setTextColor(Color.RED);
+                    resultText.setText("Recognition Paused");
+                }
+                else{
+                    startButton.setEnabled(true);
+                    startButton.performClick();
+                    IS_RECORDING = true;
+                    //indicate to user
+                    final TextView resultText = (TextView)findViewById(R.id.resultText);
+                    resultText.setTextColor(Color.GREEN);
+                    resultText.setText("Recognition Play");
+
+                }
+            }
+        });
+
     } //end of OnCreate
 
     //Everysight stuff
@@ -132,12 +159,14 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
         super.onPause();
     }
 
-    /*
+
     @Override
     public void onTap() {
         super.onTap();
-        EvsToast.show(this,"Nice Tap!\nSwipe down to Exit");
-    }*/
+        final Button pauseButton = (Button)findViewById(R.id.pauseRecognition);
+        pauseButton.performClick();
+
+    }
     /******************************************************************/
 
     public void onPartialResult(KASRRecognizer recognizer, final KASRResult result) {
