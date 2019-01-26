@@ -29,5 +29,6 @@ repositories {
 
 dependencies {
     implementation(name: 'evsBase', ext: 'aar')
+    implementation project(':KeenASR')
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 }
