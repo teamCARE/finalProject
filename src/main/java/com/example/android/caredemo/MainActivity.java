@@ -56,6 +56,7 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
     private int len_final = 0;
     private SpannableStringBuilder ssbuilder = new SpannableStringBuilder();
     private boolean IS_RECORDING = false;
+    private boolean ready = false;
 
 
     @Override
@@ -85,6 +86,7 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
             final TextView resultText = (TextView)findViewById(R.id.resultText);
             resultText.setTextColor(Color.GREEN);
             resultText.setText("Ready to Start!");
+
         }
 
         MainActivity.instance = this;
@@ -131,7 +133,7 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
                     final TextView resultText = (TextView)findViewById(R.id.resultText);
                     resultText.setTextColor(Color.GREEN);
                     resultText.setText("Recognition Play");
-
+                    ready = true;
                 }
             }
         });
@@ -163,6 +165,7 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
     @Override
     public void onTap() {
         super.onTap();
+        if (!ready) {return;}
         final Button pauseButton = (Button)findViewById(R.id.pauseRecognition);
         pauseButton.performClick();
 
@@ -404,6 +407,7 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
                 final TextView resultText = (TextView)findViewById(R.id.resultText);
                 resultText.setTextColor(Color.GREEN);
                 resultText.setText("Ready to Start!");
+                ready = true;
             } else {
                 Log.e(TAG, "Recognizer wasn't initialized properly");
             }
