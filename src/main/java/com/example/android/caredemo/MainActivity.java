@@ -6,6 +6,12 @@ import android.os.Bundle;
 import com.everysight.base.EvsBaseActivity;
 import com.everysight.notifications.EvsToast;
 
+import com.keenresearch.keenasr.KASRDecodingGraph;
+import com.keenresearch.keenasr.KASRRecognizer;
+import com.keenresearch.keenasr.KASRResult;
+import com.keenresearch.keenasr.KASRRecognizerListener;
+import com.keenresearch.keenasr.KASRBundle;
+
 public class MainActivity extends EvsBaseActivity {
 
     @Override
