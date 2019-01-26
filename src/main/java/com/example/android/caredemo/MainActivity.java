@@ -58,7 +58,7 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
     private int len_final = 0;
     private SpannableStringBuilder ssbuilder = new SpannableStringBuilder();
     private boolean IS_RECORDING = false;
-    private boolean READY = false;
+    private boolean READY = false; //enable/disable onTap function
 
 
     @Override
@@ -68,10 +68,11 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         // disable start button until initialization is completed
-        final Button startButton = (Button)findViewById(R.id.startListening);
+        final Button startButton = (Button)findViewById(R.id.startListening); //invisible button
         startButton.setEnabled(false);
 
-        // we need to make sure audio permission is granted before initializing KeenASR SDK
+        // make sure audio permission is granted before initializing KeenASR SDK
+        // TODO: figure out how to display request message/allow user to select answer
         requestAudioPermissions();
 
         if (KASRRecognizer.sharedInstance() == null) {
@@ -90,11 +91,11 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
             resultText.setTextColor(Color.GREEN);
             resultText.setText("Ready to Start!");
             READY = true;
-
         }
 
         MainActivity.instance = this;
 
+        // play button implementation (Keen Research)
         ((Button) findViewById(R.id.startListening)).setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
                 Log.i(TAG, "Starting to listen...");
@@ -109,14 +110,11 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
                 levelUpdateTimer.schedule(levelUpdateTask, 0, 80); // ~12 updates/sec
 
                 view.setEnabled(false);
-                //TextView resultText = (TextView)findViewById(R.id.resultText);
-                //commented out below so can see history
-                //resultText.setText("");
                 recognizer.startListening();
             }
         });
 
-        //replace this play/pause button with swipe command when integrating with Raptor headset
+        // pause button implementation (Wendy)
         ((Button) findViewById(R.id.pauseRecognition)).setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
                 Log.i(TAG, "Pause listen...");
@@ -146,28 +144,6 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
 
     } //end of OnCreate
 
-    //Everysight stuff //pay attention to onTap
-    /******************************************************************/
-    @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
-    }
-
-    @Override
-    public void onResume()
-    {
-        super.onResume();
-        Log.d(TAG, "onResume : We are running again!");
-    }
-
-    @Override
-    public void onPause()
-    {
-        super.onPause();
-    }
-
-
     @Override
     public void onTap() {
         super.onTap();
@@ -177,49 +153,14 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
 
     }
 
-    /******************************************************************/
-    @Override
-    public void onUp()
-    {
-        super.onUp();
-    }
-
-    /******************************************************************/
-    @Override
-    public void onDown()
-    {
-        //the default behaviour of down is to close the activity
-        super.onDown();
-    }
-
-    /******************************************************************/
-    @Override
-    public void onForward()
-    {
-        super.onForward();
-    }
-
-    /******************************************************************/
-    @Override
-    public void onBackward()
-    {
-        super.onBackward();
-    }
-    /******************************************************************/
-
     public void onPartialResult(KASRRecognizer recognizer, final KASRResult result) {
         Log.i(TAG, "   Partial result: " + result.getCleanText());
 
         final TextView resultText = (TextView)findViewById(R.id.resultText);
-        //resultText.setText(text); //commented out in original Keen source
         resultText.post(new Runnable() {
             @Override
             public void run() {
-                //method 1 (original)
-                // resultText.setTextColor(Color.LTGRAY);
-                // resultText.setText(result.getCleanText());
 
-                //method 2
                 String resPar = result.getCleanText();
                 if (resPar.length()!=0){
                     resPar = "\n" + resPar;
@@ -261,17 +202,13 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
                 SpannableString resFinSpanable= new SpannableString(resFin);
 
                 if (result.getConfidence() > 0.8) {
-                    //resultText.setTextColor(Color.GRAY);
                     resFinSpanable.setSpan(new ForegroundColorSpan(Color.GREEN), 0, resFinSpanable.length(), 0);
                     ssbuilder.append(resFinSpanable);
                 }
                 else {
-                    //resultText.setTextColor(Color.argb(90, 200, 0, 0));
                     resFinSpanable.setSpan(new ForegroundColorSpan(Color.RED), 0, resFinSpanable.length(), 0);
                     ssbuilder.append(resFinSpanable);
                 }
-
-                //resultText.setText(result.getCleanText());
 
                 resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE);
 
@@ -293,7 +230,6 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
         }
 
     } //end of onFinalResult
-
 
     private void requestAudioPermissions() {
         if (ContextCompat.checkSelfPermission(this,
@@ -342,7 +278,7 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
             }
         }
     }
-
+    // ASyncASRInitializerTask class from Keen demo code:
     private class ASyncASRInitializerTask extends AsyncTask<String, Integer, Long> {
         private Context context;
 
