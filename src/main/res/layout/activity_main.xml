@@ -17,10 +17,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:gravity="center_horizontal|center_vertical"
+            android:gravity="center_horizontal|bottom"
             android:text="@string/app_name"
             android:textColor="@color/evsGreen"
-            android:textSize="25dp"/>
+            android:textSize="25dp"
+            android:lines="6"/>
 
         <Button
             android:id="@+id/startListening"

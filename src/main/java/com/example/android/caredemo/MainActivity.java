@@ -18,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.method.ScrollingMovementMethod;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.view.Menu;
@@ -25,6 +26,7 @@ import android.view.MenuItem;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.graphics.Color;
@@ -56,13 +58,14 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
     private int len_final = 0;
     private SpannableStringBuilder ssbuilder = new SpannableStringBuilder();
     private boolean IS_RECORDING = false;
-    private boolean ready = false;
+    private boolean READY = false;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         // disable start button until initialization is completed
         final Button startButton = (Button)findViewById(R.id.startListening);
@@ -86,6 +89,7 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
             final TextView resultText = (TextView)findViewById(R.id.resultText);
             resultText.setTextColor(Color.GREEN);
             resultText.setText("Ready to Start!");
+            READY = true;
 
         }
 
@@ -124,6 +128,7 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
                     final TextView resultText = (TextView)findViewById(R.id.resultText);
                     resultText.setTextColor(Color.RED);
                     resultText.setText("Recognition Paused");
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 }
                 else{
                     startButton.setEnabled(true);
@@ -133,14 +138,15 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
                     final TextView resultText = (TextView)findViewById(R.id.resultText);
                     resultText.setTextColor(Color.GREEN);
                     resultText.setText("Recognition Play");
-                    ready = true;
+                    READY = true;
+                    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 }
             }
         });
 
     } //end of OnCreate
 
-    //Everysight stuff
+    //Everysight stuff //pay attention to onTap
     /******************************************************************/
     @Override
     protected void onDestroy()
@@ -165,10 +171,39 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
     @Override
     public void onTap() {
         super.onTap();
-        if (!ready) {return;}
+        if (!READY) {return;}
         final Button pauseButton = (Button)findViewById(R.id.pauseRecognition);
         pauseButton.performClick();
 
+    }
+
+    /******************************************************************/
+    @Override
+    public void onUp()
+    {
+        super.onUp();
+    }
+
+    /******************************************************************/
+    @Override
+    public void onDown()
+    {
+        //the default behaviour of down is to close the activity
+        super.onDown();
+    }
+
+    /******************************************************************/
+    @Override
+    public void onForward()
+    {
+        super.onForward();
+    }
+
+    /******************************************************************/
+    @Override
+    public void onBackward()
+    {
+        super.onBackward();
     }
     /******************************************************************/
 
@@ -190,12 +225,11 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
                     resPar = "\n" + resPar;
                 }
                 SpannableString resParSpanable= new SpannableString(resPar);
-                resParSpanable.setSpan(new ForegroundColorSpan(Color.LTGRAY), 0, resParSpanable.length(), 0);
+                resParSpanable.setSpan(new ForegroundColorSpan(Color.YELLOW), 0, resParSpanable.length(), 0);
 
                 ssbuilder.delete(len_final, ssbuilder.length());
 
                 ssbuilder.append(resParSpanable);
-
                 resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE); //BufferType SPANNABLE automatically has scrolling movement for a textview
             }
         });
@@ -228,16 +262,17 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
 
                 if (result.getConfidence() > 0.8) {
                     //resultText.setTextColor(Color.GRAY);
-                    resFinSpanable.setSpan(new ForegroundColorSpan(Color.BLACK), 0, resFinSpanable.length(), 0);
+                    resFinSpanable.setSpan(new ForegroundColorSpan(Color.GREEN), 0, resFinSpanable.length(), 0);
                     ssbuilder.append(resFinSpanable);
                 }
                 else {
                     //resultText.setTextColor(Color.argb(90, 200, 0, 0));
-                    resFinSpanable.setSpan(new ForegroundColorSpan(Color.argb(90, 200, 0, 0)), 0, resFinSpanable.length(), 0);
+                    resFinSpanable.setSpan(new ForegroundColorSpan(Color.RED), 0, resFinSpanable.length(), 0);
                     ssbuilder.append(resFinSpanable);
                 }
 
                 //resultText.setText(result.getCleanText());
+
                 resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE);
 
                 //keep ssbuilder length from growing indefinitely
@@ -407,7 +442,7 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
                 final TextView resultText = (TextView)findViewById(R.id.resultText);
                 resultText.setTextColor(Color.GREEN);
                 resultText.setText("Ready to Start!");
-                ready = true;
+                READY = true;
             } else {
                 Log.e(TAG, "Recognizer wasn't initialized properly");
             }
