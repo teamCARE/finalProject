@@ -144,6 +144,9 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
 
     } //end of OnCreate
 
+
+    /** Everysight class overrides */
+    /******************************************************************/
     @Override
     public void onTap() {
         super.onTap();
@@ -152,6 +155,15 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
         pauseButton.performClick();
 
     }
+    @Override
+    public void onDown()
+    {
+        //the default behaviour of down is to close the activity
+        super.onDown();
+        android.os.Process.killProcess(android.os.Process.myPid()); //kills activity completely, so every time app is opened it re-initializes
+    }
+    /******************************************************************/
+
 
     public void onPartialResult(KASRRecognizer recognizer, final KASRResult result) {
         Log.i(TAG, "   Partial result: " + result.getCleanText());
@@ -277,7 +289,9 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
                 return;
             }
         }
-    }
+    } //end of onRequestPermissionsResult overide
+
+
     // ASyncASRInitializerTask class from Keen demo code:
     private class ASyncASRInitializerTask extends AsyncTask<String, Integer, Long> {
         private Context context;
