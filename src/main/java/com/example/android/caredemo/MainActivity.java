@@ -62,7 +62,7 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { //initialize and set up virtual pause/play buttons
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -83,13 +83,14 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
             asyncASRInitializerTask.execute();
         } else {
             startButton.setEnabled(true);
-            //MAKES IT CONTINUOUS
+            // automatically trigger start button once initialized
             startButton.performClick();
             IS_RECORDING = true;
 
             final TextView resultText = (TextView)findViewById(R.id.resultText);
             resultText.setTextColor(Color.GREEN);
             resultText.setText("Ready to Start!");
+            //enable pause function
             READY = true;
         }
 
@@ -141,30 +142,22 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
                 }
             }
         });
-
-    } //end of OnCreate
-
-
-    /** Everysight class overrides */
-    /******************************************************************/
+    }
+    /* onTap:
+     *  When user taps side of glasses, pause button is clicked, toggling recognition
+    */
     @Override
     public void onTap() {
         super.onTap();
-        if (!READY) {return;}
+        if (!READY) {return;} // skip if app not initialized
         final Button pauseButton = (Button)findViewById(R.id.pauseRecognition);
         pauseButton.performClick();
 
     }
-    @Override
-    public void onDown()
-    {
-        //the default behaviour of down is to close the activity
-        super.onDown();
-        android.os.Process.killProcess(android.os.Process.myPid()); //kills activity completely, so every time app is opened it re-initializes
-    }
-    /******************************************************************/
 
-
+    /* onPartialResult:
+    *   Display partial results continuously in yellow
+    */
     public void onPartialResult(KASRRecognizer recognizer, final KASRResult result) {
         Log.i(TAG, "   Partial result: " + result.getCleanText());
 
@@ -186,8 +179,13 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
                 resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE); //BufferType SPANNABLE automatically has scrolling movement for a textview
             }
         });
-    } //end of onPartialResult
-
+    }
+    /* onFinalResult:
+     *   Display final results
+     *   Green if confidence > .8
+     *   Red if confidence < .8
+     *   Erases partial result from screen
+     */
     public void onFinalResult(KASRRecognizer recognizer, final KASRResult result) {
         Log.i(TAG, "Final result: " + result);
         Log.i(TAG, "Final result JSON: " + result.toJSON());
@@ -232,8 +230,8 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
                     //resultText.append("cutText"); //for debug purposes
                 }
 
+                // automatically trigger start button after final result posted
                 startButton.setEnabled(true);
-                //MAKES IT CONTINUOUS
                 startButton.performClick();
             }
         });
@@ -241,7 +239,7 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
             Log.w(TAG, "Unable to post runnable to the UI queue");
         }
 
-    } //end of onFinalResult
+    }
 
     private void requestAudioPermissions() {
         if (ContextCompat.checkSelfPermission(this,
@@ -270,7 +268,7 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
             Log.i(TAG, "Microphone permission has already been granted");
             micPermissionGranted = true;
         }
-    } //end of requestAudioPermissions
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -289,8 +287,7 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
                 return;
             }
         }
-    } //end of onRequestPermissionsResult overide
-
+    }
 
     // ASyncASRInitializerTask class from Keen demo code:
     private class ASyncASRInitializerTask extends AsyncTask<String, Integer, Long> {
@@ -385,7 +382,7 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
 
                 final Button startButton = (Button) findViewById(R.id.startListening);
                 startButton.setEnabled(true);
-                //MAKES IT CONTINUOUS
+                // automatically trigger start button
                 startButton.performClick();
                 IS_RECORDING = true;
 
@@ -398,8 +395,11 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
             }
         }
 
-    } //end of ASyncASRInitializerTask
-
+    }
+    /* getPhrases:
+     *   Retrieves list of words to be recognized
+     *   Dictionary stored in "engwords.txt"
+     */
     private static String[] getPhrases(Context context) {
 
         List<String> data = new ArrayList<String>();
@@ -418,7 +418,5 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
 
         String[] sentences = data.toArray(new String[]{});   //converts to a String[]
         return sentences;
-    } //end of getPhrases
-
-
-} //end of MainActivity
+    }
+}
