@@ -154,6 +154,13 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
         pauseButton.performClick();
 
     }
+    @Override
+    public void onDown()
+    {
+        //the default behaviour of down is to close the activity
+        super.onDown();
+        android.os.Process.killProcess(android.os.Process.myPid()); //kills activity completely, so every time app is opened it re-initializes
+    }
 
     /* onPartialResult:
     *   Display partial results continuously in yellow
@@ -302,26 +309,26 @@ public class MainActivity extends EvsBaseActivity implements KASRRecognizerListe
             KASRBundle asrBundle = new KASRBundle(this.context);
             ArrayList<String> assets = new ArrayList<String>();
 
-            assets.add("keenB2mQT-nnet3chain-en-us/decode.conf");
-            assets.add("keenB2mQT-nnet3chain-en-us/final.dubm");
-            assets.add("keenB2mQT-nnet3chain-en-us/final.ie");
-            assets.add("keenB2mQT-nnet3chain-en-us/final.mat");
-            assets.add("keenB2mQT-nnet3chain-en-us/final.mdl");
-            assets.add("keenB2mQT-nnet3chain-en-us/global_cmvn.stats");
-            assets.add("keenB2mQT-nnet3chain-en-us/ivector_extractor.conf");
-            assets.add("keenB2mQT-nnet3chain-en-us/mfcc.conf");
-            assets.add("keenB2mQT-nnet3chain-en-us/online_cmvn.conf");
-            assets.add("keenB2mQT-nnet3chain-en-us/splice.conf");
-            assets.add("keenB2mQT-nnet3chain-en-us/splice_opts");
-            assets.add("keenB2mQT-nnet3chain-en-us/wordBoundaries.int");
-            assets.add("keenB2mQT-nnet3chain-en-us/words.txt");
-            assets.add("keenB2mQT-nnet3chain-en-us/lang/lexicon.txt");
-            assets.add("keenB2mQT-nnet3chain-en-us/lang/phones.txt");
-            assets.add("keenB2mQT-nnet3chain-en-us/lang/tree");
+            assets.add("keenB2sQT-nnet3chain-en-us/decode.conf");
+            assets.add("keenB2sQT-nnet3chain-en-us/final.dubm");
+            assets.add("keenB2sQT-nnet3chain-en-us/final.ie");
+            assets.add("keenB2sQT-nnet3chain-en-us/final.mat");
+            assets.add("keenB2sQT-nnet3chain-en-us/final.mdl");
+            assets.add("keenB2sQT-nnet3chain-en-us/global_cmvn.stats");
+            assets.add("keenB2sQT-nnet3chain-en-us/ivector_extractor.conf");
+            assets.add("keenB2sQT-nnet3chain-en-us/mfcc.conf");
+            assets.add("keenB2sQT-nnet3chain-en-us/online_cmvn.conf");
+            assets.add("keenB2sQT-nnet3chain-en-us/splice.conf");
+            assets.add("keenB2sQT-nnet3chain-en-us/splice_opts");
+            assets.add("keenB2sQT-nnet3chain-en-us/wordBoundaries.int");
+            assets.add("keenB2sQT-nnet3chain-en-us/words.txt");
+            assets.add("keenB2sQT-nnet3chain-en-us/lang/lexicon.txt");
+            assets.add("keenB2sQT-nnet3chain-en-us/lang/phones.txt");
+            assets.add("keenB2sQT-nnet3chain-en-us/lang/tree");
 
 
             String asrBundleRootPath = getApplicationInfo().dataDir;
-            String asrBundlePath = new String(asrBundleRootPath + "/keenB2mQT-nnet3chain-en-us");
+            String asrBundlePath = new String(asrBundleRootPath + "/keenB2sQT-nnet3chain-en-us");
 
             try {
                 asrBundle.installASRBundle(assets, asrBundleRootPath);
