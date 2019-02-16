@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">KeenASR-Android-PoC</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Bluetooth stuff -->
+    <string name="secure_connect">Connect a device - Secure</string>
+    <string name="dialogboxtitle">Select a Paired Device to connect to</string>
+
+</resources>
