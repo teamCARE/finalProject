@@ -1,0 +1,4 @@
+#Sat Feb 16 14:03:06 EST 2019
+base.0=/home/wendy/KeenASR-Android-PoC-master/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex

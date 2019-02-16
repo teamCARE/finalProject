@@ -1,0 +1,183 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:2:1-32:12
+MERGED from [com.android.support:design:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/383a5bbac8905cccb8ec5c1b64cb46eb/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:appcompat-v7:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/98fa7bea35631fdff3096f5ec7f0fe26/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /root/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/e84dc96d86ff00066c2a2b9488818fba/AndroidManifest.xml:2:1-11:12
+MERGED from [:KeenASR] /root/.gradle/caches/transforms-1/files-1.1/KeenASR.aar/94b819c93e10d5eeea5ea1f4b9fba234/AndroidManifest.xml:2:1-17:12
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/83a4b4fce57840d4337d63f102637df8/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/fc283f8458e55a486ec8524dac032d7e/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/7f0f629bcffbda9cf31baf89f60c5cbe/AndroidManifest.xml:17:1-26:12
+MERGED from [com.android.support:transition:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/cabc9bdec93f6401b3971c05a7c07a0b/AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/80d019a887d3a727f00885f2e3cfb7c4/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/34a8d942c82852e166d03e9b31ea40ea/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/7ba774fa096beb5d671430c29a9f3784/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/244fda7c6873f9ad90ca5649742830dc/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/3c46f7e79709577dffa62dc90c42554b/AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/530264790484bebd0e664d0521ba2c40/AndroidManifest.xml:17:1-31:12
+INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:2:1-32:12
+INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:2:1-32:12
+	package
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:3:11-57
+		INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+		INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:2:1-32:12
+		INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:2:1-32:12
+		INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:6:5-70
+	android:name
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:6:22-68
+uses-permission#android.permission.WAKE_LOCK
+ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:7:5-67
+	android:name
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:7:22-65
+uses-permission#android.permission.BLUETOOTH
+ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:10:5-67
+	android:name
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:10:22-65
+uses-permission#android.permission.BLUETOOTH_ADMIN
+ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:11:5-73
+	android:name
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:11:22-71
+application
+ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:13:5-30:19
+MERGED from [com.android.support:design:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/383a5bbac8905cccb8ec5c1b64cb46eb/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:design:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/383a5bbac8905cccb8ec5c1b64cb46eb/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/98fa7bea35631fdff3096f5ec7f0fe26/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:appcompat-v7:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/98fa7bea35631fdff3096f5ec7f0fe26/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /root/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/e84dc96d86ff00066c2a2b9488818fba/AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /root/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/e84dc96d86ff00066c2a2b9488818fba/AndroidManifest.xml:9:5-20
+MERGED from [:KeenASR] /root/.gradle/caches/transforms-1/files-1.1/KeenASR.aar/94b819c93e10d5eeea5ea1f4b9fba234/AndroidManifest.xml:11:5-15:19
+MERGED from [:KeenASR] /root/.gradle/caches/transforms-1/files-1.1/KeenASR.aar/94b819c93e10d5eeea5ea1f4b9fba234/AndroidManifest.xml:11:5-15:19
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/83a4b4fce57840d4337d63f102637df8/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/83a4b4fce57840d4337d63f102637df8/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/fc283f8458e55a486ec8524dac032d7e/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/fc283f8458e55a486ec8524dac032d7e/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/cabc9bdec93f6401b3971c05a7c07a0b/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:transition:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/cabc9bdec93f6401b3971c05a7c07a0b/AndroidManifest.xml:26:5-20
+MERGED from [com.android.support:support-v4:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/80d019a887d3a727f00885f2e3cfb7c4/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-v4:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/80d019a887d3a727f00885f2e3cfb7c4/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/34a8d942c82852e166d03e9b31ea40ea/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-fragment:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/34a8d942c82852e166d03e9b31ea40ea/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/7ba774fa096beb5d671430c29a9f3784/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-media-compat:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/7ba774fa096beb5d671430c29a9f3784/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/244fda7c6873f9ad90ca5649742830dc/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-utils:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/244fda7c6873f9ad90ca5649742830dc/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/3c46f7e79709577dffa62dc90c42554b/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-core-ui:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/3c46f7e79709577dffa62dc90c42554b/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/530264790484bebd0e664d0521ba2c40/AndroidManifest.xml:29:5-20
+MERGED from [com.android.support:support-compat:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/530264790484bebd0e664d0521ba2c40/AndroidManifest.xml:29:5-20
+	android:supportsRtl
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:18:9-35
+	android:label
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:16:9-41
+	android:roundIcon
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:17:9-54
+	android:icon
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:15:9-43
+	android:allowBackup
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:14:9-35
+	android:theme
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:19:9-40
+activity#com.keenresearch.keenasr_android_poc.MainActivity
+ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:20:9-29:20
+	android:label
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:22:13-45
+	android:theme
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:23:13-56
+	android:name
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:21:13-41
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:24:13-28:29
+action#android.intent.action.MAIN
+ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:25:17-68
+	android:name
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:25:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:27:17-76
+	android:name
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml:27:27-74
+uses-sdk
+INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+MERGED from [com.android.support:design:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/383a5bbac8905cccb8ec5c1b64cb46eb/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:design:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/383a5bbac8905cccb8ec5c1b64cb46eb/AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/98fa7bea35631fdff3096f5ec7f0fe26/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/98fa7bea35631fdff3096f5ec7f0fe26/AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /root/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/e84dc96d86ff00066c2a2b9488818fba/AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] /root/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.0.2.aar/e84dc96d86ff00066c2a2b9488818fba/AndroidManifest.xml:5:5-7:41
+MERGED from [:KeenASR] /root/.gradle/caches/transforms-1/files-1.1/KeenASR.aar/94b819c93e10d5eeea5ea1f4b9fba234/AndroidManifest.xml:7:5-9:41
+MERGED from [:KeenASR] /root/.gradle/caches/transforms-1/files-1.1/KeenASR.aar/94b819c93e10d5eeea5ea1f4b9fba234/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/83a4b4fce57840d4337d63f102637df8/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/83a4b4fce57840d4337d63f102637df8/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/fc283f8458e55a486ec8524dac032d7e/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/fc283f8458e55a486ec8524dac032d7e/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/7f0f629bcffbda9cf31baf89f60c5cbe/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/7f0f629bcffbda9cf31baf89f60c5cbe/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:transition:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/cabc9bdec93f6401b3971c05a7c07a0b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/cabc9bdec93f6401b3971c05a7c07a0b/AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/80d019a887d3a727f00885f2e3cfb7c4/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/80d019a887d3a727f00885f2e3cfb7c4/AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/34a8d942c82852e166d03e9b31ea40ea/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/34a8d942c82852e166d03e9b31ea40ea/AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/7ba774fa096beb5d671430c29a9f3784/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/7ba774fa096beb5d671430c29a9f3784/AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-utils:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/244fda7c6873f9ad90ca5649742830dc/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/244fda7c6873f9ad90ca5649742830dc/AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/3c46f7e79709577dffa62dc90c42554b/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/3c46f7e79709577dffa62dc90c42554b/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/530264790484bebd0e664d0521ba2c40/AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/530264790484bebd0e664d0521ba2c40/AndroidManifest.xml:21:5-23:58
+INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:design:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/383a5bbac8905cccb8ec5c1b64cb46eb/AndroidManifest.xml:23:9-59
+	android:targetSdkVersion
+		INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+		INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+		ADDED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+		INJECTED from /home/wendy/KeenASR-Android-PoC-master/app/src/main/AndroidManifest.xml
+meta-data#android.support.VERSION
+ADDED from [com.android.support:design:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/383a5bbac8905cccb8ec5c1b64cb46eb/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/98fa7bea35631fdff3096f5ec7f0fe26/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:appcompat-v7:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/98fa7bea35631fdff3096f5ec7f0fe26/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/83a4b4fce57840d4337d63f102637df8/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:animated-vector-drawable:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/animated-vector-drawable-25.3.1.aar/83a4b4fce57840d4337d63f102637df8/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/fc283f8458e55a486ec8524dac032d7e/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-vector-drawable:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-vector-drawable-25.3.1.aar/fc283f8458e55a486ec8524dac032d7e/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/7f0f629bcffbda9cf31baf89f60c5cbe/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:recyclerview-v7:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-25.3.1.aar/7f0f629bcffbda9cf31baf89f60c5cbe/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:transition:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/cabc9bdec93f6401b3971c05a7c07a0b/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:transition:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/transition-25.3.1.aar/cabc9bdec93f6401b3971c05a7c07a0b/AndroidManifest.xml:22:5-24:34
+MERGED from [com.android.support:support-v4:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/80d019a887d3a727f00885f2e3cfb7c4/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-v4:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-v4-25.3.1.aar/80d019a887d3a727f00885f2e3cfb7c4/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/34a8d942c82852e166d03e9b31ea40ea/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-fragment:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-fragment-25.3.1.aar/34a8d942c82852e166d03e9b31ea40ea/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/7ba774fa096beb5d671430c29a9f3784/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-media-compat:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-media-compat-25.3.1.aar/7ba774fa096beb5d671430c29a9f3784/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/244fda7c6873f9ad90ca5649742830dc/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-utils:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-core-utils-25.3.1.aar/244fda7c6873f9ad90ca5649742830dc/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/3c46f7e79709577dffa62dc90c42554b/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-core-ui:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-core-ui-25.3.1.aar/3c46f7e79709577dffa62dc90c42554b/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/530264790484bebd0e664d0521ba2c40/AndroidManifest.xml:25:5-27:34
+MERGED from [com.android.support:support-compat:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/support-compat-25.3.1.aar/530264790484bebd0e664d0521ba2c40/AndroidManifest.xml:25:5-27:34
+	android:value
+		ADDED from [com.android.support:design:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/383a5bbac8905cccb8ec5c1b64cb46eb/AndroidManifest.xml:27:9-31
+	android:name
+		ADDED from [com.android.support:design:25.3.1] /root/.gradle/caches/transforms-1/files-1.1/design-25.3.1.aar/383a5bbac8905cccb8ec5c1b64cb46eb/AndroidManifest.xml:26:9-47
