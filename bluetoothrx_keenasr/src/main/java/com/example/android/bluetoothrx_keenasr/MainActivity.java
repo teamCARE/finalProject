@@ -21,6 +21,7 @@ import java.util.TimerTask;
 import java.util.UUID;
 import java.lang.Runnable;
 import java.lang.Thread;
+import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,7 +33,14 @@ public class MainActivity extends AppCompatActivity {
     private final static int REQUEST_ENABLE_BT = 1;
     private AcceptThread AcceptThreadObj;
     private OutputStream outputStream;
-    private InputStream inStream;;
+    private InputStream inStream;
+    private boolean CONNECTED;
+
+    Thread workerThread;
+    byte[] readBuffer;
+    int readBufferPosition;
+    int counter;
+    volatile boolean stopWorker;
 
 
     @Override
@@ -41,10 +49,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Bluetoothsetup();
-
+        CONNECTED = false;
 
         final Button BTstartButton = (Button)findViewById(R.id.BTstart);
+        final Button BTlistenButton = (Button)findViewById(R.id.listen);
         final TextView result = (TextView)findViewById(R.id.result);
+
 
         //replace with raptor tap command //note button won't disable on android until it BTconnects, make new thread if want separate from UI
         ((Button) findViewById(R.id.BTstart)).setOnClickListener(new View.OnClickListener() {
@@ -54,10 +64,19 @@ public class MainActivity extends AppCompatActivity {
                 AcceptThreadObj = new AcceptThread();
                 AcceptThreadObj.run();
                 //Toast.makeText(MainActivity.this, "BT connection succefull", Toast.LENGTH_SHORT).show();
+                //result.setText("Begin listing for incoming data...");
             }
         });
 
+      /*  ((Button) findViewById(R.id.listen)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                beginListenForData();
+            }
+        });*/
+
+
     }
+
 
     public void Bluetoothsetup() {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
@@ -97,21 +116,23 @@ public class MainActivity extends AppCompatActivity {
                         if (socket != null) {
                             // A connection was accepted. Perform work associated with
                             // the connection in a separate thread.
-                            Toast.makeText(MainActivity.this, "Connection Accpted", Toast.LENGTH_SHORT).show();
-                            try {
-                                inStream = socket.getInputStream();
-                                outputStream = socket.getOutputStream();
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                            CONNECTED = true;
+                            //Toast.makeText(MainActivity.this, "Connection Accpted", Toast.LENGTH_SHORT).show();
+
+                            if (CONNECTED){
+                                Toast.makeText(MainActivity.this, "CONNNECTED=true", Toast.LENGTH_SHORT).show();
+                                beginListenForData(socket);
                             }
-                            MssgRun();
+
                            /* try {
                                 mmServerSocket.close();
                             } catch (IOException e) {
                                 Log.e(TAG, "Could not close the connect socket", e);
                             }*/
 
-                            return;
+                           return;
+                           //socket.close();
+                           //break;
                         }
                     }
                 }
@@ -125,6 +146,104 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+    int testtoast;
+
+    void beginListenForData(BluetoothSocket Socket)
+    {
+        testtoast = 0;
+        //set up input and output stream
+        try {
+            inStream = Socket.getInputStream();
+            outputStream = Socket.getOutputStream();
+            Toast.makeText(MainActivity.this, "beginlisteningfordada instream sucess", Toast.LENGTH_SHORT).show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        final Handler handler = new Handler();
+        final byte delimiter = 10; //This is the ASCII code for a newline character
+        final TextView result = (TextView) findViewById(R.id.result);
+        stopWorker = false;
+        readBufferPosition = 0;
+        readBuffer = new byte[1024];
+
+        workerThread = new Thread(new Runnable()
+        {
+            public void run()
+
+            {
+
+
+                while(!Thread.currentThread().isInterrupted() && !stopWorker)
+                {
+
+                    try
+                    {
+                        final int bytesAvailable = inStream.available();
+
+                        if(bytesAvailable > 0)
+                        {
+                           // if (testtoast==0) {
+                                runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Toast.makeText(MainActivity.this, "instream availbe bytes " +bytesAvailable, Toast.LENGTH_SHORT).show();
+                                        //testtoast=1;
+                                    }
+                                });
+                           // }
+
+                            byte[] packetBytes = new byte[bytesAvailable];
+                            inStream.read(packetBytes);
+                            for(int i=0;i<bytesAvailable;i++)
+                            {
+                                byte b = packetBytes[i];
+                                if(b == delimiter)
+                                {
+                                    byte[] encodedBytes = new byte[readBufferPosition];
+                                    System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
+                                    final String data = new String(encodedBytes, "US-ASCII");
+                                    readBufferPosition = 0;
+
+                                    handler.post(new Runnable()
+                                    {
+                                        public void run()
+                                        {
+                                            //result.setText(data);
+                                            runOnUiThread(new Runnable() {
+                                                public void run() {
+                                                    result.setText(data);
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                                else
+                                {
+                                    readBuffer[readBufferPosition++] = b;
+                                }
+                            }
+                        }
+                    }
+                    catch (IOException ex)
+                    {
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(MainActivity.this, "connectionbroke ", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        stopWorker = true;
+                        //break;
+                    }
+                }
+            }
+        });
+
+        workerThread.start();
+    }
+
+
+        /*
     private String readMessage;
 
     public void MssgRun() {
@@ -150,69 +269,12 @@ public class MainActivity extends AppCompatActivity {
             }
 
        // });
-    }
-       /* synchronized (readThread) {
-            readThread.start();
-            try {
-                readThread.wait(2000);
-
-                if (readThread.isAlive()) {
-                    // probably really not good practice!
-                    inStream.close();
-                    System.out.println("Timeout exceeded!");
-                }
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-        }
-        */
+    }*/
 
 
 
 
-   /* public void MssgRun() {
-        final TextView result = (TextView) findViewById(R.id.result);
-        int avilableBytes=0;
-        final int BUFFER_SIZE = 1024;
-        byte[] buffer = new byte[BUFFER_SIZE];
-        int bytes;
-        int b = BUFFER_SIZE;
 
-        try {
-
-            avilableBytes=inStream.available();
-
-            if (avilableBytes>0) {
-                //  bytes = inStream.read(buffer, bytes, BUFFER_SIZE - bytes);
-                Toast.makeText(MainActivity.this, "availbytes:" + avilableBytes, Toast.LENGTH_SHORT).show();
-                bytes = inStream.read(buffer);
-                String readMessage = new String(buffer, 0, bytes);
-                result.setText(readMessage);
-
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-       /*
-        try{
-            while (true) {
-                try {
-                    avilableBytes=inStream.available();
-                    if (avilableBytes>0) {
-                        //  bytes = inStream.read(buffer, bytes, BUFFER_SIZE - bytes);
-                        bytes = inStream.read(buffer);
-                        readMessage = new String(buffer, 0, bytes);
-                    }
-                } catch (IOException e) {
-                   e.printStackTrace();
-                }
-        }
-        } catch (Exception e){
-                e.printStackTrace();
-        }
-        */
 
 
 }

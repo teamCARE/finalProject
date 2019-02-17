@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
+        MSSGTEST=1;
 
         // disable start button until initialization is completed
         final Button startButton = (Button)findViewById(R.id.startListening);
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
         }
     }
 
-
+private int MSSGTEST;
     public void ShowPairedBT() {
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
         if (pairedDevices.size() > 0) {
@@ -242,7 +242,14 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                                 mSocket.connect();
                                 outputStream = mSocket.getOutputStream();
                                 inStream = mSocket.getInputStream();
-                                MssgWrite("This is a test BT message, did you receive it?");
+                               /* if (MSSGTEST == 1) {
+                                    MssgWrite("This is a test BT message, did you receive it?");
+                                    MSSGTEST = 2;
+                                }
+                                if (MSSGTEST == 2) {
+                                    MssgWrite("Second test string");
+                                    MSSGTEST = 1;
+                                }*/
                                 //mSocket.close();
                                 Toast.makeText(MainActivity.this, "sent request succcess: " + MAC_address, Toast.LENGTH_SHORT).show();
 
@@ -262,49 +269,15 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
             }
         }
 
-  /* public void MssgWrite(SpannableStringBuilder s) throws IOException {
+   public void MssgWrite(SpannableStringBuilder s) throws IOException {
         byte[] mBytes = s.toString().getBytes();
         outputStream.write(mBytes);
-    }*/
-
-    public void MssgWrite(String s) throws IOException {
-        outputStream.write(s.getBytes());
     }
 
-    /*
-    public void MssgRun() {
-        Thread readThread = new Thread(new Runnable() {
-            final int BUFFER_SIZE = 1024;
-            byte[] buffer = new byte[BUFFER_SIZE];
-            int bytes = 0;
-            int b = BUFFER_SIZE;
-
-        while(true)
-
-            {
-                try {
-                    bytes = inStream.read(buffer, bytes, BUFFER_SIZE - bytes);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        synchronized (readThread) {
-            readThread.start();
-            try {
-                readThread.wait(2000);
-
-                if(readThread.isAlive()) {
-                    // probably really not good practice!
-                    inStream.close();
-                    System.out.println("Timeout exceeded!");
-                }
-            } catch (InterruptedException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+   /* public void MssgWrite(String s) throws IOException {
+        outputStream.write(s.getBytes());
     }*/
+
 
     //unused class but good reference for learning how to use Spannable strings
     /*public static void appendColoredText(TextView tv, String text, int color) {
@@ -386,14 +359,15 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                 //resultText.setText(result.getCleanText());
                 resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE);
 
-               /* //BT Send
+                //BT Send
                 try {
-                    String s = "a final result was posted";
-                    outputStream.write(s.getBytes());
-                    //Toast.makeText(MainActivity.this, "sent request and string succcess: " + MAC_address, Toast.LENGTH_SHORT).show();
+                    //String s = "a final result was posted" + resFin.length() + "\n";
+                    //outputStream.write(s.getBytes());
+                    MssgWrite(ssbuilder);
+                    Toast.makeText(MainActivity.this, "sent indicator finalresult", Toast.LENGTH_SHORT).show();
                 } catch (IOException connectException) {
                     connectException.printStackTrace();
-                }*/
+                }
 
                 //keep ssbuilder length from growing indefinitely
                 //waits for a few lines (100 chars) to cut to avoid cutting every new result
