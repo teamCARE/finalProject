@@ -16,6 +16,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
@@ -270,8 +271,16 @@ private int MSSGTEST;
         }
 
    public void MssgWrite(SpannableStringBuilder s) throws IOException {
-        byte[] mBytes = s.toString().getBytes();
+        //String sendstr = s.toString() + "-";
+       // byte[] mBytes = sendstr.getBytes();
+        String htmlString = Html.toHtml(s);
+        htmlString = htmlString + "-";  //a dash is the delimeter on rx end
+        byte[] mBytes = htmlString.getBytes(("UTF-8"));
         outputStream.write(mBytes);
+
+        //for debug
+        //String test = new String(mBytes, "UTF-8");
+       // Toast.makeText(MainActivity.this, "converted: " + test, Toast.LENGTH_SHORT).show();
     }
 
    /* public void MssgWrite(String s) throws IOException {
@@ -316,6 +325,13 @@ private int MSSGTEST;
                 ssbuilder.append(resParSpanable);
 
                 resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE); //BufferType SPANNABLE automatically has scrolling movement for a textview
+
+                //BT Send
+                try {
+                    MssgWrite(ssbuilder);
+                } catch (IOException connectException) {
+                    connectException.printStackTrace();
+                }
             }
         });
     }
@@ -361,10 +377,7 @@ private int MSSGTEST;
 
                 //BT Send
                 try {
-                    //String s = "a final result was posted" + resFin.length() + "\n";
-                    //outputStream.write(s.getBytes());
                     MssgWrite(ssbuilder);
-                    Toast.makeText(MainActivity.this, "sent indicator finalresult", Toast.LENGTH_SHORT).show();
                 } catch (IOException connectException) {
                     connectException.printStackTrace();
                 }

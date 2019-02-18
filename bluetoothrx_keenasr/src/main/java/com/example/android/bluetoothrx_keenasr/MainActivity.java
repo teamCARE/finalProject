@@ -4,8 +4,15 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.SpannedString;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -41,7 +48,6 @@ public class MainActivity extends AppCompatActivity {
     int readBufferPosition;
     int counter;
     volatile boolean stopWorker;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
                            return;
                            //socket.close();
-                           //break;
+                           //retutn;
                         }
                     }
                 }
@@ -147,7 +153,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
     int testtoast;
-
+    String temp;
+    SpannableString ssbuilderRX;
     void beginListenForData(BluetoothSocket Socket)
     {
         testtoast = 0;
@@ -161,8 +168,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         final Handler handler = new Handler();
-        final byte delimiter = 10; //This is the ASCII code for a newline character
+      //  final byte delimiter = 10; //This is the ASCII code for a newline character
+        final byte delimiter = 45; //This is the ASCII code for a dash
         final TextView result = (TextView) findViewById(R.id.result);
+        result.setMovementMethod(new ScrollingMovementMethod());
         stopWorker = false;
         readBufferPosition = 0;
         readBuffer = new byte[1024];
@@ -201,7 +210,8 @@ public class MainActivity extends AppCompatActivity {
                                 {
                                     byte[] encodedBytes = new byte[readBufferPosition];
                                     System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
-                                    final String data = new String(encodedBytes, "US-ASCII");
+                                    //final String data = new String(encodedBytes, "US-ASCII");
+                                    final String data = new String(encodedBytes, "UTF-8");
                                     readBufferPosition = 0;
 
                                     handler.post(new Runnable()
@@ -211,7 +221,17 @@ public class MainActivity extends AppCompatActivity {
                                             //result.setText(data);
                                             runOnUiThread(new Runnable() {
                                                 public void run() {
-                                                    result.setText(data);
+                                                    temp = data.replace("span style=\"color:", "font color='").replace(";\"","'").replace("</span>", "</font>");
+                                                   // result.setText(temp);
+                                                     result.setText(Html.fromHtml(temp));
+                                                    // ssbuilderRX = new SpannableString(Html.fromHtml(data));
+                                                    //ssbuilderRX = new SpannableString(Html.fromHtml(data, Html.FROM_HTML_MODE_COMPACT));
+                                                   // result.setText(ssbuilderRX, TextView.BufferType.SPANNABLE);
+                                                   /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                                        result.setText(Html.fromHtml(temp, Html.FROM_HTML_MODE_COMPACT));
+                                                    } else {
+                                                        result.setText(Html.fromHtml(temp));
+                                                    }*/
                                                 }
                                             });
                                         }

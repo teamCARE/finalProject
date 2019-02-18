@@ -21,6 +21,9 @@
             android:layout_width="373dp"
             android:layout_height="302dp"
             android:layout_gravity="center_vertical"
+            android:gravity="bottom"
+            android:lines="8"
+            android:textAlignment="center"
             android:text="Hello World!"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -33,7 +36,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/colorPrimary"
-            android:text="Bluetooth Server start"
+            android:text="Bluetooth Server Setup Connect"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="459dp" />
+
+        <Button
+            android:id="@+id/listen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorAccent"
+            android:text="Begin Listening"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="459dp" />
 
