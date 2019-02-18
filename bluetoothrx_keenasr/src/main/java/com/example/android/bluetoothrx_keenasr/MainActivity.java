@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //ignore for now
       /*  ((Button) findViewById(R.id.listen)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 beginListenForData();
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
         result.setMovementMethod(new ScrollingMovementMethod());
 
         stopWorker = false;
-        readBuffer = new byte[50000]; //max is 64 kB (?) - like 15 minutes of continuous speech
+        readBuffer = new byte[50000];
         readBufferPosition = 0;
 
         workerThread = new Thread(new Runnable()
@@ -190,22 +191,27 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         final int bytesAvailable = inStream.available();
                         if (bytesAvailable > 0) {
-                            ///test
-                           /* countert = 0;
+                            ///shift
+                            countert = 0;
                             for (int j = 0; j < readBuffer.length; j++) {
                                 if (readBuffer[j] != (byte) 0)
                                     countert++;
                             }
-                            if (countert>300){
-                                for (int k=0; k < readBuffer.length; k++){
-                                    readBuffer[k] = (byte) 0;}
-                                //setValue(readBuffer,k,(byte) 0);}
-                                runOnUiThread(new Runnable() {
-                                    public void run() {
-                                        Toast.makeText(MainActivity.this, "cutend " +  "\nreadbuffil: " + countert, Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }*/
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    //Toast.makeText(MainActivity.this, "cosistent", Toast.LENGTH_SHORT).show();
+                                    // Toast.makeText(MainActivity.this, "bytesavil: " + bytesAvailable + "\nreachedat: " + i, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, "readbuffil: " + countert+ "\nreadbufpo: " + readBufferPosition + "\nbytesavil: " + bytesAvailable , Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            if (countert>3000){
+                                byte[] temp = new byte[50000];
+                                System.arraycopy(readBuffer, 900, temp, 0, readBuffer.length-900);
+                                readBuffer = temp;
+                                if (readBufferPosition!=0) {
+                                    readBufferPosition = readBufferPosition - 900;
+                                }
+                            }
 
 
                             final byte[] packetBytes = new byte[bytesAvailable];
@@ -226,11 +232,11 @@ public class MainActivity extends AppCompatActivity {
 
 
                                     ///test
-                                    countert = 0;
+                                   /* countert = 0;
                                     for (int j = 0; j < readBuffer.length; j++) {
                                         if (readBuffer[j] != (byte) 0)
                                             countert++;
-                                    }
+                                   }*/
                                    /* if (countert>300){
                                         for (int k=900; k < readBuffer.length; k++){
                                             readBuffer[k] = (byte) 0;}
@@ -242,16 +248,7 @@ public class MainActivity extends AppCompatActivity {
                                         });
                                     }*/
 
-                                        runOnUiThread(new Runnable() {
-                                            public void run() {
-                                                //Toast.makeText(MainActivity.this, "cosistent", Toast.LENGTH_SHORT).show();
-                                                // Toast.makeText(MainActivity.this, "bytesavil: " + bytesAvailable + "\nreachedat: " + i, Toast.LENGTH_SHORT).show();
-                                                 Toast.makeText(MainActivity.this, "readbuffil: " + countert+ "\nreadbufpo: " + readBufferPosition + "\nbytesavil: " + bytesAvailable + "\npacked: " + packetBytes.length, Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-
-
-                                    readBufferPosition = 0;
+                                readBufferPosition = 0;
 
                                     handler.post(new Runnable() {
                                         public void run() {

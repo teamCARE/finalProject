@@ -34,7 +34,7 @@
                     android:enabled="true"
                     android:gravity="center_horizontal|bottom"
                     android:maxLines="8"
-                    android:text="Setting Up..."
+                    android:text="Tap to Set Up Server, then send request from Client side..."
                     android:textAlignment="center"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -58,7 +58,8 @@
             android:background="@color/colorAccent"
             android:text="Begin Listening"
             tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="459dp" />
+            tools:layout_editor_absoluteY="459dp"
+            android:visibility="invisible"/>
 
     </LinearLayout>
 
