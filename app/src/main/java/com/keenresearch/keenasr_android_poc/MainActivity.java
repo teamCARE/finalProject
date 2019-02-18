@@ -271,11 +271,13 @@ private int MSSGTEST;
         }
 
    public void MssgWrite(SpannableStringBuilder s) throws IOException {
+       final TextView resultText = (TextView)findViewById(R.id.resultText);
         //String sendstr = s.toString() + "-";
        // byte[] mBytes = sendstr.getBytes();
         String htmlString = Html.toHtml(s);
         htmlString = htmlString + "-";  //a dash is the delimeter on rx end
-        byte[] mBytes = htmlString.getBytes(("UTF-8"));
+       resultText.setText(htmlString);
+       byte[] mBytes = htmlString.getBytes(("UTF-8"));
         outputStream.write(mBytes);
 
         //for debug
@@ -324,14 +326,15 @@ private int MSSGTEST;
 
                 ssbuilder.append(resParSpanable);
 
-                resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE); //BufferType SPANNABLE automatically has scrolling movement for a textview
-
                 //BT Send
                 try {
                     MssgWrite(ssbuilder);
                 } catch (IOException connectException) {
                     connectException.printStackTrace();
                 }
+
+               // resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE); //BufferType SPANNABLE automatically has scrolling movement for a textview
+
             }
         });
     }
@@ -372,8 +375,14 @@ private int MSSGTEST;
                     ssbuilder.append(resFinSpanable);
                 }
 
-                //resultText.setText(result.getCleanText());
-                resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE);
+                //keep ssbuilder length from growing indefinitely
+                //waits for a few lines (100 chars) to cut to avoid cutting every new result
+                if (ssbuilder.length()>1000){
+                    ssbuilder.delete(0,100);
+                    len_final =  len_final-100;
+                    Toast.makeText(MainActivity.this, "cuttext", Toast.LENGTH_SHORT).show();
+                    //resultText.append("cutText"); //for debug purposes
+                }
 
                 //BT Send
                 try {
@@ -382,13 +391,8 @@ private int MSSGTEST;
                     connectException.printStackTrace();
                 }
 
-                //keep ssbuilder length from growing indefinitely
-                //waits for a few lines (100 chars) to cut to avoid cutting every new result
-                if (ssbuilder.length()>500){
-                    ssbuilder.delete(0,100);
-                    len_final =  len_final-100;
-                    //resultText.append("cutText"); //for debug purposes
-                }
+                //resultText.setText(result.getCleanText());
+                //resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE);
 
                 startButton.setEnabled(true);
                 //MAKES IT CONTINUOUS

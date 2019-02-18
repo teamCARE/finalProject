@@ -16,6 +16,7 @@ import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ import android.view.View.OnClickListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.UUID;
@@ -59,7 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
         final Button BTstartButton = (Button)findViewById(R.id.BTstart);
         final Button BTlistenButton = (Button)findViewById(R.id.listen);
-        final TextView result = (TextView)findViewById(R.id.result);
+      //  final TextView result = (TextView)findViewById(R.id.result);
+        final ScrollView scroller=(ScrollView )findViewById(R.id.scrollView1);
 
 
         //replace with raptor tap command //note button won't disable on android until it BTconnects, make new thread if want separate from UI
@@ -155,14 +158,21 @@ public class MainActivity extends AppCompatActivity {
     int testtoast;
     String temp;
     SpannableString ssbuilderRX;
+    int countert ;
+    int i;
+    int availPrev;
+    boolean GOODCHAN;
+
+
     void beginListenForData(BluetoothSocket Socket)
     {
         testtoast = 0;
+        GOODCHAN = false;
         //set up input and output stream
         try {
             inStream = Socket.getInputStream();
             outputStream = Socket.getOutputStream();
-            Toast.makeText(MainActivity.this, "beginlisteningfordada instream sucess", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "beginlisteningfordata instream sucess", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -172,78 +182,105 @@ public class MainActivity extends AppCompatActivity {
         final byte delimiter = 45; //This is the ASCII code for a dash
         final TextView result = (TextView) findViewById(R.id.result);
         result.setMovementMethod(new ScrollingMovementMethod());
+
         stopWorker = false;
+        readBuffer = new byte[2000];
         readBufferPosition = 0;
-        readBuffer = new byte[1024];
 
         workerThread = new Thread(new Runnable()
         {
             public void run()
-
             {
-
-
                 while(!Thread.currentThread().isInterrupted() && !stopWorker)
                 {
-
-                    try
-                    {
+                    try {
                         final int bytesAvailable = inStream.available();
+                        if (bytesAvailable > 0) {
 
-                        if(bytesAvailable > 0)
-                        {
-                           // if (testtoast==0) {
-                                runOnUiThread(new Runnable() {
-                                    public void run() {
-                                        Toast.makeText(MainActivity.this, "instream availbe bytes " +bytesAvailable, Toast.LENGTH_SHORT).show();
-                                        //testtoast=1;
-                                    }
-                                });
-                           // }
+                            /* if (GOODCHAN) {
+                                readBufferPosition = 0;  //prevents cummulitave of adding of readbufferposition which prevents overflow of readbuffer
+                                  runOnUiThread(new Runnable() {
+                                            public void run() {
+                                                 Toast.makeText(MainActivity.this, "Goodchan" , Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
 
-                            byte[] packetBytes = new byte[bytesAvailable];
+                            }
+
+                                  countert = 0;
+                            for (int j = 0; j < readBuffer.length; j++){
+                                if (readBuffer[j] != 0)
+                                    countert++;
+                            }
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    Toast.makeText(MainActivity.this, "readbuffil: " + countert+ "\nreadbufpo: " + readBufferPosition + "\nbytesavil: " + bytesAvailable, Toast.LENGTH_SHORT).show();
+                                }
+                            });*/
+
+
+                            final byte[] packetBytes = new byte[bytesAvailable];
                             inStream.read(packetBytes);
-                            for(int i=0;i<bytesAvailable;i++)
-                            {
+                            for (i = 0; i < bytesAvailable; i++) {
                                 byte b = packetBytes[i];
-                                if(b == delimiter)
-                                {
-                                    byte[] encodedBytes = new byte[readBufferPosition];
+
+                                if (b == delimiter) {
+                                    //  final byte[] encodedBytes = new byte[readBufferPosition];
+                                    final byte[] encodedBytes = new byte[readBufferPosition];
                                     System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
-                                    //final String data = new String(encodedBytes, "US-ASCII");
                                     final String data = new String(encodedBytes, "UTF-8");
+
+                                   // if (bytesAvailable-1 == i){
+                                   //     GOODCHAN=true;
+                                  //  }
+
+                                    ///test
+                                    countert = 0;
+                                    for (int j = 0; j < readBuffer.length; j++) {
+                                        if (readBuffer[j] != 0)
+                                            countert++;
+                                    }
+
+                                       /* runOnUiThread(new Runnable() {
+                                            public void run() {
+                                                //Toast.makeText(MainActivity.this, "cosistent", Toast.LENGTH_SHORT).show();
+                                                // Toast.makeText(MainActivity.this, "bytesavil: " + bytesAvailable + "\nreachedat: " + i, Toast.LENGTH_SHORT).show();
+                                                 Toast.makeText(MainActivity.this, "readbuffil: " + countert+ "\nreadbufpo: " + readBufferPosition + "\nbytesavil: " + bytesAvailable + "\npacked: " + packetBytes.length, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });*/
+
+
                                     readBufferPosition = 0;
 
-                                    handler.post(new Runnable()
-                                    {
-                                        public void run()
-                                        {
-                                            //result.setText(data);
-                                            runOnUiThread(new Runnable() {
-                                                public void run() {
-                                                    temp = data.replace("span style=\"color:", "font color='").replace(";\"","'").replace("</span>", "</font>");
-                                                   // result.setText(temp);
-                                                     result.setText(Html.fromHtml(temp));
-                                                    // ssbuilderRX = new SpannableString(Html.fromHtml(data));
-                                                    //ssbuilderRX = new SpannableString(Html.fromHtml(data, Html.FROM_HTML_MODE_COMPACT));
-                                                   // result.setText(ssbuilderRX, TextView.BufferType.SPANNABLE);
-                                                   /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                                        result.setText(Html.fromHtml(temp, Html.FROM_HTML_MODE_COMPACT));
-                                                    } else {
-                                                        result.setText(Html.fromHtml(temp));
-                                                    }*/
-                                                }
-                                            });
+                                    handler.post(new Runnable() {
+                                        public void run() {
+                                           // temp = data.replace("span style=\"color:", "font color='").replace(";\"", "'").replace("</span>", "</font>");
+                                             result.setText(data);
+                                            //result.setText(Html.fromHtml(temp));
+                                            // ssbuilderRX = new SpannableString(Html.fromHtml(data));
+                                            //ssbuilderRX = new SpannableString(Html.fromHtml(data, Html.FROM_HTML_MODE_COMPACT));
+                                            // result.setText(ssbuilderRX, TextView.BufferType.SPANNABLE);
+                                            // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                                            //       result.setText(Html.fromHtml(temp, Html.FROM_HTML_MODE_COMPACT));
+                                            //  } else {
+                                            //   result.setText(Html.fromHtml(temp));
+                                            // }
+
                                         }
                                     });
+
+
+
+                                } else {
+                                    readBufferPosition++;
+                                    readBuffer[readBufferPosition] = b;
                                 }
-                                else
-                                {
-                                    readBuffer[readBufferPosition++] = b;
-                                }
+
                             }
+
                         }
                     }
+
                     catch (IOException ex)
                     {
                         runOnUiThread(new Runnable() {
@@ -291,7 +328,15 @@ public class MainActivity extends AppCompatActivity {
        // });
     }*/
 
+                    // if (testtoast==0) {
 
+                               /* runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Toast.makeText(MainActivity.this, "instream availbe bytes " +bytesAvailable, Toast.LENGTH_SHORT).show();
+                                        //testtoast=1;
+                                    }
+                                });*/
+                    // }
 
 
 
