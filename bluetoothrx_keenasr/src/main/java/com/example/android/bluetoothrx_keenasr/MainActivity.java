@@ -179,8 +179,12 @@ public class MainActivity extends AppCompatActivity {
         result.setMovementMethod(new ScrollingMovementMethod());
 
         stopWorker = false;
-        readBuffer = new byte[50000];
+        readBuffer = new byte[50000]; //TODO: really only needs to be like 6000 because filled never gets past ~3000 before cutting
         readBufferPosition = 0;
+        //TODO: test this impementation heavily for erros
+        //TODO: clean up code, delete random tests and random test variables
+        //TODO: change delim char to an * or  another less common char
+        //TODO: on server side change to html completely (i.e. no spannablestringbuilder), would be faster or no?
 
         workerThread = new Thread(new Runnable()
         {
