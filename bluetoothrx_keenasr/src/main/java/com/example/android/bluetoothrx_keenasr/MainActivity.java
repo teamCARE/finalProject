@@ -220,35 +220,11 @@ public class MainActivity extends AppCompatActivity {
                                 byte b = packetBytes[i];
 
                                 if (b == delimiter) {
-
-                                    //  final byte[] encodedBytes = new byte[readBufferPosition];
-                                    //final byte[] encodedBytes = new byte[readBufferPosition];
-                                   // System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
-                                    //  final String data = new String(encodedBytes, "UTF-8");
-
                                     final byte[] encodedBytes = new byte[readBufferPosition];
                                     System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
                                     final String data = new String(encodedBytes, "UTF-8");
 
-
-                                    ///test
-                                   /* countert = 0;
-                                    for (int j = 0; j < readBuffer.length; j++) {
-                                        if (readBuffer[j] != (byte) 0)
-                                            countert++;
-                                   }*/
-                                   /* if (countert>300){
-                                        for (int k=900; k < readBuffer.length; k++){
-                                            readBuffer[k] = (byte) 0;}
-                                            //setValue(readBuffer,k,(byte) 0);}
-                                        runOnUiThread(new Runnable() {
-                                            public void run() {
-                                                Toast.makeText(MainActivity.this, "cutend " +  "\nreadbuffil: " + countert, Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-                                    }*/
-
-                                readBufferPosition = 0;
+                                    readBufferPosition = 0;
 
                                     handler.post(new Runnable() {
                                         public void run() {
@@ -267,13 +243,24 @@ public class MainActivity extends AppCompatActivity {
                                         }
                                     });
                                     break;
-
-
-
                                 } else {
+                                    if (readBufferPosition>3000) {
+                                        byte[] temp = new byte[50000];
+                                        System.arraycopy(readBuffer, 500, temp, 0, readBuffer.length - 500);
+                                        readBuffer = temp;
+                                        if (readBufferPosition != 0) {
+                                            readBufferPosition = readBufferPosition - 500;
+                                        }
+
+                                        runOnUiThread(new Runnable() {
+                                            public void run() {
+                                                Toast.makeText(MainActivity.this, "cut: " + "readbuffil: " + countert , Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }
+
                                     readBufferPosition++;
                                     readBuffer[readBufferPosition] = b;
-
                                 }
 
                             }
