@@ -155,19 +155,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-    int testtoast;
+
     String temp;
-    SpannableString ssbuilderRX;
     int countert ;
     int i;
-    int availPrev;
-    boolean GOODCHAN;
-
 
     void beginListenForData(BluetoothSocket Socket)
     {
-        testtoast = 0;
-        GOODCHAN = false;
         //set up input and output stream
         try {
             inStream = Socket.getInputStream();
@@ -184,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         result.setMovementMethod(new ScrollingMovementMethod());
 
         stopWorker = false;
-        readBuffer = new byte[2000];
+        readBuffer = new byte[50000]; //max is 64 kB (?) - like 15 minutes of continuous speech
         readBufferPosition = 0;
 
         workerThread = new Thread(new Runnable()
@@ -196,27 +190,22 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         final int bytesAvailable = inStream.available();
                         if (bytesAvailable > 0) {
-
-                            /* if (GOODCHAN) {
-                                readBufferPosition = 0;  //prevents cummulitave of adding of readbufferposition which prevents overflow of readbuffer
-                                  runOnUiThread(new Runnable() {
-                                            public void run() {
-                                                 Toast.makeText(MainActivity.this, "Goodchan" , Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
-
-                            }
-
-                                  countert = 0;
-                            for (int j = 0; j < readBuffer.length; j++){
-                                if (readBuffer[j] != 0)
+                            ///test
+                           /* countert = 0;
+                            for (int j = 0; j < readBuffer.length; j++) {
+                                if (readBuffer[j] != (byte) 0)
                                     countert++;
                             }
-                            runOnUiThread(new Runnable() {
-                                public void run() {
-                                    Toast.makeText(MainActivity.this, "readbuffil: " + countert+ "\nreadbufpo: " + readBufferPosition + "\nbytesavil: " + bytesAvailable, Toast.LENGTH_SHORT).show();
-                                }
-                            });*/
+                            if (countert>300){
+                                for (int k=0; k < readBuffer.length; k++){
+                                    readBuffer[k] = (byte) 0;}
+                                //setValue(readBuffer,k,(byte) 0);}
+                                runOnUiThread(new Runnable() {
+                                    public void run() {
+                                        Toast.makeText(MainActivity.this, "cutend " +  "\nreadbuffil: " + countert, Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }*/
 
 
                             final byte[] packetBytes = new byte[bytesAvailable];
@@ -225,38 +214,50 @@ public class MainActivity extends AppCompatActivity {
                                 byte b = packetBytes[i];
 
                                 if (b == delimiter) {
+
                                     //  final byte[] encodedBytes = new byte[readBufferPosition];
+                                    //final byte[] encodedBytes = new byte[readBufferPosition];
+                                   // System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
+                                    //  final String data = new String(encodedBytes, "UTF-8");
+
                                     final byte[] encodedBytes = new byte[readBufferPosition];
                                     System.arraycopy(readBuffer, 0, encodedBytes, 0, encodedBytes.length);
                                     final String data = new String(encodedBytes, "UTF-8");
 
-                                   // if (bytesAvailable-1 == i){
-                                   //     GOODCHAN=true;
-                                  //  }
 
                                     ///test
                                     countert = 0;
                                     for (int j = 0; j < readBuffer.length; j++) {
-                                        if (readBuffer[j] != 0)
+                                        if (readBuffer[j] != (byte) 0)
                                             countert++;
                                     }
+                                   /* if (countert>300){
+                                        for (int k=900; k < readBuffer.length; k++){
+                                            readBuffer[k] = (byte) 0;}
+                                            //setValue(readBuffer,k,(byte) 0);}
+                                        runOnUiThread(new Runnable() {
+                                            public void run() {
+                                                Toast.makeText(MainActivity.this, "cutend " +  "\nreadbuffil: " + countert, Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }*/
 
-                                       /* runOnUiThread(new Runnable() {
+                                        runOnUiThread(new Runnable() {
                                             public void run() {
                                                 //Toast.makeText(MainActivity.this, "cosistent", Toast.LENGTH_SHORT).show();
                                                 // Toast.makeText(MainActivity.this, "bytesavil: " + bytesAvailable + "\nreachedat: " + i, Toast.LENGTH_SHORT).show();
                                                  Toast.makeText(MainActivity.this, "readbuffil: " + countert+ "\nreadbufpo: " + readBufferPosition + "\nbytesavil: " + bytesAvailable + "\npacked: " + packetBytes.length, Toast.LENGTH_SHORT).show();
                                             }
-                                        });*/
+                                        });
 
 
                                     readBufferPosition = 0;
 
                                     handler.post(new Runnable() {
                                         public void run() {
-                                           // temp = data.replace("span style=\"color:", "font color='").replace(";\"", "'").replace("</span>", "</font>");
-                                             result.setText(data);
-                                            //result.setText(Html.fromHtml(temp));
+                                            temp = data.replace("span style=\"color:", "font color='").replace(";\"", "'").replace("</span>", "</font>");
+                                            // result.setText(data);
+                                            result.setText(Html.fromHtml(temp));
                                             // ssbuilderRX = new SpannableString(Html.fromHtml(data));
                                             //ssbuilderRX = new SpannableString(Html.fromHtml(data, Html.FROM_HTML_MODE_COMPACT));
                                             // result.setText(ssbuilderRX, TextView.BufferType.SPANNABLE);
@@ -268,12 +269,14 @@ public class MainActivity extends AppCompatActivity {
 
                                         }
                                     });
+                                    break;
 
 
 
                                 } else {
                                     readBufferPosition++;
                                     readBuffer[readBufferPosition] = b;
+
                                 }
 
                             }
@@ -339,7 +342,9 @@ public class MainActivity extends AppCompatActivity {
                     // }
 
 
-
+    public void setValue(byte[] arr, int pos, byte val) {
+        arr[pos] = val;
+    }
 
 
 }

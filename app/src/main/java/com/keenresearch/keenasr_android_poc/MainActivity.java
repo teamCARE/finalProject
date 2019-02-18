@@ -271,12 +271,11 @@ private int MSSGTEST;
         }
 
    public void MssgWrite(SpannableStringBuilder s) throws IOException {
-       final TextView resultText = (TextView)findViewById(R.id.resultText);
         //String sendstr = s.toString() + "-";
        // byte[] mBytes = sendstr.getBytes();
         String htmlString = Html.toHtml(s);
         htmlString = htmlString + "-";  //a dash is the delimeter on rx end
-       resultText.setText(htmlString);
+
        byte[] mBytes = htmlString.getBytes(("UTF-8"));
         outputStream.write(mBytes);
 
@@ -333,7 +332,7 @@ private int MSSGTEST;
                     connectException.printStackTrace();
                 }
 
-               // resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE); //BufferType SPANNABLE automatically has scrolling movement for a textview
+                resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE); //BufferType SPANNABLE automatically has scrolling movement for a textview
 
             }
         });
@@ -392,7 +391,7 @@ private int MSSGTEST;
                 }
 
                 //resultText.setText(result.getCleanText());
-                //resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE);
+                resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE);
 
                 startButton.setEnabled(true);
                 //MAKES IT CONTINUOUS
