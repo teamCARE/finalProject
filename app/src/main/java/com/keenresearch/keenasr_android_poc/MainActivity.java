@@ -319,7 +319,7 @@ private int MSSGTEST;
                    resPar = "\n" + resPar;
                 }
                 SpannableString resParSpanable= new SpannableString(resPar);
-                resParSpanable.setSpan(new ForegroundColorSpan(Color.LTGRAY), 0, resParSpanable.length(), 0);
+                resParSpanable.setSpan(new ForegroundColorSpan(Color.YELLOW), 0, resParSpanable.length(), 0);
 
                 ssbuilder.delete(len_final, ssbuilder.length());
 
@@ -365,12 +365,12 @@ private int MSSGTEST;
 
                 if (result.getConfidence() > 0.8) {
                     //resultText.setTextColor(Color.GRAY);
-                    resFinSpanable.setSpan(new ForegroundColorSpan(Color.BLACK), 0, resFinSpanable.length(), 0);
+                    resFinSpanable.setSpan(new ForegroundColorSpan(Color.GREEN), 0, resFinSpanable.length(), 0);
                     ssbuilder.append(resFinSpanable);
                 }
                 else {
                     //resultText.setTextColor(Color.argb(90, 200, 0, 0));
-                    resFinSpanable.setSpan(new ForegroundColorSpan(Color.argb(90, 200, 0, 0)), 0, resFinSpanable.length(), 0);
+                    resFinSpanable.setSpan(new ForegroundColorSpan(Color.RED), 0, resFinSpanable.length(), 0);
                     ssbuilder.append(resFinSpanable);
                 }
 
