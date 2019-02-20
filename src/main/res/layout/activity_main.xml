@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal|bottom"
+    android:background="@android:color/black"
+    android:gravity="center_horizontal|bottom"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|bottom"
+        android:gravity="center_horizontal|bottom"
+        android:orientation="vertical">
+
+        <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal|bottom"
+            android:gravity="center_horizontal|bottom">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|bottom"
+                android:gravity="center_horizontal|bottom">
+
+                <TextView
+                    android:id="@+id/result"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal|bottom"
+                    android:enabled="true"
+                    android:gravity="center_horizontal|bottom"
+                    android:maxLines="5"
+                    android:text="Tap to Set Up Server, then send request from Client side..."
+                    android:textAlignment="center"
+                    android:textColor="@color/evsGreen"
+                    android:textSize="14sp" />
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/BTstart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary"
+            android:text="Bluetooth Server Setup Connect"
+            android:visibility="invisible"/>
+
+    </LinearLayout>
+</FrameLayout>

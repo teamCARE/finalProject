@@ -1,0 +1,7 @@
+#Wed Feb 20 04:48:35 EST 2019
+base.0=/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/transforms/dexMerger/debug/0
+path.1=classes.dex
+renamed.1=classes2.dex
+path.0=classes.dex
+renamed.0=classes.dex
+base.1=/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/transforms/dexMerger/debug/1

@@ -1,0 +1,86 @@
+[
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/src/main/res/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/src/main/res/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/src/main/res/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/src/main/res/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/layout_window_container.xml.flat",
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/evsBase.aar/e4f8e9d3e3874a726528bb48a9662060/res/layout/window_container.xml"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/src/main/res/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/layout_vg_base_activity_layout.xml.flat",
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/evsBase.aar/e4f8e9d3e3874a726528bb48a9662060/res/layout/vg_base_activity_layout.xml"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/src/main/res/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/drawable_border_rectangle.xml.flat",
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/evsBase.aar/e4f8e9d3e3874a726528bb48a9662060/res/drawable/border_rectangle.xml"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/layout_activity_main.xml.flat",
+        "source": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/src/main/res/layout/activity_main.xml"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/src/main/res/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/drawable_ic_launcher_background.xml.flat",
+        "source": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/src/main/res/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/src/main/res/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/drawable_border_production.xml.flat",
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/evsBase.aar/e4f8e9d3e3874a726528bb48a9662060/res/drawable/border_production.xml"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/drawable-v24_ic_launcher_foreground.xml.flat",
+        "source": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/src/main/res/drawable-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/layout_view_evs_keyboard.xml.flat",
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/evsBase.aar/e4f8e9d3e3874a726528bb48a9662060/res/layout/view_evs_keyboard.xml"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/src/main/res/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/drawable_border_debug.xml.flat",
+        "source": "/root/.gradle/caches/transforms-1/files-1.1/evsBase.aar/e4f8e9d3e3874a726528bb48a9662060/res/drawable/border_debug.xml"
+    },
+    {
+        "merged": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/build/intermediates/res/merged/debug/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/home/wendy/RDK-2.1.0/samples/bluetoothcaredemo/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml"
+    }
+]
