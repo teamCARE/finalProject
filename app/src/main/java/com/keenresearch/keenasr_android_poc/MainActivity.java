@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
    // private InputStream inStream;
     private String PlayString= "Recognition Play";
     private String PauseString= "Recognition Paused";
+    private boolean CONNECTED;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        CONNECTED=false;
 
         // disable start button until initialization is completed
         final Button startButton = (Button)findViewById(R.id.startListening);
@@ -108,14 +111,14 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
             asyncASRInitializerTask = new ASyncASRInitializerTask(context);
             asyncASRInitializerTask.execute();
         } else {
-            startButton.setEnabled(true);
+            /*  startButton.setEnabled(true);
             //MAKES IT CONTINUOUS
-            startButton.performClick();
+          startButton.performClick();
             IS_RECORDING = true;
-
-            final TextView resultText = (TextView)findViewById(R.id.resultText);
+            final TextView resultText = (TextView) findViewById(R.id.resultText);
             resultText.setTextColor(Color.GREEN);
-            resultText.setText("Ready to Start!");
+            resultText.setText("Ready to Start!");*/
+
         }
 
         MainActivity.instance = this;
@@ -138,6 +141,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                 //commented out below so can see history
                 //resultText.setText("");
                 recognizer.startListening();
+
             }
         });
 
@@ -265,6 +269,17 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                                 }
                                 return;
                             }
+
+                            //the connection was succesful;
+                            CONNECTED=true;
+                            final Button startButton = (Button)findViewById(R.id.startListening);
+                            startButton.setEnabled(true);
+                           //MAKES IT CONTINUOUS
+                           startButton.performClick();
+                            IS_RECORDING = true;
+                           final TextView resultText = (TextView) findViewById(R.id.resultText);
+                           resultText.setTextColor(Color.GREEN);
+                           resultText.setText("Ready to Start!");
                 }
             });
 
@@ -580,12 +595,13 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                 final Button startButton = (Button) findViewById(R.id.startListening);
                 startButton.setEnabled(true);
                 //MAKES IT CONTINUOUS
-                startButton.performClick();
-                IS_RECORDING = true;
-
-                final TextView resultText = (TextView)findViewById(R.id.resultText);
-                resultText.setTextColor(Color.GREEN);
-                resultText.setText("Ready to Start!");
+                if (CONNECTED) {
+                    startButton.performClick();
+                    IS_RECORDING = true;
+                    final TextView resultText = (TextView)findViewById(R.id.resultText);
+                    resultText.setTextColor(Color.GREEN);
+                    resultText.setText("Ready to Start!");
+                }
             } else {
                 Log.e(TAG, "Recognizer wasn't initialized properly");
             }
