@@ -46,6 +46,10 @@ public class MainActivity extends EvsBaseActivity {
     int readBufferPosition;
     volatile boolean stopWorker;
 
+    private String temp;
+    private int countert;
+    private int i;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,34 +61,31 @@ public class MainActivity extends EvsBaseActivity {
 
         final Button BTstartButton = (Button)findViewById(R.id.BTstart);
 
-        //link with raptor tap command //note button show signs of trigger until it BTconnects, make new thread if want separate from UI
+        //link with raptor tap command
         ((Button) findViewById(R.id.BTstart)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-               // BTstartButton.setEnabled(false);
-                //Toast.makeText(MainActivity.this, "starting BT server socket", Toast.LENGTH_SHORT).show();
                 AcceptThreadObj = new AcceptThread();
                 AcceptThreadObj.run();
-                //Toast.makeText(MainActivity.this, "BT connection succefull", Toast.LENGTH_SHORT).show();
-                //result.setText("Begin listing for incoming data...");
             }
         });
     }
 
     @Override
-    public void onTap()
+    public void onForward()
     {
-        super.onTap();
-
+        super.onForward();
+        EvsToast.show(this,"Opening Server Socket");
         final Button BTstartButton = (Button)findViewById(R.id.BTstart);
         BTstartButton.performClick();
     }
-   /* @Override
+    @Override
     public void onDown()
     {
         //the default behaviour of down is to close the activity
         super.onDown();
-        android.os.Process.killProcess(android.os.Process.myPid()); //kills activity completely, so every time app is opened it re-initializes
-    }*/
+        //android.os.Process.killProcess(android.os.Process.myPid());  //kills activity completely, so every time app is opened it re-initializes
+        AcceptThreadObj.cancel();
+    }
 
 
     public void Bluetoothsetup() {
@@ -98,6 +99,7 @@ public class MainActivity extends EvsBaseActivity {
         }
     }
 
+
     private class AcceptThread extends Thread {
         private final BluetoothServerSocket mmServerSocket;
         public AcceptThread() {
@@ -110,7 +112,6 @@ public class MainActivity extends EvsBaseActivity {
             }
             mmServerSocket = tmp;
         }
-
         public void run() {
             BluetoothSocket socket = null;
             // Keep listening until exception occurs or a socket is returned.
@@ -121,31 +122,18 @@ public class MainActivity extends EvsBaseActivity {
                     Log.e(TAG, "Socket's accept() method failed", e);
                     break;
                 }
-
                 if (socket != null) {
                     // A connection was accepted. Perform work associated with
                     // the connection in a separate thread.
                     CONNECTED = true;
-                    //Toast.makeText(MainActivity.this, "Connection Accpted", Toast.LENGTH_SHORT).show();
-
                     if (CONNECTED){
-                        EvsToast.show(MainActivity.this, "CONNNECTED=true");
+                        EvsToast.show(MainActivity.this, "Connected to Device");
                         beginListenForData(socket);
                     }
-
-                           /* try {
-                                mmServerSocket.close();
-                            } catch (IOException e) {
-                                Log.e(TAG, "Could not close the connect socket", e);
-                            }*/
-
                     return;
-                    //socket.close();
-                    //retutn;
                 }
             }
         }
-
         public void cancel() {
             try {
                 mmServerSocket.close();
@@ -155,34 +143,26 @@ public class MainActivity extends EvsBaseActivity {
         }
     }
 
-
-    String temp;
-    int countert ;
-    int i;
-
     void beginListenForData(BluetoothSocket Socket)
     {
         //set up input and output stream
         try {
             inStream = Socket.getInputStream();
             outputStream = Socket.getOutputStream();
-            EvsToast.show(MainActivity.this, "beginlisteningfordata instream sucess");
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         final Handler handler = new Handler();
-        //  final byte delimiter = 10; //This is the ASCII code for a newline character
-        final byte delimiter = 45; //This is the ASCII code for a dash
+        final byte delimiter = 42; //This is the ASCII code for a asterisk
         final TextView result = (TextView) findViewById(R.id.result);
         result.setMovementMethod(new ScrollingMovementMethod());
 
         stopWorker = false;
-        readBuffer = new byte[50000]; //TODO: really only needs to be like 6000 because filled never gets past ~3000 before cutting
+        readBuffer = new byte[10000];
         readBufferPosition = 0;
         //TODO: test this impementation heavily for erros
         //TODO: clean up code, delete random tests and random test variables
-        //TODO: change delim char to an * or  another less common char
         //TODO: on server side change to html completely (i.e. no spannablestringbuilder), would be faster or no?
 
         workerThread = new Thread(new Runnable()
@@ -194,7 +174,6 @@ public class MainActivity extends EvsBaseActivity {
                     try {
                         final int bytesAvailable = inStream.available();
                         if (bytesAvailable > 0) {
-                            //EvsToast.show(MainActivity.this, "bytesavail: " + bytesAvailable);
 
                             ///shift
                             countert = 0;
@@ -202,13 +181,6 @@ public class MainActivity extends EvsBaseActivity {
                                 if (readBuffer[j] != (byte) 0)
                                     countert++;
                             }
-                           /* runOnUiThread(new Runnable() {
-                                public void run() {
-                                    //Toast.makeText(MainActivity.this, "cosistent", Toast.LENGTH_SHORT).show();
-                                    // Toast.makeText(MainActivity.this, "bytesavil: " + bytesAvailable + "\nreachedat: " + i, Toast.LENGTH_SHORT).show();
-                                    Toast.makeText(MainActivity.this, "readbuffil: " + countert+ "\nreadbufpo: " + readBufferPosition + "\nbytesavil: " + bytesAvailable , Toast.LENGTH_SHORT).show();
-                                }
-                            });*/
                             if (countert>3000){
                                 byte[] temp = new byte[50000];
                                 System.arraycopy(readBuffer, 900, temp, 0, readBuffer.length-900);
@@ -217,7 +189,6 @@ public class MainActivity extends EvsBaseActivity {
                                     readBufferPosition = readBufferPosition - 900;
                                 }
                             }
-
 
                             final byte[] packetBytes = new byte[bytesAvailable];
                             inStream.read(packetBytes);
@@ -234,17 +205,7 @@ public class MainActivity extends EvsBaseActivity {
                                     handler.post(new Runnable() {
                                         public void run() {
                                             temp = data.replace("span style=\"color:", "font color='").replace(";\"", "'").replace("</span>", "</font>");
-                                            // result.setText(data);
                                             result.setText(Html.fromHtml(temp));
-                                            // ssbuilderRX = new SpannableString(Html.fromHtml(data));
-                                            //ssbuilderRX = new SpannableString(Html.fromHtml(data, Html.FROM_HTML_MODE_COMPACT));
-                                            // result.setText(ssbuilderRX, TextView.BufferType.SPANNABLE);
-                                            // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                            //       result.setText(Html.fromHtml(temp, Html.FROM_HTML_MODE_COMPACT));
-                                            //  } else {
-                                            //   result.setText(Html.fromHtml(temp));
-                                            // }
-
                                         }
                                     });
                                     break;
@@ -256,14 +217,7 @@ public class MainActivity extends EvsBaseActivity {
                                         if (readBufferPosition != 0) {
                                             readBufferPosition = readBufferPosition - 500;
                                         }
-
-                                        runOnUiThread(new Runnable() {
-                                            public void run() {
-                                                Toast.makeText(MainActivity.this, "cut: " + "readbuffil: " + countert , Toast.LENGTH_SHORT).show();
-                                            }
-                                        });
                                     }
-
                                     readBufferPosition++;
                                     readBuffer[readBufferPosition] = b;
                                 }
