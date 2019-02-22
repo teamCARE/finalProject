@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
     private ListView lv;
     private ArrayAdapter aAdapter;
     private OutputStream outputStream;
-    private InputStream inStream;
+   // private InputStream inStream;
     private String PlayString= "Recognition Play";
     private String PauseString= "Recognition Paused";
 
@@ -94,7 +94,6 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        MSSGTEST=1;
 
         // disable start button until initialization is completed
         final Button startButton = (Button)findViewById(R.id.startListening);
@@ -155,6 +154,12 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                     final TextView resultText = (TextView)findViewById(R.id.resultText);
                     resultText.setTextColor(Color.RED);
                     resultText.setText(PauseString);
+                    //BT Send
+                    try {
+                        CommandWrite(PauseString);
+                    } catch (IOException connectException) {
+                        connectException.printStackTrace();
+                    }
                 }
                 else{
                     startButton.setEnabled(true);
@@ -164,6 +169,12 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                     final TextView resultText = (TextView)findViewById(R.id.resultText);
                     resultText.setTextColor(Color.GREEN);
                     resultText.setText(PlayString);
+                    //BT Send
+                    try {
+                        CommandWrite(PlayString);
+                    } catch (IOException connectException) {
+                        connectException.printStackTrace();
+                    }
                 }
             }
         });
@@ -183,7 +194,6 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
         }
     }
 
-private int MSSGTEST;
     public void ShowPairedBT() {
         Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
         if (pairedDevices.size() > 0) {
@@ -242,15 +252,7 @@ private int MSSGTEST;
                             try {
                                 mSocket.connect();
                                 outputStream = mSocket.getOutputStream();
-                                inStream = mSocket.getInputStream();
-                               /* if (MSSGTEST == 1) {
-                                    MssgWrite("This is a test BT message, did you receive it?");
-                                    MSSGTEST = 2;
-                                }
-                                if (MSSGTEST == 2) {
-                                    MssgWrite("Second test string");
-                                    MSSGTEST = 1;
-                                }*/
+                                //inStream = mSocket.getInputStream();
                                 //mSocket.close();
                                 Toast.makeText(MainActivity.this, "sent request succcess: " + MAC_address, Toast.LENGTH_SHORT).show();
 
@@ -283,6 +285,12 @@ private int MSSGTEST;
         //String test = new String(mBytes, "UTF-8");
        // Toast.makeText(MainActivity.this, "converted: " + test, Toast.LENGTH_SHORT).show();
     }
+
+    public void CommandWrite(String s) throws IOException {
+        String htmlS= "<font color='green>'" + s + "</font>" + "*" ;
+        outputStream.write(htmlS.getBytes());
+    }
+
 
     //unused class but good reference for learning how to use Spannable strings
     /*public static void appendColoredText(TextView tv, String text, int color) {
