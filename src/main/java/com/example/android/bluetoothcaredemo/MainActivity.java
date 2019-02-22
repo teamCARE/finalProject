@@ -22,6 +22,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.Socket;
 import java.util.UUID;
 import java.lang.Runnable;
 import java.lang.Thread;
@@ -37,7 +38,7 @@ public class MainActivity extends EvsBaseActivity {
     private BluetoothAdapter mBluetoothAdapter;
     private final static int REQUEST_ENABLE_BT = 1;
     private AcceptThread AcceptThreadObj;
-    private OutputStream outputStream;
+    //private OutputStream outputStream;
     private InputStream inStream;
     private boolean CONNECTED;
 
@@ -49,6 +50,7 @@ public class MainActivity extends EvsBaseActivity {
     private String temp;
     private int countert;
     private int i;
+    private boolean PAUSED;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,7 @@ public class MainActivity extends EvsBaseActivity {
 
         Bluetoothsetup();
         CONNECTED = false;
+        PAUSED = false;
 
         final Button BTstartButton = (Button)findViewById(R.id.BTstart);
 
@@ -85,6 +88,31 @@ public class MainActivity extends EvsBaseActivity {
         super.onDown();
         //android.os.Process.killProcess(android.os.Process.myPid());  //kills activity completely, so every time app is opened it re-initializes
         AcceptThreadObj.cancel();
+    }
+    @Override
+    public void onTap()
+    {
+        super.onTap();
+
+       //pause/play capability from headset
+        /* if (!CONNECTED) //disable tap until BT connection successful
+            return;
+
+        if (PAUSED) {
+            try {
+                CommandWrite("Pause");
+            } catch (IOException connectException) {
+                connectException.printStackTrace();
+            }
+        }
+        else {
+            try {
+                CommandWrite("Play");
+            } catch (IOException connectException) {
+                connectException.printStackTrace();
+            }
+        } */
+
     }
 
 
@@ -148,7 +176,7 @@ public class MainActivity extends EvsBaseActivity {
         //set up input and output stream
         try {
             inStream = Socket.getInputStream();
-            outputStream = Socket.getOutputStream();
+            //outputStream = Socket.getOutputStream();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -244,6 +272,10 @@ public class MainActivity extends EvsBaseActivity {
 
         workerThread.start();
     }
+
+ /*   public void CommandWrite(String s) throws IOException {
+        outputStream.write(s.getBytes());
+    }*/
 
 
 } //end of MainActivity
