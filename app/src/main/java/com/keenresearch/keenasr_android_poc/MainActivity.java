@@ -84,7 +84,8 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
     private ArrayAdapter aAdapter;
     private OutputStream outputStream;
     private InputStream inStream;
-
+    private String PlayString= "Recognition Play";
+    private String PauseString= "Recognition Paused";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -153,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                     //indicate to user
                     final TextView resultText = (TextView)findViewById(R.id.resultText);
                     resultText.setTextColor(Color.RED);
-                    resultText.setText("Recognition Paused");
+                    resultText.setText(PauseString);
                 }
                 else{
                     startButton.setEnabled(true);
@@ -162,8 +163,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                     //indicate to user
                     final TextView resultText = (TextView)findViewById(R.id.resultText);
                     resultText.setTextColor(Color.GREEN);
-                    resultText.setText("Recognition Play");
-
+                    resultText.setText(PlayString);
                 }
             }
         });
@@ -274,7 +274,7 @@ private int MSSGTEST;
         //String sendstr = s.toString() + "-";
        // byte[] mBytes = sendstr.getBytes();
         String htmlString = Html.toHtml(s);
-        htmlString = htmlString + "-";  //a dash is the delimeter on rx end
+        htmlString = htmlString + "*";  //a dash is the delimeter on rx end
 
        byte[] mBytes = htmlString.getBytes(("UTF-8"));
         outputStream.write(mBytes);
@@ -283,11 +283,6 @@ private int MSSGTEST;
         //String test = new String(mBytes, "UTF-8");
        // Toast.makeText(MainActivity.this, "converted: " + test, Toast.LENGTH_SHORT).show();
     }
-
-   /* public void MssgWrite(String s) throws IOException {
-        outputStream.write(s.getBytes());
-    }*/
-
 
     //unused class but good reference for learning how to use Spannable strings
     /*public static void appendColoredText(TextView tv, String text, int color) {
