@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Handler handler = new Handler();
       //  final byte delimiter = 10; //This is the ASCII code for a newline character
-        final byte delimiter = 45; //This is the ASCII code for a dash
+        final byte delimiter = 42; //This is the ASCII code for a asterisk
         final TextView result = (TextView) findViewById(R.id.result);
         result.setMovementMethod(new ScrollingMovementMethod());
 
@@ -201,13 +201,13 @@ public class MainActivity extends AppCompatActivity {
                                 if (readBuffer[j] != (byte) 0)
                                     countert++;
                             }
-                            runOnUiThread(new Runnable() {
+                           /* runOnUiThread(new Runnable() {
                                 public void run() {
                                     //Toast.makeText(MainActivity.this, "cosistent", Toast.LENGTH_SHORT).show();
                                     // Toast.makeText(MainActivity.this, "bytesavil: " + bytesAvailable + "\nreachedat: " + i, Toast.LENGTH_SHORT).show();
                                     Toast.makeText(MainActivity.this, "readbuffil: " + countert+ "\nreadbufpo: " + readBufferPosition + "\nbytesavil: " + bytesAvailable , Toast.LENGTH_SHORT).show();
                                 }
-                            });
+                            });*/
                             if (countert>3000){
                                 byte[] temp = new byte[50000];
                                 System.arraycopy(readBuffer, 900, temp, 0, readBuffer.length-900);
