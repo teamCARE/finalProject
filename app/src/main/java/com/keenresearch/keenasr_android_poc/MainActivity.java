@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -104,21 +105,25 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
         // we need to make sure audio permission is granted before initializing KeenASR SDK
         requestAudioPermissions();
 
+        //testcode
+        AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE); if (audioManager.isBluetoothScoAvailableOffCall()) {
+            audioManager.setMode(AudioManager.MODE_IN_CALL); audioManager.startBluetoothSco(); audioManager.setBluetoothScoOn(true); try {
+                Thread.sleep(3000); }catch (InterruptedException e) {
+                Log.w(TAG, "Exception" + e); }
+        }else {
+            Log.w(TAG, "WARNING: BluetoothSco is not available"); }
+        if (audioManager.isBluetoothScoOn()) {
+            Log.i(TAG, "Bluetooth SCO is ON"); }else {
+            Log.w(TAG, "Bluetooth SCO is OFF");
+        }
+        //end of test code
+
         if (KASRRecognizer.sharedInstance() == null) {
             Log.i(TAG, "Initializing KeenASR recognizer");
             KASRRecognizer.setLogLevel(KASRRecognizer.KASRRecognizerLogLevel.KASRRecognizerLogLevelDebug);
             Context context = this.getApplication().getApplicationContext();
             asyncASRInitializerTask = new ASyncASRInitializerTask(context);
             asyncASRInitializerTask.execute();
-        } else {
-            /*  startButton.setEnabled(true);
-            //MAKES IT CONTINUOUS
-          startButton.performClick();
-            IS_RECORDING = true;
-            final TextView resultText = (TextView) findViewById(R.id.resultText);
-            resultText.setTextColor(Color.GREEN);
-            resultText.setText("Ready to Start!");*/
-
         }
 
         MainActivity.instance = this;
