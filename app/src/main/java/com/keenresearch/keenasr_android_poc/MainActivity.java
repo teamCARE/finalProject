@@ -626,7 +626,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
 
         List<String> data = new ArrayList<String>();
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open("engwords.txt")));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open("10k.txt")));
             String s;
             while ((s = reader.readLine()) != null) {
                 data.add(s);
