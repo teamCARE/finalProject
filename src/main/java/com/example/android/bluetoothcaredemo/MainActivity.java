@@ -189,9 +189,10 @@ public class MainActivity extends EvsBaseActivity {
         stopWorker = false;
         readBuffer = new byte[10000];
         readBufferPosition = 0;
-        //TODO: test this impementation heavily for erros
+        //TODO: test this impementation heavily for errors
         //TODO: clean up code, delete random tests and random test variables
         //TODO: on server side change to html completely (i.e. no spannablestringbuilder), would be faster or no?
+        //TODO: stop sending full history everytme, have two textboxes, one for history, one for new result
 
         workerThread = new Thread(new Runnable()
         {
@@ -230,12 +231,24 @@ public class MainActivity extends EvsBaseActivity {
 
                                     readBufferPosition = 0;
 
-                                    handler.post(new Runnable() {
-                                        public void run() {
-                                            temp = data.replace("span style=\"color:", "font color='").replace(";\"", "'").replace("</span>", "</font>");
-                                            result.setText(Html.fromHtml(temp));
-                                        }
-                                    });
+                                    if (data.contains("~")){
+                                        handler.post(new Runnable() {
+                                            public void run() {
+                                                result.setText("");
+                                            }
+                                        });
+                                    }
+                                    else {
+                                        handler.post(new Runnable() {
+                                            public void run() {
+                                                temp = data.replace("span style=\"color:", "font color='").replace(";\"", "'").replace("</span>", "</font>");
+                                                result.setText(Html.fromHtml(temp));
+                                            }
+                                        });
+                                    }
+
+
+
                                     break;
                                 } else {
                                     if (readBufferPosition>3000) {
