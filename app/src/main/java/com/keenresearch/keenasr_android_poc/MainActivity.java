@@ -165,7 +165,8 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                     resultText.setText(PauseString);
                     //BT Send
                     try {
-                        CommandWrite(PauseString);
+                        //CommandWrite(PauseString);
+                        outputStream.write(("~~Pause Recognition~~*").getBytes()); //clears the screen
                     } catch (IOException connectException) {
                         connectException.printStackTrace();
                     }
@@ -178,12 +179,19 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                     final TextView resultText = (TextView)findViewById(R.id.resultText);
                     resultText.setTextColor(Color.GREEN);
                     resultText.setText(PlayString);
-                    //BT Send
+                 /*   //BT Send
                     try {
                         CommandWrite(PlayString);
                     } catch (IOException connectException) {
                         connectException.printStackTrace();
+                    }*/
+                    //BT Send
+                    try {
+                        MssgWrite(ssbuilder);
+                    } catch (IOException connectException) {
+                        connectException.printStackTrace();
                     }
+
                 }
             }
         });
