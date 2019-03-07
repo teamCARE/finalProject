@@ -592,7 +592,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                 recognizer.addListener(MainActivity.instance);
                 recognizer.setVADParameter(KASRRecognizer.KASRVadParameter.KASRVadTimeoutEndSilenceForGoodMatch, 0.5f);
                 recognizer.setVADParameter(KASRRecognizer.KASRVadParameter.KASRVadTimeoutEndSilenceForAnyMatch, 0.5f);
-                recognizer.setVADParameter(KASRRecognizer.KASRVadParameter.KASRVadTimeoutMaxDuration, 15.0f);
+                recognizer.setVADParameter(KASRRecognizer.KASRVadParameter.KASRVadTimeoutMaxDuration, 7.0f);
                 recognizer.setVADParameter(KASRRecognizer.KASRVadParameter.KASRVadTimeoutForNoSpeech, 5.0f);
 
                 //recognizer.setCreateAudioRecordings(true);
