@@ -410,7 +410,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                 if (ssbuilder.length()>1000){
                     ssbuilder.delete(0,100);
                     len_final =  len_final-100;
-                    Toast.makeText(MainActivity.this, "cuttext", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this, "cuttext", Toast.LENGTH_SHORT).show();
                     //resultText.append("cutText"); //for debug purposes
                 }
 
@@ -626,7 +626,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
 
         List<String> data = new ArrayList<String>();
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open("10k.txt")));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(context.getAssets().open("engwords.txt")));
             String s;
             while ((s = reader.readLine()) != null) {
                 data.add(s);
