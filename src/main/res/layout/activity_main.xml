@@ -34,11 +34,11 @@
                     android:layout_gravity="center_horizontal|bottom"
                     android:enabled="true"
                     android:gravity="center_horizontal|bottom"
-                    android:maxLines="5"
-                    android:text="Tap to Set Up Server, then send request from Client side..."
+                    android:maxLines="4"
+                    android:text="Swipe forward to Set Up Server, then send request from Client side..."
                     android:textAlignment="center"
                     android:textColor="@color/evsGreen"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
         </ScrollView>
 
