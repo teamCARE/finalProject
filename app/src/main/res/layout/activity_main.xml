@@ -36,10 +36,26 @@
             android:enabled="true"
             android:gravity="bottom"
             android:maxLines="8"
-            android:text="Open Server Socket, then tap BT icon to send Client request"
+            android:text="Open Server Socket, then tap BT icon to send Client request."
             android:textAlignment="center"
             android:textSize="14sp"
             android:visibility="visible" />
+
+        <Button
+            android:id="@+id/resumeRecognition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorAccent"
+            android:text="Resume Recognition" />
+
+        <Button
+            android:id="@+id/pauseRecognitionClr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimaryDark"
+            android:text="Clear Screen"/>
 
         <Button
             android:id="@+id/pauseRecognition"
@@ -47,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/colorPrimary"
-            android:text="Play/Pause Recognition"/>
+            android:text="Pause Recognition"/>
 
 
         <Button
@@ -56,7 +72,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/colorAccent"
-            android:text="Start Listening"/>
+            android:text="Start Listening"
+            android:visibility="gone"/>
 
     </LinearLayout>
 

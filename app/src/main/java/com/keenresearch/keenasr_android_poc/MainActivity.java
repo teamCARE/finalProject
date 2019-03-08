@@ -99,9 +99,18 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
 
         CONNECTED=false;
 
-        // disable start button until initialization is completed
+        // disable start button and other buttons until initialization is completed
         final Button startButton = (Button)findViewById(R.id.startListening);
+        final Button pauseClrButton = (Button)findViewById(R.id.pauseRecognitionClr);
+        final Button pauseButton = (Button)findViewById(R.id.pauseRecognition);
+        final Button resumeButton = (Button)findViewById(R.id.resumeRecognition);
+
         startButton.setEnabled(false);
+
+        pauseButton.setEnabled(false);
+        pauseClrButton.setEnabled(false);
+        resumeButton.setEnabled(false);
+
         // we need to make sure audio permission is granted before initializing KeenASR SDK
         requestAudioPermissions();
 
@@ -150,28 +159,10 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
             }
         });
 
-
-        //replace this play/pause button with swipe command when integrating with Raptor headset
-        ((Button) findViewById(R.id.pauseRecognition)).setOnClickListener(new OnClickListener() {
+        ((Button) findViewById(R.id.resumeRecognition)).setOnClickListener(new OnClickListener() {
             public void onClick(View view) {
-                Log.i(TAG, "Pause listen...");
-                if (IS_RECORDING == true) {
-                    final KASRRecognizer recognizer = KASRRecognizer.sharedInstance();
-                    recognizer.stopListening();
-                    IS_RECORDING = false;
-                    //indicate to user
-                    final TextView resultText = (TextView)findViewById(R.id.resultText);
-                    resultText.setTextColor(Color.RED);
-                    resultText.setText(PauseString);
-                    //BT Send
-                    try {
-                        //CommandWrite(PauseString);
-                        outputStream.write(("~~Pause Recognition~~*").getBytes()); //clears the screen
-                    } catch (IOException connectException) {
-                        connectException.printStackTrace();
-                    }
-                }
-                else{
+                Log.i(TAG, "resume listen...");
+                if (!IS_RECORDING) {
                     startButton.setEnabled(true);
                     startButton.performClick();
                     IS_RECORDING = true;
@@ -179,22 +170,73 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                     final TextView resultText = (TextView)findViewById(R.id.resultText);
                     resultText.setTextColor(Color.GREEN);
                     resultText.setText(PlayString);
-                 /*   //BT Send
-                    try {
-                        CommandWrite(PlayString);
-                    } catch (IOException connectException) {
-                        connectException.printStackTrace();
-                    }*/
                     //BT Send
                     try {
                         MssgWrite(ssbuilder);
                     } catch (IOException connectException) {
                         connectException.printStackTrace();
                     }
-
+                    //re-enable pause buttons
+                    pauseButton.setEnabled(true);
+                    pauseClrButton.setEnabled(true);
+                    resumeButton.setEnabled(false);
                 }
             }
         });
+
+
+        //replace this play/pause button with swipe command when integrating with Raptor headset
+        ((Button) findViewById(R.id.pauseRecognitionClr)).setOnClickListener(new OnClickListener() {
+            public void onClick(View view) {
+                Log.i(TAG, "Pause listen with clear screen...");
+                if (IS_RECORDING) {
+                    final KASRRecognizer recognizer = KASRRecognizer.sharedInstance();
+                    recognizer.stopListening();
+                    IS_RECORDING = false;
+                    //indicate to user
+                    final TextView resultText = (TextView)findViewById(R.id.resultText);
+                    resultText.setTextColor(Color.RED);
+                    resultText.setText(PauseString + " , cleared screen on BT device");
+                    //BT Send
+                    try {
+                        //CommandWrite(PauseString);
+                        outputStream.write(("~~Pause Recognition~~*").getBytes()); //clears the screen
+                    } catch (IOException connectException) {
+                        connectException.printStackTrace();
+                    }
+                    pauseButton.setEnabled(false);
+                    pauseClrButton.setEnabled(false);
+                    resumeButton.setEnabled(true);
+                }
+            }
+        });
+
+        //replace this play/pause button with swipe command when integrating with Raptor headset
+        ((Button) findViewById(R.id.pauseRecognition)).setOnClickListener(new OnClickListener() {
+            public void onClick(View view) {
+                Log.i(TAG, "Pause listen...");
+                if (IS_RECORDING) {
+                    final KASRRecognizer recognizer = KASRRecognizer.sharedInstance();
+                    recognizer.stopListening();
+                    IS_RECORDING = false;
+                    //indicate to user
+                    final TextView resultText = (TextView)findViewById(R.id.resultText);
+                    //resultText.setTextColor(Color.RED);
+                    //resultText.setText(PauseString);
+                    resultText.setText(ssbuilder, TextView.BufferType.SPANNABLE);
+                    //BT Send
+                    try {
+                        MssgWrite(ssbuilder); //freezes screen on current output
+                    } catch (IOException connectException) {
+                        connectException.printStackTrace();
+                    }
+                }
+                pauseButton.setEnabled(false);
+                pauseClrButton.setEnabled(false);
+                resumeButton.setEnabled(true);
+            }
+        });
+
 
         Bluetoothsetup();
 
@@ -286,13 +328,16 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                             //the connection was succesful;
                             CONNECTED=true;
                             final Button startButton = (Button)findViewById(R.id.startListening);
+                            final Button pauseClrButton = (Button)findViewById(R.id.pauseRecognitionClr);
+                            final Button pauseButton = (Button)findViewById(R.id.pauseRecognition);
                             startButton.setEnabled(true);
+                            pauseButton.setEnabled(true);
+                            pauseClrButton.setEnabled(true);
                            //MAKES IT CONTINUOUS
                            startButton.performClick();
                             IS_RECORDING = true;
                            final TextView resultText = (TextView) findViewById(R.id.resultText);
-                           resultText.setTextColor(Color.GREEN);
-                           resultText.setText("Ready to Start!");
+                           resultText.setText("Waiting for recognizer to finish setting up.");
                 }
             });
 

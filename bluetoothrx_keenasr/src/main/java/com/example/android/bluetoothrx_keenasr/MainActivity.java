@@ -158,6 +158,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     String temp;
+    Spanned temp2;
+    CharSequence temp3;
     int countert ;
     int i;
 
@@ -229,23 +231,23 @@ public class MainActivity extends AppCompatActivity {
                                     final String data = new String(encodedBytes, "UTF-8");
 
                                     readBufferPosition = 0;
-
-                                    handler.post(new Runnable() {
-                                        public void run() {
-                                            temp = data.replace("span style=\"color:", "font color='").replace(";\"", "'").replace("</span>", "</font>");
-                                            // result.setText(data);
-                                            result.setText(Html.fromHtml(temp));
-                                            // ssbuilderRX = new SpannableString(Html.fromHtml(data));
-                                            //ssbuilderRX = new SpannableString(Html.fromHtml(data, Html.FROM_HTML_MODE_COMPACT));
-                                            // result.setText(ssbuilderRX, TextView.BufferType.SPANNABLE);
-                                            // if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                                            //       result.setText(Html.fromHtml(temp, Html.FROM_HTML_MODE_COMPACT));
-                                            //  } else {
-                                            //   result.setText(Html.fromHtml(temp));
-                                            // }
-
-                                        }
-                                    });
+                                    if (data.contains("~")){
+                                        handler.post(new Runnable() {
+                                            public void run() {
+                                                result.setText("");
+                                            }
+                                        });
+                                    }
+                                    else {
+                                        handler.post(new Runnable() {
+                                            public void run() {
+                                                temp = data.replace("span style=\"color:", "font color='").replace(";\"", "'").replace("</span>", "</font>");
+                                                temp2 = Html.fromHtml(temp); //fromHtml adds two trailing newlines
+                                                temp3 = trimTrailingWhitespace(temp2);//remove the said trailing newlines
+                                                result.setText(temp3);
+                                            }
+                                        });
+                                    }
                                     break;
                                 } else {
                                     if (readBufferPosition>3000) {
@@ -256,11 +258,11 @@ public class MainActivity extends AppCompatActivity {
                                             readBufferPosition = readBufferPosition - 500;
                                         }
 
-                                        runOnUiThread(new Runnable() {
+                                        /*runOnUiThread(new Runnable() {
                                             public void run() {
                                                 Toast.makeText(MainActivity.this, "cut: " + "readbuffil: " + countert , Toast.LENGTH_SHORT).show();
                                             }
-                                        });
+                                        });*/
                                     }
 
                                     readBufferPosition++;
@@ -290,49 +292,16 @@ public class MainActivity extends AppCompatActivity {
         workerThread.start();
     }
 
-
-        /*
-    private String readMessage;
-
-    public void MssgRun() {
-        final TextView result = (TextView) findViewById(R.id.result);
-        //Thread readThread = new Thread(new Runnable() {
-            final int BUFFER_SIZE = 1024;
-            byte[] buffer = new byte[BUFFER_SIZE];
-            int bytes = 0;
-            int b = BUFFER_SIZE;
-
-
-            while(true){
-
-                try {
-                    bytes = inStream.read(buffer);
-                    readMessage = new String(buffer, 0, bytes);
-                    result.append(readMessage);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    //Toast.makeText(MainActivity.this, "test2" + readMessage, Toast.LENGTH_SHORT).show();
-                    break;
-                }
-            }
-
-       // });
-    }*/
-
-                    // if (testtoast==0) {
-
-                               /* runOnUiThread(new Runnable() {
-                                    public void run() {
-                                        Toast.makeText(MainActivity.this, "instream availbe bytes " +bytesAvailable, Toast.LENGTH_SHORT).show();
-                                        //testtoast=1;
-                                    }
-                                });*/
-                    // }
-
-
-    public void setValue(byte[] arr, int pos, byte val) {
-        arr[pos] = val;
+    public static CharSequence trimTrailingWhitespace(CharSequence source) {
+        if(source == null)
+            return "";
+        int i = source.length();
+        // loop back to the first non-whitespace character
+        while(--i >= 0 && Character.isWhitespace(source.charAt(i))) {
+        }
+        return source.subSequence(0, i+1);
     }
+
 
 
 }
