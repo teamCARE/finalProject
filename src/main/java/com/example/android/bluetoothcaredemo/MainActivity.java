@@ -11,11 +11,13 @@ import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.text.Html;
 
+import android.text.Spanned;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +50,8 @@ public class MainActivity extends EvsBaseActivity {
     volatile boolean stopWorker;
 
     private String temp;
+    Spanned temp2;
+    CharSequence temp3;
     private int countert;
     private int i;
     private boolean PAUSED;
@@ -73,6 +77,7 @@ public class MainActivity extends EvsBaseActivity {
         });
     }
 
+
     @Override
     public void onForward()
     {
@@ -89,37 +94,25 @@ public class MainActivity extends EvsBaseActivity {
         //android.os.Process.killProcess(android.os.Process.myPid());  //kills activity completely, so every time app is opened it re-initializes
         AcceptThreadObj.cancel();
     }
-    @Override
-    public void onTap()
-    {
-        super.onTap();
-
-       //pause/play capability from headset
-        /* if (!CONNECTED) //disable tap until BT connection successful
-            return;
-
-        if (PAUSED) {
-            try {
-                CommandWrite("Pause");
-            } catch (IOException connectException) {
-                connectException.printStackTrace();
-            }
-        }
-        else {
-            try {
-                CommandWrite("Play");
-            } catch (IOException connectException) {
-                connectException.printStackTrace();
-            }
-        } */
-
-    }
 
 
     public void Bluetoothsetup() {
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        // check if the BT adapter is enabled
+        if (mBluetoothAdapter != null) {
+            if (!mBluetoothAdapter.isEnabled()) {
+                Log.d(TAG, "enable adapter");
+                mBluetoothAdapter.enable();
+                try {
+                    Thread.sleep(2000);
+                }
+                catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         if (mBluetoothAdapter == null) {
-            EvsToast.show(this, "Bluetooth is not available!");
+            EvsToast.show(this, "Bluetooth Adapter is not available!");
         }
         if (!mBluetoothAdapter.isEnabled()) {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -242,7 +235,9 @@ public class MainActivity extends EvsBaseActivity {
                                         handler.post(new Runnable() {
                                             public void run() {
                                                 temp = data.replace("span style=\"color:", "font color='").replace(";\"", "'").replace("</span>", "</font>");
-                                                result.setText(Html.fromHtml(temp));
+                                                temp2 = Html.fromHtml(temp);          //fromHtml adds two trailing newlines
+                                                temp3= trimTrailingWhitespace(temp2); //remove the said trailing newlines
+                                                result.setText(temp3);
                                             }
                                         });
                                     }
@@ -289,6 +284,16 @@ public class MainActivity extends EvsBaseActivity {
  /*   public void CommandWrite(String s) throws IOException {
         outputStream.write(s.getBytes());
     }*/
+
+    public static CharSequence trimTrailingWhitespace(CharSequence source) {
+        if(source == null)
+            return "";
+        int i = source.length();
+        // loop back to the first non-whitespace character
+        while(--i >= 0 && Character.isWhitespace(source.charAt(i))) {
+        }
+        return source.subSequence(0, i+1);
+    }
 
 
 } //end of MainActivity
