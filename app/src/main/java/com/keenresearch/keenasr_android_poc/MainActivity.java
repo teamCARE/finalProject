@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
         // we need to make sure audio permission is granted before initializing KeenASR SDK
         requestAudioPermissions();
 
-        //testcode
+        //if connected bluetooth mic already, use that
         AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE); if (audioManager.isBluetoothScoAvailableOffCall()) {
             audioManager.setMode(AudioManager.MODE_IN_CALL); audioManager.startBluetoothSco(); audioManager.setBluetoothScoOn(true); try {
                 Thread.sleep(3000); }catch (InterruptedException e) {
@@ -124,15 +124,6 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
         if (audioManager.isBluetoothScoOn()) {
             Log.i(TAG, "Bluetooth SCO is ON"); }else {
             Log.w(TAG, "Bluetooth SCO is OFF");
-        }
-        //end of test code
-
-        if (KASRRecognizer.sharedInstance() == null) {
-            Log.i(TAG, "Initializing KeenASR recognizer");
-            KASRRecognizer.setLogLevel(KASRRecognizer.KASRRecognizerLogLevel.KASRRecognizerLogLevelDebug);
-            Context context = this.getApplication().getApplicationContext();
-            asyncASRInitializerTask = new ASyncASRInitializerTask(context);
-            asyncASRInitializerTask.execute();
         }
 
         MainActivity.instance = this;
@@ -324,26 +315,37 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                                 }
                                 return;
                             }
-
                             //the connection was succesful;
-                            CONNECTED=true;
-                            final Button startButton = (Button)findViewById(R.id.startListening);
-                            final Button pauseClrButton = (Button)findViewById(R.id.pauseRecognitionClr);
-                            final Button pauseButton = (Button)findViewById(R.id.pauseRecognition);
-                            startButton.setEnabled(true);
-                            pauseButton.setEnabled(true);
-                            pauseClrButton.setEnabled(true);
-                           //MAKES IT CONTINUOUS
-                           startButton.performClick();
-                            IS_RECORDING = true;
-                           final TextView resultText = (TextView) findViewById(R.id.resultText);
-                           resultText.setText("Waiting for recognizer to finish setting up.");
+                            setupAfterConnected();
                 }
             });
 
             dialog.show();
             }
         }
+
+
+    public void setupAfterConnected(){
+        CONNECTED=true;
+        final Button startButton = (Button)findViewById(R.id.startListening);
+        final Button pauseClrButton = (Button)findViewById(R.id.pauseRecognitionClr);
+        final Button pauseButton = (Button)findViewById(R.id.pauseRecognition);
+        startButton.setEnabled(true);
+        pauseButton.setEnabled(true);
+        pauseClrButton.setEnabled(true);
+        //init recognizer
+        if (KASRRecognizer.sharedInstance() == null) {
+            Log.i(TAG, "Initializing KeenASR recognizer");
+            KASRRecognizer.setLogLevel(KASRRecognizer.KASRRecognizerLogLevel.KASRRecognizerLogLevelDebug);
+            Context context = this.getApplication().getApplicationContext();
+            asyncASRInitializerTask = new ASyncASRInitializerTask(context);
+            asyncASRInitializerTask.execute();
+        }
+        //perfroms start button click in ASyncASRInitializerTask class
+        final TextView resultText = (TextView) findViewById(R.id.resultText);
+        resultText.setText("Waiting for recognizer to finish setting up.");
+    }
+
 
    public void MssgWrite(SpannableStringBuilder s) throws IOException {
         //String sendstr = s.toString() + "-";
