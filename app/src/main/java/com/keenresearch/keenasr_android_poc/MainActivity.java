@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +45,7 @@ import com.keenresearch.keenasr.KASRBundle;
 
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -608,23 +610,26 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
             Log.i(TAG, "Microphone permission is granted");
             Log.i(TAG, "Initializing with bundle at path: " + asrBundlePath);
             KASRRecognizer.initWithASRBundleAtPath(asrBundlePath, getApplicationContext());
-            String[] phrases = MainActivity.getPhrases(context);
+            //String[] phrases = MainActivity.getPhrases(context);
 
             KASRRecognizer recognizer = KASRRecognizer.sharedInstance();
             if (recognizer != null) {
-                String dgName = "words";
+
+                 //String dgName = "words";  //KEEP
                 // we don't have to recreate the decoding graph every time, but during the development
                 // this could be a problem if the list of sentences/phrases is changed (decoding graph
                 // would not be re-created), so we opt to create it every time
-//                if (KASRDecodingGraph.decodingGraphWithNameExists(dgName, recognizer)) {
-//                    Log.i(TAG, "Decoding graph " + dgName + " alread exists. IT WON'T BE RECREATED");
-//                    Log.i(TAG, "Created on " + KASRDecodingGraph.getDecodingGraphCreationDate(dgName, recognizer));
-//                } else {
-//                    KASRDecodingGraph.createDecodingGraphFromSentences(phrases, recognizer, dgName); //
-//                }
-                       KASRDecodingGraph.createDecodingGraphFromSentences(phrases, recognizer, dgName); // TODO check return code
+               /* if (KASRDecodingGraph.decodingGraphWithNameExists(dgName, recognizer)) {
+                    Log.i(TAG, "Decoding graph " + dgName + " alread exists. IT WON'T BE RECREATED");
+                    Log.i(TAG, "Created on " + KASRDecodingGraph.getDecodingGraphCreationDate(dgName, recognizer));
+                } else {
+                    KASRDecodingGraph.createDecodingGraphFromSentences(phrases, recognizer, dgName); //
+                }*/
+               // KASRDecodingGraph.createDecodingGraphFromSentences(phrases, recognizer, dgName); // TODO check return code //KEEP
 
-                recognizer.prepareForListeningWithCustomDecodingGraphWithName(dgName);
+               // recognizer.prepareForListeningWithCustomDecodingGraphWithName(dgName); //KEEP
+                File dataDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                recognizer.prepareForListeningWithCustomDecodingGraphAtPath(dataDir.getAbsolutePath() + "/keenB2-opensub-lm-1");
 
             } else {
                 Log.e(TAG, "Unable to retrieve recognizer");
