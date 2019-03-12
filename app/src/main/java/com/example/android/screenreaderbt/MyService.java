@@ -62,8 +62,14 @@ public class MyService extends AccessibilityService {
         for (int i = 0; i < mDebugDepth; i++) {
             log += ".";
         }
-      //  log+="("+mNodeInfo.getText() +" <-- " + mNodeInfo.getViewIdResourceName()+")";
+
         log += mNodeInfo.getText();
+
+        //cut text from becoming infinitely long
+        if (log.length()>500){
+            log = log.substring(log.length()-300,log.length()); //removes the first 200 chars
+            Toast.makeText(MyService.this, "cut text to length" + log.length(), Toast.LENGTH_SHORT).show();
+        }
 
         //BT Send
         try {
