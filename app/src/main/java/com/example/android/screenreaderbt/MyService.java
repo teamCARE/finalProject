@@ -49,13 +49,13 @@ public class MyService extends AccessibilityService {
             log += ".";
         }
 
-        log += mNodeInfo.getText();
+        log += ("\n" + mNodeInfo.getText());
 
         //cut text from becoming infinitely long
-        if (log.length()>500){
+        if (log.length()>1200){
             log = log.substring(log.length()-400,log.length()); //sets the maximum size to 400
             //Toast.makeText(MyService.this, "cut text to length" + log.length(), Toast.LENGTH_SHORT).show(); /see when its cutting
-            //Log.d(TAG, "cut text to length" + log.length());
+            Log.d(TAG, "cut text to length" + log.length());
         }
 
         //BT Send
