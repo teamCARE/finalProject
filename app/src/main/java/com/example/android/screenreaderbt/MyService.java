@@ -17,6 +17,8 @@ import java.util.UUID;
 
 public class MyService extends AccessibilityService {
 
+    //TODO: set it only to work with live transcribe? WOuld avoid app stopping working if get a notifcation or text message in th emiddle (?). Do we want it to work with other apps?
+
     private  int mDebugDepth;
     private String TAG = "Aserv";
     private BluetoothAdapter mBluetoothAdapter;
@@ -54,12 +56,11 @@ public class MyService extends AccessibilityService {
         }
 
         log += mNodeInfo.getText();
-
-        Log.d(TAG, "curlen" + log.length());
+        //Log.d(TAG, "curlen" + log.length());
 
         if (log.length() - startPos > maxSendSize) {
             startPos += startPosStep;
-            Log.d(TAG, "startPos" + startPos);
+            //Log.d(TAG, "startPos" + startPos);
         }
 
         //cut text from becoming infinitely long
@@ -67,7 +68,7 @@ public class MyService extends AccessibilityService {
         if (log.length()>1500){
                 log = log.substring(startPos, log.length()); //sets the maximum size to 400
                 //Toast.makeText(MyService.this, "cut text to length" + log.length(), Toast.LENGTH_SHORT).show(); /see when its cutting
-                Log.d(TAG, "cut text to length" + log.length());
+                //Log.d(TAG, "cut text to length" + log.length());
         }
 
         //BT Send
