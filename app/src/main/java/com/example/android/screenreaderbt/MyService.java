@@ -22,6 +22,9 @@ public class MyService extends AccessibilityService {
     private BluetoothAdapter mBluetoothAdapter;
     private static final UUID MY_UUID = UUID.fromString("fa87c0d0-afac-11de-8a39-0800200c9a66");
     private OutputStream outputStream;
+    private int startPos = 1000;
+    private static int startPosStep = 1000;
+    private static int maxSendSize = 1500;
 
     @Override
     public void onInterrupt() {
@@ -32,6 +35,7 @@ public class MyService extends AccessibilityService {
         Log.d(TAG, "entering onServiceConnected");
         Bluetoothsetup();
         ConnectBTDevice();
+        //prevLen = 0;
     }
 
     @Override
@@ -49,13 +53,21 @@ public class MyService extends AccessibilityService {
             log += ".";
         }
 
-        log += ("\n" + mNodeInfo.getText());
+        log += mNodeInfo.getText();
+
+        Log.d(TAG, "curlen" + log.length());
+
+        if (log.length() - startPos > maxSendSize) {
+            startPos += startPosStep;
+            Log.d(TAG, "startPos" + startPos);
+        }
 
         //cut text from becoming infinitely long
-        if (log.length()>1200){
-            log = log.substring(log.length()-400,log.length()); //sets the maximum size to 400
-            //Toast.makeText(MyService.this, "cut text to length" + log.length(), Toast.LENGTH_SHORT).show(); /see when its cutting
-            Log.d(TAG, "cut text to length" + log.length());
+        //inital string can be huge, but max string is 2147483647 chars long so ok
+        if (log.length()>1500){
+                log = log.substring(startPos, log.length()); //sets the maximum size to 400
+                //Toast.makeText(MyService.this, "cut text to length" + log.length(), Toast.LENGTH_SHORT).show(); /see when its cutting
+                Log.d(TAG, "cut text to length" + log.length());
         }
 
         //BT Send
