@@ -1,6 +1,7 @@
 package com.example.android.speechapplication;
 
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -9,6 +10,8 @@ import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.maxwell.speechrecognition.OnSpeechRecognitionListener;
@@ -24,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
     private Button speakButton; private TextView volumeText;
     private SpannableStringBuilder ssbuilder = new SpannableStringBuilder();
     private int len_final = 0;
+    private boolean AR_GLASS_MODE = true;
+    private BluetoothAR bluetoothAR = new BluetoothAR();
 
     private static final String TAG = "MainActivity";
     private  SpeechRecognition speechRecognition;
@@ -31,6 +36,19 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+       /* //if connected bluetooth mic already, use that
+        AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE); if (audioManager.isBluetoothScoAvailableOffCall()) {
+            audioManager.setMode(AudioManager.MODE_IN_CALL); audioManager.startBluetoothSco(); audioManager.setBluetoothScoOn(true); try {
+                Thread.sleep(3000); }catch (InterruptedException e) {
+                Log.w(TAG, "Exception" + e); }
+        }else {
+            Log.w(TAG, "WARNING: BluetoothSco is not available"); }
+        if (audioManager.isBluetoothScoOn()) {
+            Log.i(TAG, "Bluetooth SCO is ON"); }else {
+            Log.w(TAG, "Bluetooth SCO is OFF");
+        }*/
+
         setContentView(R.layout.activity_main);
 
         //set up layout
@@ -47,6 +65,26 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
             @Override
             public void onClick(View view) {
                 speechRecognition.startSpeechRecognition();
+            }
+        });
+
+        Switch onOffSwitch = (Switch)  findViewById(R.id.on_off_switch);
+        onOffSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //Log.i(TAG , "switchstate" + isChecked );
+                if (isChecked)
+                    AR_GLASS_MODE = true;
+                else
+                    AR_GLASS_MODE = false;
+            }
+        });
+
+        ((Button) findViewById(R.id.BTsend)).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                bluetoothAR.Bluetoothsetup(MainActivity.this.getApplicationContext());
+                bluetoothAR.ConnectBTDevice(TAG,MainActivity.this.getApplicationContext());
+                Log.i(TAG, "click");
             }
         });
     }
@@ -96,6 +134,15 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
             len_final =  len_final-100;
         }
 
+        //send the results to display on AR glasses
+        if (AR_GLASS_MODE) {
+            try {
+                bluetoothAR.MssgWrite(ssbuilder);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         resultsText.setText(ssbuilder, TextView.BufferType.SPANNABLE); //BufferType SPANNABLE automatically has scrolling movement for a textview
 
         speakButton.performClick(); //makes it auto restart
@@ -116,8 +163,17 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
         resParSpanable.setSpan(new ForegroundColorSpan(Color.YELLOW), 0, resParSpanable.length(), 0);
         ssbuilder.delete(len_final, ssbuilder.length());
         ssbuilder.append(resParSpanable);
-        
-        resultsText.setText(ssbuilder, TextView.BufferType.SPANNABLE); 
+
+        //send the results to display on AR glasses
+        if (AR_GLASS_MODE) {
+            try {
+                bluetoothAR.MssgWrite(ssbuilder);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        resultsText.setText(ssbuilder, TextView.BufferType.SPANNABLE);
     }
 
     @Override

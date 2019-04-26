@@ -28,6 +28,28 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@android:color/white" />
 
+    <Button
+        android:id="@+id/BTsend"
+        android:enabled="true"
+        android:clickable="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/holo_blue_dark"
+        android:text="BTconnect"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/white" />
+
+    <Switch
+        android:id="@+id/on_off_switch"
+        android:text="sendToGlasses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:textOff="OFF"
+        android:textOn="ON"
+        android:checked="true" />
+
     <TextView
         android:id="@+id/volume"
         android:layout_width="match_parent"
