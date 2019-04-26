@@ -1,6 +1,5 @@
 package com.example.android.speechapplication;
 
-import android.speech.RecognitionListener;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,12 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.maxwell.speechrecognition.OnSpeechRecognition;
 import com.maxwell.speechrecognition.OnSpeechRecognitionListener;
 import com.maxwell.speechrecognition.OnSpeechRecognitionPermissionListener;
 import com.maxwell.speechrecognition.SpeechRecognition;
 
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements OnSpeechRecognitionListener, OnSpeechRecognitionPermissionListener {
 
@@ -71,31 +68,27 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
     public void OnSpeechRecognitionFinalResult(String s, float confidence) {
         //triggered when SpeechRecognition is done listening.
         //it returns the translated text from the voice input
-        //history = history + s;     //for later
-        //results.setText(history);  //for later
+        //history = history + "\n" + s;   //uncomment to see previous final results as well
+        //results.setText(history);       //uncomment to see previous final results as well
 
         Log.i(TAG + " confidence final", String.valueOf(confidence));
 
         results.setText(s);  //for later
-        speakButton.performClick();
+        speakButton.performClick(); //makes it auto restart
     }
     @Override
-    public void OnSpeechRecognitionCurrentResult(String s, float confidence) {
+    public void OnSpeechRecognitionCurrentResult(String s) {
         //this is called multiple times when SpeechRecognition is
         //still listening. It returns each recognized word when the user is still speaking
         Log.i(TAG, "CurrentResult = " + s);
-
-        Log.i(TAG + " confidence partial", String.valueOf(confidence));
-
         results.setText(s);
     }
 
     @Override
     public void OnSpeechRecognitionError(int i, String s) {
         speechRecognition.stopSpeechRecognition();
-        speechRecognition.startSpeechRecognition();
+        speechRecognition.startSpeechRecognition();  //makes it auto restart
     }
-
 
     @Override
     public void OnSpeechRecognitionRmsChanged(float rmsChangedValue) {
