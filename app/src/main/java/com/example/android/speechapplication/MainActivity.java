@@ -13,7 +13,9 @@ import com.maxwell.speechrecognition.OnSpeechRecognitionListener;
 import com.maxwell.speechrecognition.OnSpeechRecognitionPermissionListener;
 import com.maxwell.speechrecognition.SpeechRecognition;
 
-public class MainActivity extends AppCompatActivity implements OnSpeechRecognitionListener, OnSpeechRecognitionPermissionListener, OnSpeechRecognition {
+import java.util.Arrays;
+
+public class MainActivity extends AppCompatActivity implements OnSpeechRecognitionListener, OnSpeechRecognitionPermissionListener {
 
     private TextView results;
     private Button speakButton; private TextView volumeText;
@@ -66,11 +68,21 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
     public void OnSpeechRecognitionStopped() {}
 
     @Override
-    public void OnSpeechRecognitionFinalResult(String s) {
+    public void OnSpeechRecognitionFinalResult(String s, float[] confidence) {
         //triggered when SpeechRecognition is done listening.
         //it returns the translated text from the voice input
         //history = history + s;     //for later
         //results.setText(history);  //for later
+        if (confidence != null){
+            if (confidence.length > 0){
+                Log.i(TAG + " confidence", String.valueOf(confidence[0]));
+            } else {
+                Log.i(TAG + " confidence score not available", "unknown confidence");
+            }
+        } else {
+            Log.i(TAG, "confidence not found");
+        }
+
         results.setText(s);  //for later
         speakButton.performClick();
     }
@@ -90,12 +102,9 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
 
 
     @Override
-    public void onSpeechRecognitionRmsChanged(float rmsChangedValue) {
+    public void OnSpeechRecognitionRmsChanged(float rmsChangedValue) {
         //Log.i(TAG, "Rms change value = " + rmsChangedValue);
         volumeText.setText("rmsdB: " + rmsChangedValue);
     }
 
-    @Override
-    public void onCancel() {
-    }
 }
