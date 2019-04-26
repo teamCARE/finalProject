@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-       /* //if connected bluetooth mic already, use that
+        //if ALREADY connected bluetooth mic already, use that as audio input source
         AudioManager audioManager = (AudioManager) getSystemService(AUDIO_SERVICE); if (audioManager.isBluetoothScoAvailableOffCall()) {
             audioManager.setMode(AudioManager.MODE_IN_CALL); audioManager.startBluetoothSco(); audioManager.setBluetoothScoOn(true); try {
                 Thread.sleep(3000); }catch (InterruptedException e) {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
         if (audioManager.isBluetoothScoOn()) {
             Log.i(TAG, "Bluetooth SCO is ON"); }else {
             Log.w(TAG, "Bluetooth SCO is OFF");
-        }*/
+        }
 
         setContentView(R.layout.activity_main);
 
@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
             }
         });
 
+        //below functionality is for if want to send result text up to an AR headset
         Switch onOffSwitch = (Switch)  findViewById(R.id.on_off_switch);
         onOffSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
