@@ -23,12 +23,12 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
 
+    implementation 'com.github.teamCARE:android-speech-recognition:539d76ecec73d9fcb542f12637b5aaea72c50ab4'
+    //implementation 'com.github.maxwellobi:android-speech-recognition:v1.0.0-beta.1'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
-    implementation 'com.github.teamCARE:android-speech-recognition:d9742e6c9d5a03c8f3b9e67c762b1eca45425484'
-    //implementation 'com.github.maxwellobi:android-speech-recognition:v1.0.0-beta.1'
 }
 
 /*configurations.all {

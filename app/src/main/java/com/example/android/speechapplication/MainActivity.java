@@ -68,29 +68,25 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
     public void OnSpeechRecognitionStopped() {}
 
     @Override
-    public void OnSpeechRecognitionFinalResult(String s, float[] confidence) {
+    public void OnSpeechRecognitionFinalResult(String s, float confidence) {
         //triggered when SpeechRecognition is done listening.
         //it returns the translated text from the voice input
         //history = history + s;     //for later
         //results.setText(history);  //for later
-        if (confidence != null){
-            if (confidence.length > 0){
-                Log.i(TAG + " confidence", String.valueOf(confidence[0]));
-            } else {
-                Log.i(TAG + " confidence score not available", "unknown confidence");
-            }
-        } else {
-            Log.i(TAG, "confidence not found");
-        }
+
+        Log.i(TAG + " confidence final", String.valueOf(confidence));
 
         results.setText(s);  //for later
         speakButton.performClick();
     }
     @Override
-    public void OnSpeechRecognitionCurrentResult(String s) {
+    public void OnSpeechRecognitionCurrentResult(String s, float confidence) {
         //this is called multiple times when SpeechRecognition is
         //still listening. It returns each recognized word when the user is still speaking
         Log.i(TAG, "CurrentResult = " + s);
+
+        Log.i(TAG + " confidence partial", String.valueOf(confidence));
+
         results.setText(s);
     }
 
