@@ -25,6 +25,18 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@android:color/white" />
 
+    <TextView
+        android:id="@+id/volume"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left|start"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20sp"
+        android:layout_marginLeft="150sp"
+        android:layout_marginRight="100sp"
+        android:text="Volume (rmsdB)"
+        android:textStyle="bold"/>
+
 
 
 </RelativeLayout>

@@ -15,7 +15,8 @@ import com.maxwell.speechrecognition.SpeechRecognition;
 public class MainActivity extends AppCompatActivity implements OnSpeechRecognitionListener, OnSpeechRecognitionPermissionListener {
 
     private TextView results;
-    private Button speakButton;
+    private Button speakButton; private TextView volumeText;
+
     private static final String TAG = "MainActivity";
     private String history;
     private  SpeechRecognition speechRecognition;
@@ -25,8 +26,11 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //set up layout
         results = (TextView) findViewById(R.id.resultsText);
+        volumeText = (TextView) findViewById(R.id.volume);
 
+        //set up recognition
         speechRecognition = new SpeechRecognition(this);
         speechRecognition.setSpeechRecognitionPermissionListener(this);
         speechRecognition.setSpeechRecognitionListener(this);
@@ -86,7 +90,8 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
 
     @Override
     public void onSpeechRecognitionRmsChanged(float rmsChangedValue) {
-        Log.i(TAG, "Rms change value = " + rmsChangedValue);
+        //Log.i(TAG, "Rms change value = " + rmsChangedValue);
+        volumeText.setText("rmsdB: " + rmsChangedValue);
     }
 
 
