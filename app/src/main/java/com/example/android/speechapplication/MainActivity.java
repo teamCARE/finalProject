@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
     private Button speakButton;
     private static final String TAG = "MainActivity";
     private String history;
+    private  SpeechRecognition speechRecognition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
 
         results = (TextView) findViewById(R.id.resultsText);
 
-        final SpeechRecognition speechRecognition = new SpeechRecognition(this);
+        speechRecognition = new SpeechRecognition(this);
         speechRecognition.setSpeechRecognitionPermissionListener(this);
         speechRecognition.setSpeechRecognitionListener(this);
 
@@ -77,7 +78,10 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
     }
 
     @Override
-    public void OnSpeechRecognitionError(int i, String s) {}
+    public void OnSpeechRecognitionError(int i, String s) {
+        speechRecognition.stopSpeechRecognition();
+        speechRecognition.startSpeechRecognition();
+    }
 
 
     @Override
