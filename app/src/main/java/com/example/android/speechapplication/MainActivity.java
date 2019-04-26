@@ -8,11 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.maxwell.speechrecognition.OnSpeechRecognition;
 import com.maxwell.speechrecognition.OnSpeechRecognitionListener;
 import com.maxwell.speechrecognition.OnSpeechRecognitionPermissionListener;
 import com.maxwell.speechrecognition.SpeechRecognition;
 
-public class MainActivity extends AppCompatActivity implements OnSpeechRecognitionListener, OnSpeechRecognitionPermissionListener {
+public class MainActivity extends AppCompatActivity implements OnSpeechRecognitionListener, OnSpeechRecognitionPermissionListener, OnSpeechRecognition {
 
     private TextView results;
     private Button speakButton; private TextView volumeText;
@@ -94,5 +95,7 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
         volumeText.setText("rmsdB: " + rmsChangedValue);
     }
 
-
+    @Override
+    public void onCancel() {
+    }
 }
