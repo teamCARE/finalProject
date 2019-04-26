@@ -6,12 +6,15 @@
 
     <TextView
         android:id="@+id/resultsText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:gravity="bottom"
-        android:text="hello_world"
+        android:layout_marginTop="100sp"
+        android:layout_marginBottom="20sp"
+        android:gravity="left|start"
+        android:text="Press start to transcribe!"
+        android:textColor="@android:color/white"
+        android:background="@android:color/black"
         tools:context=".MainActivity" />
 
     <Button
@@ -32,7 +35,7 @@
         android:gravity="left|start"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="20sp"
-        android:layout_marginLeft="150sp"
+        android:layout_marginLeft="100sp"
         android:layout_marginRight="100sp"
         android:text="Volume (rmsdB)"
         android:textStyle="bold"/>
