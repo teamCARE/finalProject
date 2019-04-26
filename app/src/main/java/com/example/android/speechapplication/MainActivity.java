@@ -1,5 +1,7 @@
 package com.example.android.speechapplication;
 
+import android.bluetooth.BluetoothAdapter;
+import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.maxwell.speechrecognition.OnSpeechRecognitionListener;
 import com.maxwell.speechrecognition.OnSpeechRecognitionPermissionListener;
@@ -83,9 +86,18 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
 
         ((Button) findViewById(R.id.BTsend)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                bluetoothAR.Bluetoothsetup(MainActivity.this.getApplicationContext());
-                bluetoothAR.ConnectBTDevice(TAG,MainActivity.this.getApplicationContext());
                 Log.i(TAG, "click");
+                short test = bluetoothAR.Bluetoothsetup(MainActivity.this.getApplicationContext());
+                if (test == 1) {
+                    Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE); //ask to turn on bluetooth if it's off
+                    startActivityForResult(enableIntent, bluetoothAR.REQUEST_ENABLE_BT);      //done in MainActivity instead of BT class to avoid memory leaks
+                    Toast.makeText(MainActivity.this,"Please allow BT, then try BTconnect button agian" , Toast.LENGTH_LONG).show();
+                    resultsText.setText("Please allow BT, then try BTconnect button agian");
+                }
+
+                if (test == 2) {  //when user hits BTconnect button agian, will be enabled
+                    bluetoothAR.ConnectBTDevice(TAG, MainActivity.this.getApplicationContext()); //connect to AR headset
+                }
             }
         });
     }

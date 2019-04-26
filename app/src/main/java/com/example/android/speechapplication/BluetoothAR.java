@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
+import android.content.Intent;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.util.Log;
@@ -15,21 +16,27 @@ import java.util.UUID;
 
 public class BluetoothAR{
 
-    private BluetoothAdapter mBluetoothAdapter;
     private static final UUID MY_UUID = UUID.fromString("fa87c0d0-afac-11de-8a39-0800200c9a66");
     //private static final String MAC_address = "2C:8A:72:F2:83:CB"; //HTC_One_M8
     private static final String MAC_address = "44:FD:A3:0F:05:1A";   //Raptor
+    protected final static int REQUEST_ENABLE_BT = 1;
+    private BluetoothAdapter mBluetoothAdapter;
     private OutputStream outputStream;
 
 
-    public void Bluetoothsetup(Context mcontext){
+    public short Bluetoothsetup(Context mcontext){
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null) {
-            Toast.makeText(mcontext, "Bluetooth is not available!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mcontext, "Bluetooth is not available at all!", Toast.LENGTH_SHORT).show();
+            return 0;
         }
         if (!mBluetoothAdapter.isEnabled()) {
-            Toast.makeText(mcontext, "Please enable Bluetooth!", Toast.LENGTH_SHORT).show();
+            return 1;
+        } else if (mBluetoothAdapter.isEnabled()){
+            return 2;
         }
+
+        return 0; //shouldn't get here
     }
 
 
