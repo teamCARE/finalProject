@@ -11,7 +11,7 @@
         android:layout_centerVertical="true"
         android:layout_marginTop="100sp"
         android:layout_marginBottom="20sp"
-        android:gravity="left|start"
+        android:gravity="left|start|bottom"
         android:text="(If not using AR headset, first untoggle sendToGlasses switch)\n\nIf sending to AR headset, set up Bluetooth first with the BTconnect button.\n\nThen press Start to transcribe!\n"
         android:textColor="@android:color/white"
         android:background="@android:color/black"

@@ -142,8 +142,8 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
         }
 
         //keep ssbuilder length from growing indefinitely. Waits for a few lines (100 chars) to cut to avoid cutting every new result
-        if (ssbuilder.length()>1000){
-            ssbuilder.delete(0,100);
+        if (ssbuilder.length()> 1000){
+            ssbuilder.delete(0, 100);
             len_final =  len_final-100;
         }
 
@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
         if (AR_GLASS_MODE) {
             try {
                 bluetoothAR.MssgWrite(ssbuilder);
+                Log.i(TAG + "FINAL sent to glasses sucess: " , ssbuilder.toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -181,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
         if (AR_GLASS_MODE) {
             try {
                 bluetoothAR.MssgWrite(ssbuilder);
+                Log.i(TAG + "PARTIAL sent to glasses sucess: " , ssbuilder.toString());
             } catch (IOException e) {
                 e.printStackTrace();
             }
