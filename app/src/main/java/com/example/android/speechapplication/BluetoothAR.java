@@ -80,7 +80,7 @@ public class BluetoothAR{
 
     public void MssgWrite(SpannableStringBuilder s) throws IOException {
         String htmlString = Html.toHtml(s);
-        htmlString = htmlString + "*";  //a asterisk is the delimeter on rx end
+        htmlString = htmlString + "_";  //an underscore is the delimeter on rx end
         byte[] mBytes = htmlString.getBytes(("UTF-8"));
         outputStream.write(mBytes);
     }

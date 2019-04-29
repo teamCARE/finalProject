@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -27,7 +28,8 @@ import java.io.IOException;
 public class MainActivity extends AppCompatActivity implements OnSpeechRecognitionListener, OnSpeechRecognitionPermissionListener {
 
     private TextView resultsText;
-    private Button speakButton; private TextView volumeText;
+    private Button speakButton;
+    private TextView volumeText;
     private SpannableStringBuilder ssbuilder = new SpannableStringBuilder();
     private int len_final = 0;
     private boolean AR_GLASS_MODE = true;
@@ -145,19 +147,23 @@ public class MainActivity extends AppCompatActivity implements OnSpeechRecogniti
         if (ssbuilder.length()> 1000){
             ssbuilder.delete(0, 100);
             len_final =  len_final-100;
+            //Toast.makeText(MainActivity.this,"cut text" , Toast.LENGTH_SHORT).show();
         }
+
+
+        resultsText.setText(ssbuilder, TextView.BufferType.SPANNABLE); //BufferType SPANNABLE automatically has scrolling movement for a textview
 
         //send the results to display on AR glasses
         if (AR_GLASS_MODE) {
             try {
+                Thread.sleep(400);   //needed to fix hanging error on receiving end
                 bluetoothAR.MssgWrite(ssbuilder);
                 Log.i(TAG + "FINAL sent to glasses sucess: " , ssbuilder.toString());
-            } catch (IOException e) {
-                e.printStackTrace();
+            } catch(InterruptedException | IOException ex) {
+                ex.printStackTrace();
+                Thread.currentThread().interrupt();
             }
         }
-
-        resultsText.setText(ssbuilder, TextView.BufferType.SPANNABLE); //BufferType SPANNABLE automatically has scrolling movement for a textview
 
         speakButton.performClick(); //makes it auto restart
     }
