@@ -49,12 +49,15 @@ public class MainActivity extends EvsBaseActivity {
     int readBufferPosition;
     volatile boolean stopWorker;
 
+    Thread stopThread;
+
     private String temp;
     Spanned temp2;
     CharSequence temp3;
     private int countert;
     private int i;
     private boolean PAUSED;
+    private int timeout = 20000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +71,7 @@ public class MainActivity extends EvsBaseActivity {
 
         final Button BTstartButton = (Button)findViewById(R.id.BTstart);
 
-        //link with raptor tap command
+        //link with raptor swipe forward command
         ((Button) findViewById(R.id.BTstart)).setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 AcceptThreadObj = new AcceptThread();
@@ -91,8 +94,9 @@ public class MainActivity extends EvsBaseActivity {
     {
         //the default behaviour of down is to close the activity
         super.onDown();
-        //android.os.Process.killProcess(android.os.Process.myPid());  //kills activity completely, so every time app is opened it re-initializes
+       // AcceptThreadObj.interrupt();
         AcceptThreadObj.cancel();
+        //android.os.Process.killProcess(android.os.Process.myPid());  //kills activity completely, so every time app is opened it re-initializes
     }
 
 
@@ -116,7 +120,7 @@ public class MainActivity extends EvsBaseActivity {
         }
         if (!mBluetoothAdapter.isEnabled()) {
             Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableIntent, REQUEST_ENABLE_BT);
+            startActivityForResult(enableIntent, REQUEST_ENABLE_BT);    //turn bluetooth on automatically if it's off
         }
     }
 
@@ -130,6 +134,7 @@ public class MainActivity extends EvsBaseActivity {
                 tmp = mBluetoothAdapter.listenUsingRfcommWithServiceRecord(NAME, MY_UUID);
             } catch (IOException e) {
                 Log.e(TAG, "Socket's listen() method failed", e);
+                cancel();
             }
             mmServerSocket = tmp;
         }
@@ -138,9 +143,11 @@ public class MainActivity extends EvsBaseActivity {
             // Keep listening until exception occurs or a socket is returned.
             while (true) {
                 try {
-                    socket = mmServerSocket.accept();
+                    socket = mmServerSocket.accept(timeout);
                 } catch (IOException e) {
                     Log.e(TAG, "Socket's accept() method failed", e);
+                    EvsToast.show(MainActivity.this, "Timeout or Error occurred");
+                    cancel();
                     break;
                 }
                 if (socket != null) {
@@ -157,6 +164,7 @@ public class MainActivity extends EvsBaseActivity {
         }
         public void cancel() {
             try {
+                inStream.close();
                 mmServerSocket.close();
             } catch (IOException e) {
                 Log.e(TAG, "Could not close the connect socket", e);

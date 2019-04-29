@@ -18,7 +18,8 @@
         android:allowBackup="false"
         android:debuggable="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name" >
+        android:label="@string/app_name"
+        android:testOnly="true" >
         <activity android:name="com.example.android.bluetoothcaredemo.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
