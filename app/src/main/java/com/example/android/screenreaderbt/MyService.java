@@ -139,7 +139,7 @@ public class MyService extends AccessibilityService {
     }
 
     public void MssgWrite(String s) throws IOException {
-        String sendstr = s + "*"; //* is the delim char
+        String sendstr = s + "_"; //an underscore is the delim char on rx end
         byte[] mBytes = sendstr.getBytes();
         outputStream.write(mBytes);
     }
