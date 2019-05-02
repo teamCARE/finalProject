@@ -10,4 +10,4 @@ Team: [Camille Chow](https://github.com/ceegeechow), [Mathew Ferreira](https://g
 \
 \
 \
-Special thanks to: [Everysight Raptor](https://everysight.com/), [KeenResearch](https://keenresearch.com/), and [Android-Speech-Recognition](https://github.com/maxwellobi/Android-Speech-Recognition).
+* Special thanks to: [Everysight Raptor](https://everysight.com/), [KeenResearch](https://keenresearch.com/), and [Android-Speech-Recognition](https://github.com/maxwellobi/Android-Speech-Recognition).
