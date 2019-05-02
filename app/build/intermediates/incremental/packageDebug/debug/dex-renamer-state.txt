@@ -1,4 +1,19 @@
-#Sat Feb 16 14:03:06 EST 2019
-base.0=/home/wendy/KeenASR-Android-PoC-master/app/build/intermediates/transforms/dexMerger/debug/0
+#Thu May 02 02:32:07 EDT 2019
+path.1=classes.dex
 path.0=classes.dex
+renamed.5=classes6.dex
+renamed.4=classes5.dex
+renamed.3=classes4.dex
+renamed.2=classes3.dex
+renamed.1=classes2.dex
 renamed.0=classes.dex
+base.5=/home/wendy/keenasrtest/app/build/intermediates/transforms/dexMerger/debug/16
+base.4=/home/wendy/keenasrtest/app/build/intermediates/transforms/dexMerger/debug/13
+base.3=/home/wendy/keenasrtest/app/build/intermediates/transforms/dexMerger/debug/15
+base.2=/home/wendy/keenasrtest/app/build/intermediates/transforms/dexMerger/debug/12
+base.1=/home/wendy/keenasrtest/app/build/intermediates/transforms/dexMerger/debug/17
+base.0=/home/wendy/keenasrtest/app/build/intermediates/transforms/dexMerger/debug/14
+path.5=classes.dex
+path.4=classes.dex
+path.3=classes.dex
+path.2=classes.dex

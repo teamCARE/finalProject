@@ -1,3 +1,61 @@
+Wendy
+Matt
+Camille
+Cooper
+Cooper Union
+What’s up?
+What’s new?
+What have you been up to lately?
+How’s it going?
+How are things?
+How’s life?
+I’m fine thanks
+How about you?
+Pretty good
+Same as always
+Not so great
+Could be better
+cant complain
+I really appreciate it
+I’m really grateful
+That’s so kind of you
+I owe you one
+No problem
+No worries
+Don’t mention it
+My pleasure
+Anytime
+It was nice
+I should get going
+Do you know
+Would you happen to know
+I don’t suppose
+I have no idea
+I can’t
+I’m not sure
+I’ve been wondering
+That’s so true
+for sure.
+I agree
+I couldn’t
+Tell me about it
+You’re telling me
+I’ll say
+I suppose so
+Not necessarily
+That’s great
+How wonderful
+Awesome
+Oh no
+That’s terrible
+sorry to hear that
+Are you free
+Are you doing anything
+Do you wanna
+Would you like to
+I’m starving
+grab a bite
+I’ll have
 I don't know
 I love you
 I hate you
@@ -20,12 +78,11 @@ I have a question
 Quick question
 The quick brown fox jumped over the lazy dog
 pointed
-pam
 reggae
 bob
 lender
 bases
-robert
+Robert
 physics
 likelihood
 tap
@@ -61,7 +118,7 @@ rain
 buyers
 literature
 fate
-chinese
+Chinese
 enemy
 annoying
 opens
@@ -101,7 +158,6 @@ ticket
 inspector
 toxic
 willing
-res
 reflects
 enterprise
 gentle
@@ -109,14 +165,12 @@ mouth
 quick
 pan
 nitrogen
-mg
 crop
 hotel
 confirmed
 around
 hanging
 group
-melbourne
 dive
 seal
 capable
@@ -168,7 +222,6 @@ former
 institutional
 brooklyn
 jeff
-cn
 adams
 facing
 enclosure
@@ -264,7 +317,6 @@ board
 pleasant
 transformation
 scottish
-ser
 enters
 modification
 pointer
@@ -288,7 +340,6 @@ spice
 surge
 withdrawal
 shoppers
-tel
 suicide
 dakota
 technician
@@ -298,7 +349,6 @@ tells
 chick
 breakfast
 translation
-lanka
 turkish
 liberia
 demo
@@ -355,7 +405,6 @@ nine
 purposes
 cabinets
 respondents
-wto
 ratings
 republicans
 democrats
@@ -416,7 +465,6 @@ elizabeth
 helen
 lauren
 environments
-oe
 proper
 nutrition
 development
@@ -473,7 +521,6 @@ maternity
 sally
 competitive
 hospitality
-ken
 small
 allow
 residents
@@ -572,7 +619,6 @@ growth
 drugs
 rates
 grants
-laos
 engaged
 preparing
 marking
@@ -667,7 +713,6 @@ tribune
 encouraged
 returns
 official
-nasa
 stolen
 revenue
 gasoline
@@ -700,7 +745,6 @@ else
 best
 errors
 warrant
-ts
 knitting
 visibility
 occasionally
@@ -890,7 +934,6 @@ manufacturers
 resolve
 referring
 queries
-gdp
 stretch
 important
 engine
@@ -898,7 +941,6 @@ start
 magnificent
 underground
 currency
-eu
 euro
 highways
 highest
@@ -961,7 +1003,6 @@ conclusion
 indicators
 weddings
 jake
-ali
 oxford
 consciousness
 bachelor
@@ -991,14 +1032,12 @@ teaches
 pain
 depending
 timely
-las
 sue
 sites
 expect
 surgery
 extra
 africa
-dna
 alive
 regions
 observations
@@ -1009,7 +1048,6 @@ exterior
 mines
 virtually
 graduated
-mp
 devoted
 produces
 sufficient
@@ -1030,11 +1068,9 @@ memo
 charger
 sending
 raymond
-pierre
 mechanical
 medal
 hoped
-uv
 divide
 colors
 attractive
@@ -1272,23 +1308,12 @@ drunk
 suck
 baseline
 observation
-und
 den
-dem
 mit
-ist
 im
-aus
-dir
 petersburg
-zu
-deutsche
-mag
 er
-zum
-sie
 mariah
-ins
 sucking
 paths
 lesbian
@@ -1297,7 +1322,7 @@ duplicate
 fleece
 pay
 for
-fibre
+fiber
 challenges
 languages
 finite
@@ -1366,7 +1391,6 @@ nightmare
 offered
 lover
 volunteer
-phil
 corporation
 animated
 classics
@@ -1387,7 +1411,6 @@ there
 go
 exact
 trip
-url
 demonstrate
 lawyers
 complications
@@ -1560,19 +1583,10 @@ plans
 upset
 levy
 gains
-tion
-ia
 min
 julie
-io
-sen
 tri
-ol
-por
-ion
-vi
-mem
-foto
+tion
 inter
 positioning
 guitar
@@ -1618,7 +1632,6 @@ explosion
 hello
 guy
 tables
-dvds
 realize
 tea
 relax
@@ -1656,7 +1669,6 @@ released
 correct
 alfred
 terror
-jo
 form
 spanking
 exist
@@ -1677,7 +1689,6 @@ past
 electron
 studied
 cricket
-atm
 clerk
 someone
 tenant
@@ -1762,7 +1773,6 @@ warming
 treaty
 international
 convinced
-al
 gore
 planet
 america
@@ -1774,32 +1784,8 @@ jail
 clinic
 exit
 establishment
-sa
-ni
-qui
-va
 cuisine
-cet
-centre
-sur
-midi
-sans
-ai
-ne
-pas
-au
-est
-mon
-et
-dans
-flux
-ou
-corps
-une
-ta
-je
-ce
-que
+center
 outdoors
 supplier
 centered
@@ -1848,7 +1834,6 @@ valuable
 rivers
 streams
 environment
-pcs
 containers
 essentials
 david
@@ -2144,7 +2129,6 @@ idol
 thrown
 hardly
 specially
-ps
 duties
 month
 employer
@@ -2319,7 +2303,6 @@ silly
 attention
 practitioner
 explorer
-chi
 shots
 mask
 wayne
@@ -2340,7 +2323,6 @@ clinics
 resistance
 reveals
 smith
-cds
 call
 barbara
 null
@@ -2353,7 +2335,6 @@ nails
 categories
 meaningful
 inquiry
-az
 volt
 blocks
 accompanied
@@ -2396,7 +2377,6 @@ camera
 download
 digital
 cordless
-se
 tonight
 bar
 mess
@@ -2418,7 +2398,7 @@ contacted
 photograph
 backing
 grad
-colour
+color
 scheme
 brand
 damn
@@ -2474,7 +2454,6 @@ great
 guru
 sheet
 comments
-ftp
 operation
 highlighted
 clocks
@@ -2544,7 +2523,6 @@ advertisement
 lets
 christine
 dave
-michel
 kid
 snowboard
 courtesy
@@ -2584,7 +2562,6 @@ granted
 would
 louisiana
 roads
-pda
 ribbon
 grown
 fault
@@ -2663,7 +2640,6 @@ buddy
 exercise
 workout
 click
-usb
 repairs
 explain
 weak
@@ -2869,7 +2845,6 @@ gibraltar
 represent
 buried
 interventions
-ing
 tiles
 linear
 accordance
@@ -2967,7 +2942,6 @@ kelly
 grace
 prince
 block
-js
 translations
 portions
 chocolate
@@ -2997,7 +2971,6 @@ transportation
 lines
 tennessee
 harvard
-tv
 dublin
 nelson
 nude
@@ -3040,7 +3013,6 @@ operate
 millions
 graphs
 charts
-gps
 welfare
 heritage
 composed
@@ -3100,13 +3072,11 @@ latvia
 builder
 example
 wed
-des
 mid
 holes
 mountains
 replaced
 quotes
-oecd
 lyric
 representing
 wicked
@@ -3319,15 +3289,8 @@ funny
 piss
 receipt
 contacting
-mia
-una
-non
 ha
 i
-il
-ti
-fa
-di
 ho
 struggle
 solve
@@ -3388,7 +3351,6 @@ gets
 plain
 trace
 pen
-le
 roland
 convert
 specialized
@@ -3414,7 +3376,6 @@ arc
 stake
 foster
 moore
-st
 easier
 minds
 naturally
@@ -3683,10 +3644,8 @@ pamela
 deliver
 nancy
 saints
-cho
 broadway
 responding
-du
 stronger
 odds
 wrong
@@ -3765,7 +3724,6 @@ honors
 investing
 advertiser
 intervention
-nd
 admitted
 chest
 hospital
@@ -3839,7 +3797,6 @@ asia
 sucks
 published
 corrected
-mt
 agriculture
 tops
 catalogs
@@ -3851,7 +3808,6 @@ industrial
 scenario
 turkey
 anytime
-mm
 navy
 joined
 ordinary
@@ -3954,7 +3910,6 @@ corporations
 klein
 bodies
 ruling
-mtv
 sony
 nervous
 addition
@@ -4012,11 +3967,6 @@ doors
 heaven
 hell
 met
-op
-dat
-af
-te
-om
 matter
 much
 how
@@ -4059,7 +4009,6 @@ britain
 kong
 contrast
 remains
-ms
 eligible
 least
 killed
@@ -4090,7 +4039,6 @@ promoting
 missouri
 kuwait
 comedy
-jul
 sync
 charles
 imposed
@@ -4167,7 +4115,6 @@ floating
 clouds
 validity
 production
-pm
 atlas
 slovakia
 polls
@@ -4318,7 +4265,6 @@ speeches
 wendy
 patent
 poison
-lu
 radar
 turned
 made
@@ -4344,7 +4290,6 @@ summary
 posting
 awards
 receiving
-dr
 handed
 attach
 plastic
@@ -4357,12 +4302,7 @@ describing
 plumbing
 robbie
 burns
-mu
-po
-ja
 w
-co
-na
 requested
 steal
 cameras
@@ -4397,14 +4337,10 @@ google
 um
 para
 vista
-dos
-em
-os
 examines
 extended
 task
 specialists
-chen
 revolution
 hearts
 missile
@@ -4421,7 +4357,7 @@ automobiles
 babe
 recreation
 solving
-goto
+go to
 adopted
 sales
 corporate
@@ -4444,7 +4380,6 @@ physicians
 purpose
 copying
 genre
-fu
 f
 gordon
 enable
@@ -4459,7 +4394,6 @@ achieved
 merchant
 arising
 insight
-thy
 dare
 sandra
 wallace
@@ -4543,7 +4477,6 @@ influences
 side
 preventing
 reward
-mae
 cosmetic
 recorded
 connecting
@@ -4557,7 +4490,6 @@ sticks
 rewards
 consequence
 organizations
-ye
 boxing
 warren
 penn
@@ -4575,7 +4507,6 @@ debt
 relief
 pete
 tooth
-von
 sex
 consisting
 fairly
@@ -4585,9 +4516,7 @@ terms
 architecture
 architectural
 round
-mai
 gender
-cu
 determined
 abortion
 persons
@@ -4649,7 +4578,6 @@ belts
 weights
 tide
 dig
-thou
 scheduled
 indirect
 literacy
@@ -4721,7 +4649,6 @@ neck
 facility
 desired
 editing
-beijing
 choir
 feelings
 suffered
@@ -4756,8 +4683,6 @@ attending
 stock
 oils
 massage
-lib
-cohen
 leonard
 poems
 chapters
@@ -4823,7 +4748,6 @@ pieces
 dolls
 andorra
 diamond
-aa
 joel
 chrysler
 performer
@@ -4854,7 +4778,6 @@ criterion
 eastern
 opportunities
 matches
-rica
 hazardous
 banned
 rows
@@ -4893,7 +4816,6 @@ quantities
 disorders
 structural
 retailers
-eden
 incoming
 relay
 entities
@@ -4955,20 +4877,7 @@ paste
 pins
 demand
 kim
-ir
-es
-alto
-mil
-marco
 o
-tu
-casa
-linda
-si
-sexo
-su
-ya
-lo
 assessments
 reef
 contributing
@@ -5110,7 +5019,6 @@ jay
 k
 joe
 fan
-cd
 dedicated
 fox
 leg
@@ -5121,7 +5029,6 @@ refrigerator
 theorem
 excessive
 measurement
-da
 witch
 grip
 tools
@@ -5341,7 +5248,6 @@ barbie
 doll
 player
 revealed
-bbc
 recordings
 rough
 everyday
@@ -5450,7 +5356,6 @@ distinct
 central
 healing
 districts
-ceo
 ceramic
 chancellor
 specializing
@@ -5713,12 +5618,10 @@ throughout
 director
 usual
 insulation
-niger
 discrete
 distinction
 superintendent
 meter
-dj
 spell
 sequences
 letters
@@ -5745,7 +5648,6 @@ era
 amsterdam
 drum
 singing
-dvd
 hunting
 stages
 precious
@@ -5937,7 +5839,6 @@ volkswagen
 knee
 anthropology
 acids
-nhl
 fairy
 motion
 deployment
@@ -6116,10 +6017,7 @@ investigators
 radiation
 quiet
 spot
-grenada
-malta
 membership
-zealand
 jaguar
 panels
 telecommunications
@@ -6147,7 +6045,6 @@ martial
 services
 packets
 modified
-volvo
 sensor
 lawsuit
 relating
@@ -6443,7 +6340,6 @@ dosage
 monitored
 patient
 alert
-pc
 agreement
 complete
 pumps
@@ -6475,7 +6371,6 @@ tagged
 pittsburgh
 afghanistan
 plains
-fe
 planes
 fingers
 caps
@@ -6650,7 +6545,6 @@ generation
 michael
 professional
 reunion
-rick
 hansen
 disabilities
 rider
@@ -6818,7 +6712,6 @@ time
 teacher
 construct
 comparing
-wa
 maritime
 assumes
 suggestion
@@ -6880,15 +6773,8 @@ exceed
 riders
 blend
 wealth
-brunei
-belize
-dominican
-southampton
-newfoundland
 sporting
 sponsor
-curtis
-toronto
 joseph
 circulation
 temperature
@@ -6899,7 +6785,6 @@ response
 mission
 trade
 proposal
-honduras
 tragedy
 tracks
 transmission
@@ -6925,7 +6810,6 @@ supposed
 widely
 accepted
 specifies
-uk
 promotional
 conversations
 horn
@@ -7040,7 +6924,6 @@ description
 witness
 understood
 gaps
-oz
 wizard
 respondent
 arrested
@@ -7160,13 +7043,11 @@ connections
 park
 adjacent
 beautiful
-sec
 brazilian
 bulgarian
 wolf
 monaco
 casino
-celtic
 steps
 jade
 vessel
@@ -7215,7 +7096,6 @@ philippines
 restriction
 artificial
 woods
-thai
 sympathy
 caution
 march
@@ -7431,8 +7311,6 @@ housewives
 abc
 trivia
 mixed
-li
-mi
 hopkins
 against
 toolbox
@@ -7465,10 +7343,6 @@ instrument
 proposed
 rising
 karaoke
-das
-var
-ve
-ev
 launch
 text
 pounds
@@ -7522,26 +7396,19 @@ petroleum
 expense
 enabled
 virtual
-id
 instance
 lindsay
 independent
 risk
 share
 other
-ben
 mirrors
-dan
 mercy
-hugo
-les
 hosts
 parental
 stamps
 albums
 games
-ra
-singh
 ships
 isolation
 governmental
@@ -7766,7 +7633,6 @@ crap
 rugs
 assumptions
 specified
-en
 slides
 photo
 evening
@@ -7950,7 +7816,6 @@ outer
 inner
 bryan
 infringement
-mr
 architects
 achieve
 shakespeare

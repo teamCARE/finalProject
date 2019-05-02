@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
                     //BT Send
                     try {
                         //CommandWrite(PauseString);
-                        outputStream.write(("~~Pause Recognition~~*").getBytes()); //clears the screen
+                        outputStream.write(("~~Pause Recognition~~_").getBytes()); //clears the screen
                     } catch (IOException connectException) {
                         connectException.printStackTrace();
                     }
@@ -351,7 +351,7 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
         //String sendstr = s.toString() + "-";
        // byte[] mBytes = sendstr.getBytes();
         String htmlString = Html.toHtml(s);
-        htmlString = htmlString + "*";  //a dash is the delimeter on rx end
+        htmlString = htmlString + "_";  //a dash is the delimeter on rx end
 
        byte[] mBytes = htmlString.getBytes(("UTF-8"));
         outputStream.write(mBytes);
