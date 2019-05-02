@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Handler handler = new Handler();
       //  final byte delimiter = 10; //This is the ASCII code for a newline character
-        final byte delimiter = 42; //This is the ASCII code for a asterisk
+        final byte delimiter = 95; //This is the ASCII code for an underscore
         final TextView result = (TextView) findViewById(R.id.result);
         result.setMovementMethod(new ScrollingMovementMethod());
 

@@ -4,22 +4,7 @@
             "outputFile": "/home/wendy/KeenASR-Android-PoC-master/bluetoothrx_keenasr/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml",
             "map": [
                 {
-                    "source": "/root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e807d49cad94496dd00e1bce84dd51e7/res/values-land/values-land.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,125,196",
-                        "endColumns": "69,70,67",
-                        "endOffsets": "120,191,259"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "/home/wendy/Desktop/Backup/BTinitFeb15/KeenASR-Android-PoC-master/bluetoothrx_keenasr/build/intermediates/incremental/mergeDebugResources/merged.dir/values-land/values-land.xml",
-            "map": [
-                {
-                    "source": "/root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e807d49cad94496dd00e1bce84dd51e7/res/values-land/values-land.xml",
+                    "source": "/root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/26e8d4cc20fcc2c5b062d9167175414f/res/values-land/values-land.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",

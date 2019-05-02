@@ -20,6 +20,17 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <TextView
+        android:id="@+id/volumeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100sp"
+        android:enabled="true"
+        android:text="Volume"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:visibility="invisible" />
+
     <LinearLayout
         android:id="@+id/linear1"
         android:layout_width="match_parent"
@@ -38,6 +49,8 @@
             android:maxLines="8"
             android:text="Open Server Socket, then tap BT icon to send Client request."
             android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:background="@android:color/black"
             android:textSize="14sp"
             android:visibility="visible" />
 

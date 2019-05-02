@@ -1,25 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/wendy/Desktop/Backup/BTinitFeb15/KeenASR-Android-PoC-master/bluetoothrx_keenasr/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
-            "map": [
-                {
-                    "source": "/root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e807d49cad94496dd00e1bce84dd51e7/res/values-v24/values-v24.xml",
-                    "from": {
-                        "startLines": "2,3",
-                        "startColumns": "4,4",
-                        "startOffsets": "55,212",
-                        "endColumns": "156,134",
-                        "endOffsets": "207,342"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/home/wendy/KeenASR-Android-PoC-master/bluetoothrx_keenasr/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v24/values-v24.xml",
             "map": [
                 {
-                    "source": "/root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/e807d49cad94496dd00e1bce84dd51e7/res/values-v24/values-v24.xml",
+                    "source": "/root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/26e8d4cc20fcc2c5b062d9167175414f/res/values-v24/values-v24.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
