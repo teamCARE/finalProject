@@ -888,7 +888,6 @@ id up
 id useLogo
 id view_offset_helper
 id visible
-id volumeText
 id withText
 id wrap
 id wrap_content

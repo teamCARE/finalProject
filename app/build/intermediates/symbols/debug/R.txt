@@ -887,10 +887,9 @@ int id up 0x7f0800a2
 int id useLogo 0x7f0800a3
 int id view_offset_helper 0x7f0800a4
 int id visible 0x7f0800a5
-int id volumeText 0x7f0800a6
-int id withText 0x7f0800a7
-int id wrap 0x7f0800a8
-int id wrap_content 0x7f0800a9
+int id withText 0x7f0800a6
+int id wrap 0x7f0800a7
+int id wrap_content 0x7f0800a8
 int integer abc_config_activityDefaultDur 0x7f090000
 int integer abc_config_activityShortDur 0x7f090001
 int integer app_bar_elevation_anim_duration 0x7f090002

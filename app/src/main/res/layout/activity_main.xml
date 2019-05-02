@@ -20,17 +20,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:id="@+id/volumeText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100sp"
-        android:enabled="true"
-        android:text="Volume"
-        android:textAlignment="center"
-        android:textSize="14sp"
-        android:visibility="visible" />
-
     <LinearLayout
         android:id="@+id/linear1"
         android:layout_width="match_parent"

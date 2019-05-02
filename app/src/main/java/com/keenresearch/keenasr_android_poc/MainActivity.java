@@ -67,7 +67,7 @@ import android.os.Handler;
 
 
 
-public class MainActivity extends AppCompatActivity implements KASRRecognizerListener, RecognitionListener {
+public class MainActivity extends AppCompatActivity implements KASRRecognizerListener {
     protected static final String TAG =MainActivity.class.getSimpleName();
     private final int MY_PERMISSIONS_RECORD_AUDIO = 1;
     private TimerTask levelUpdateTask;
@@ -92,10 +92,6 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
     private String PlayString= "Recognition Play";
     private String PauseString= "Recognition Paused";
     private boolean CONNECTED;
-
-    private SpeechRecognizer speech = null;
-    private Intent recognizerIntent;
-    private String LOG_TAG = "VoiceRecognitionActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -237,109 +233,8 @@ public class MainActivity extends AppCompatActivity implements KASRRecognizerLis
 
 
         Bluetoothsetup();
-
-        //test
-        speech = SpeechRecognizer.createSpeechRecognizer(this);
-        Log.i(LOG_TAG, "isRecognitionAvailable: " + SpeechRecognizer.isRecognitionAvailable(this));
-        speech.setRecognitionListener(this);
-        recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, "com.keenresearch.keenasr_android_poc");
-        speech.startListening(recognizerIntent); //test
     }
 
-
-   //for recognitonlistner
-   @Override
-   public void onRmsChanged(float rmsdB) {
-       final TextView volumeText = (TextView)findViewById(R.id.volumeText);
-       Log.i(LOG_TAG, "onRmsChanged: " + rmsdB);
-       volumeText.setText("rmsdB: " + rmsdB);
-   }
-
-    @Override
-    public void onEvent(int arg0, Bundle arg1) {
-        Log.i(LOG_TAG, "onEvent");
-    }
-    @Override
-    public void onPartialResults(Bundle arg0) {
-        Log.i(LOG_TAG, "onPartialResults");
-    }
-    @Override
-    public void onReadyForSpeech(Bundle arg0) {
-        Log.i(LOG_TAG, "onReadyForSpeech");
-    }
-    @Override
-    public void onResults(Bundle results) {
-        Log.i(LOG_TAG, "onResults");
-      //  speech.cancel();
-       // speech.startListening(recognizerIntent);
-        speech.startListening(recognizerIntent);
-        Log.i(LOG_TAG, "restarted");
-    }
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-    @Override
-    public void onBeginningOfSpeech() {
-        Log.i(LOG_TAG, "onBeginningOfSpeech");
-    }
-    @Override
-    public void onBufferReceived(byte[] buffer) {
-        Log.i(LOG_TAG, "onBufferReceived: " + buffer);
-    }
-    @Override
-    public void onEndOfSpeech() {
-        Log.i(LOG_TAG, "onEndOfSpeech");
-        speech.startListening(recognizerIntent);
-        Log.i(LOG_TAG, "restarted");
-    }
-
-    @Override
-    public void onError(int errorCode) {
-        String errorMessage = getErrorText(errorCode);
-        Log.d(LOG_TAG, "FAILED " + errorMessage);
-    }
-
-    public static String getErrorText(int errorCode) {
-        String message;
-        switch (errorCode) {
-            case SpeechRecognizer.ERROR_AUDIO:
-                message = "Audio recording error";
-                break;
-            case SpeechRecognizer.ERROR_CLIENT:
-                message = "Client side error";
-                break;
-            case SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS:
-                message = "Insufficient permissions";
-                break;
-            case SpeechRecognizer.ERROR_NETWORK:
-                message = "Network error";
-                break;
-            case SpeechRecognizer.ERROR_NETWORK_TIMEOUT:
-                message = "Network timeout";
-                break;
-            case SpeechRecognizer.ERROR_NO_MATCH:
-                message = "No match";
-                break;
-            case SpeechRecognizer.ERROR_RECOGNIZER_BUSY:
-                message = "RecognitionService busy";
-                break;
-            case SpeechRecognizer.ERROR_SERVER:
-                message = "error from server";
-                break;
-            case SpeechRecognizer.ERROR_SPEECH_TIMEOUT:
-                message = "No speech input";
-                break;
-            default:
-                message = "Didn't understand, please try again.";
-                break;
-        }
-        return message;
-    }
-
-
-    //end of for recognitonlistner
 
     public void Bluetoothsetup(){
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
