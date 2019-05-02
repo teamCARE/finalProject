@@ -4,7 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/KeenASR/KeenASR.iml" filepath="$PROJECT_DIR$/KeenASR/KeenASR.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/bluetoothrx_keenasr/bluetoothrx_keenasr.iml" filepath="$PROJECT_DIR$/bluetoothrx_keenasr/bluetoothrx_keenasr.iml" />
       <module fileurl="file://$PROJECT_DIR$/keenasrtest.iml" filepath="$PROJECT_DIR$/keenasrtest.iml" />
     </modules>
   </component>

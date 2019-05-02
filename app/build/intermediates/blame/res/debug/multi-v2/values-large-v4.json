@@ -1,40 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/home/wendy/KeenASR-Android-PoC-master/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-large-v4/values-large-v4.xml",
-            "map": [
-                {
-                    "source": "/root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/98fa7bea35631fdff3096f5ec7f0fe26/res/values-large-v4/values-large-v4.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,114,185,256,326,396,464,532,636",
-                        "endColumns": "58,70,70,69,69,67,67,103,115",
-                        "endOffsets": "109,180,251,321,391,459,527,631,747"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "/home/wendy/Desktop/Backup/BTinitFeb15/KeenASR-Android-PoC-master/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-large-v4/values-large-v4.xml",
-            "map": [
-                {
-                    "source": "/root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/98fa7bea35631fdff3096f5ec7f0fe26/res/values-large-v4/values-large-v4.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10",
-                        "startColumns": "4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,114,185,256,326,396,464,532,636",
-                        "endColumns": "58,70,70,69,69,67,67,103,115",
-                        "endOffsets": "109,180,251,321,391,459,527,631,747"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "/home/wendy/keenasrtest/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-large-v4/values-large-v4.xml",
             "map": [
                 {
-                    "source": "/root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/98fa7bea35631fdff3096f5ec7f0fe26/res/values-large-v4/values-large-v4.xml",
+                    "source": "/root/.gradle/caches/transforms-1/files-1.1/appcompat-v7-25.3.1.aar/4072e4d4fb072ee0f8caee3896de1375/res/values-large-v4/values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",

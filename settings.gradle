@@ -1,1 +1,1 @@
-include ':app', ':KeenASR', ':bluetoothrx_keenasr'
+include ':app', ':KeenASR'
