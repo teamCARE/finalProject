@@ -1,6 +1,6 @@
 # finalProject
 
-The Cooper Union   
+[The Cooper Union](https://cooper.edu/welcome)   
 Senior Project: Spring 2019  
 [Camille Chow](https://github.com/ceegeechow), [Mathew Ferreira](https://github.com/matthew-ferreira), [Wendy Ide](https://github.com/wside)  
 
