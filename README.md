@@ -2,7 +2,7 @@
 
 [The Cooper Union](https://cooper.edu/welcome)  
 Senior Project: Spring 2019   
-**Team: [Camille Chow](https://github.com/ceegeechow), [Mathew Ferreira](https://github.com/matthew-ferreira), [Wendy Ide](https://github.com/wside)** 
+## Team: [Camille Chow](https://github.com/ceegeechow), [Mathew Ferreira](https://github.com/matthew-ferreira), [Wendy Ide](https://github.com/wside)** 
 
 Special thanks to: [Everysight Raptor](https://everysight.com/), [KeenResearch](https://keenresearch.com/), and [Android-Speech-Recognition](https://github.com/maxwellobi/Android-Speech-Recognition).
 
