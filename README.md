@@ -1,7 +1,7 @@
 # finalProject     
 Version1 release       
 
-uses the android.speech class.       
+uses the [android.speech](https://developer.android.com/reference/android/speech/package-summary) class.       
 
 * Color coded confidence levels (green -good final result, red- bad final result, yellow -current result)   
 * Pre-connect any Bluetooth mic as audio input device.   
