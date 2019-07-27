@@ -11,3 +11,5 @@ Special thanks to: [Everysight Raptor](https://everysight.com/), [KeenResearch](
 * A repo focusing on real-time speech to text transcription with AR glasses.  
 * Meant to improve accessibility features for the DHH (Deaf and Hard of Hearing) community. 
 * Please refer to Version1-branchname repos and their respecive Readmes for more info.   
+* [Presentation (with videos) link](https://docs.google.com/presentation/d/1vG3hfVsTtoxZzieeksMOV4IKhBSpyhIZNpCV3if4m_U/edit?usp=sharing)
+* [Research Paper link](https://docs.google.com/document/d/1iiIsg1ZZ8gyLxZ3Tqv5-kgFkkzTMALts3F3Kp4uKKVI/edit?usp=sharing) 
